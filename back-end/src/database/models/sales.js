@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       sales.belongsTo(models.users,{
-        foreignKey: 'user'
+        foreignKey: 'userId',
+        as: 'users'
+      }),
+
+      sales.belongsTo(models.users,{
+        foreignKey: 'sellerId',
+        as: 'sellers'
       })
     }
 
