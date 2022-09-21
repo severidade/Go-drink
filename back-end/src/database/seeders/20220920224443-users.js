@@ -8,7 +8,7 @@ module.exports = {
         email: 'adm@deliveryapp.com',
         name: 'Delivery App Admin',
         password: 'a4c86edecc5aee06eff8fdeda69e0d04',
-        role: 'administrador',
+        role: 'administrator',
         // senha: md5('--adm2@21!!--')
       },
       {
