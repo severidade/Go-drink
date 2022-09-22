@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { User } = require('../../database/models');
+const { users } = require('../../database/models');
 const jwtService = require('./JwtService');
 
 const loginService = {
@@ -22,8 +22,9 @@ const loginService = {
   },
 
   login: async ({ email, password }) => {
-    const user = await User.findOne({
+    const user = await users.findOne({
       where: { email, password }, 
+      attributes: {exclude: ['password']},
     });
 
     if (!user) {
@@ -33,8 +34,7 @@ const loginService = {
       throw e;
     }
 
-    const { passwordHash, ...userInfo } = user.dataValues;
-    return jwtService.createToken(userInfo);
+    return jwtService.createToken(user);
   },
 };
 
