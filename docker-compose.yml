@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  back:
+    image: node:16.14-alpine
+    user: node
+    working_dir: /app
+    volumes:
+      - ./back-end:/app
+    container_name: delivery-app-back
+    tty: true
+    stdin_open: true
+    command: npm run dev
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      HOSTNAME: db
+      MYSQL_DB_NAME: delivery-app
+      MYSQL_PORT: 3306
+      JWT_SECRET: secret_key
+      NODE_ENV: development
+      EVAL_ALWAYS_RESTORE_DEV_DB: "true"
+
+  front:
+    image: node:16.14-alpine
+    user: node
+    working_dir: /app
+    volumes:
+      - ./front-end:/app
+    container_name: delivery-app-front
+    tty: true
+    stdin_open: true
+    command: npm run start
+    restart: always
+    ports:
+      - 3000:3000
+
+  db:
+    container_name: delivery-app-db
+    image: mysql:8.0.21
+    platform: linux/x86_64
+    restart: always
+    ports:
+      - 3306:3306
+      - 33060:33060
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+networks:
+  default:
+    name: blogs_api_net
