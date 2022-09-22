@@ -1,12 +1,14 @@
-import { createToken } from "../service/JwtService"
-import { login, validateBody } from "../service/LoginService"
+// import { createToken } from '../service/JwtService';
+import { login, validateBody } from '../service/LoginService';
 
-const loginController = {
+ const loginController = {
   login: async (req, res) => {
-    const { email } = validateBody(req.body)
+    validateBody(req.body);
 
-    const token = await login(req.body)
+    const token = await login(req.body);
 
-    res.status(200).json(token)
-  }
-}
+    res.status(200).json(token);
+  },
+};
+
+export default loginController;

@@ -1,10 +1,10 @@
-import app from "../app";
-import { login } from "../service/LoginService";
+import app from '../app';
+import { login } from '../service/LoginService';
 
-const { Router } = require("express");
+const { Router } = require('express');
 
-const loginRouter = Router()
+const loginRouter = Router();
 
-app.use('/', login)
+app.use('/', login);
 
 export default loginRouter;
