@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const md5 = require('md5');
 const { users } = require('../../database/models');
 const jwtService = require('./JwtService');
 
@@ -23,14 +24,14 @@ const loginService = {
 
   login: async ({ email, password }) => {
     const user = await users.findOne({
-      where: { email, password }, 
+      where: { email, password: md5(password) },
       attributes: { exclude: ['password'] },
     });
 
     if (!user) {
-      const e = new Error('Invalid fields');
-      e.name = 'ValidationError';
-      e.status = 400;
+      const e = new Error('Not found');
+      e.name = 'Not found';
+      e.status = 404;
       throw e;
     }
 
