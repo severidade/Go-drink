@@ -2,11 +2,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileContext from '../context/ProfileContext/ProfileContext';
+import userRequest from '../services/requests/userRequest';
+import numbers from '../services/numbers/index';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disableButton, setDisablebutton] = useState(true);
+  const [invalidLogin, setInvalidLogin] = useState(true);
+  const [invalidLoginMessage, setInvalidLoginMessage] = useState(true);
 
   const {
     verifyEmail,
@@ -25,10 +29,16 @@ function Login() {
 
   const history = useHistory();
 
-  function handleClickLogin() {
-    // const token = { email: email };
-    // localStorage.setItem('token', 'biscoito');
-    history.push('/customer/products');
+  async function handleClickLogin() {
+    const response = await userRequest.login(email, password);
+    if (response.status !== numbers.twoHundred) {
+      setInvalidLogin(true);
+      setInvalidLoginMessage(response.body.message);
+    } else {
+      localStorage.setItem('token', response.body.token);
+      history.push('/customer/products');
+    }
+    console.log(invalidLogin);
   }
 
   function handleClickRegister() {
@@ -91,6 +101,16 @@ function Login() {
           Ainda não tenho conta
         </button>
       </form>
+      {
+        invalidLogin
+        && (
+          <p
+            data-testid="common_login__element-invalid-email"
+          >
+            {invalidLoginMessage}
+
+          </p>)
+      }
     </div>
   );
 }
