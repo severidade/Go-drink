@@ -1,21 +1,38 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileContext from '../context/ProfileContext/ProfileContext';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [disableButton, setDisablebutton] = useState(true);
+
   const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    disableButton,
+    verifyEmail,
+    verifyPassword,
   } = useContext(ProfileContext);
+
+  useEffect(() => {
+    const validEmail = verifyEmail(email);
+    const validPassword = verifyPassword(password);
+    if (validEmail && validPassword) {
+      setDisablebutton(false);
+    } else {
+      setDisablebutton(true);
+    }
+  }, [email, password]);
+
   const history = useHistory();
 
-  function handleClick() {
+  function handleClickLogin() {
     // const token = { email: email };
     // localStorage.setItem('token', 'biscoito');
     history.push('/customer/products');
+  }
+
+  function handleClickRegister() {
+    history.push('/register');
   }
 
   return (
@@ -60,7 +77,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ disableButton }
-          onClick={ () => handleClick() }
+          onClick={ () => handleClickLogin() }
           className="login_app_button"
         >
           Login
@@ -68,7 +85,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
-          onClick={ () => handleClick() }
+          onClick={ () => handleClickRegister() }
           className="login_app_button"
         >
           Ainda não tenho conta
