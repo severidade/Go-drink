@@ -1,3 +1,6 @@
+const host = 'http://localhost:3001';
+
 export default {
-  createUser: 'http://localhost:3001/create',
+  createUser: `${host}/create`,
+  login: `${host}/login`,
 };
