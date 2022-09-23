@@ -1,8 +1,8 @@
 const express = require('express');
 require('express-async-errors');
-const { errorFunc } = require('./middlewares/errorMiddleware');
 
-const { default: loginRouter } = require('./router/LoginRouter');
+const loginRouter = require('./router/LoginRouter');
+const errorFunc = require('./middlewares/errorMiddleware');
 
 const app = express();
 

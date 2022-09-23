@@ -24,7 +24,6 @@ const loginService = {
   login: async ({ email, password }) => {
     const user = await users.findOne({
       where: { email, password }, 
-      attributes: { exclude: ['password'] },
     });
 
     if (!user) {

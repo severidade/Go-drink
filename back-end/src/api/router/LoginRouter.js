@@ -1,10 +1,8 @@
-import app from '../app';
-import { login } from '../service/LoginService';
-
 const { Router } = require('express');
+const loginController = require('../controller/LoginController');
 
 const loginRouter = Router();
 
-app.use('/', login);
+loginRouter.post('/', loginController.login);
 
-export default loginRouter;
+module.exports = loginRouter;

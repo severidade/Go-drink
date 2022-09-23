@@ -1,14 +1,13 @@
-// import { createToken } from '../service/JwtService';
-import { login, validateBody } from '../service/LoginService';
+const loginService = require('../service/LoginService');
 
- const loginController = {
+const loginController = {
   login: async (req, res) => {
-    validateBody(req.body);
+    loginService.validateBody(req.body);
 
-    const token = await login(req.body);
+    const token = await loginService.login(req.body);
 
-    res.status(200).json(token);
+    res.status(200).json({ token });
   },
 };
 
-export default loginController;
+module.exports = loginController;
