@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import userRequest from '../services/requests/userRequest';
 
-function Cadastro() {
+function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +14,7 @@ function Cadastro() {
 
   return (
     <div>
-      <p>Cadastro</p>
+      <p>Register</p>
       <form>
         <label
           htmlFor="common_register__input-name"
@@ -71,4 +71,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default Register;
