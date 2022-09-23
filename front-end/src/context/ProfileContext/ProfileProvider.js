@@ -1,39 +1,40 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import ProfileContext from './ProfileContext';
 
 function ProfileProvider({ children }) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [disableButton, setDisablebutton] = useState(true);
+  const verifyPassword = (password) => {
+    const numberSix = 6;
+    const verify = password === undefined ? false : password.length >= numberSix;
 
-  const contextValue = {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    disableButton,
+    return verify;
   };
 
-  useEffect(() => {
-    setDisablebutton(true);
-  }, []);
-
-  useEffect(() => {
-    const numberSix = 6;
-    const verifyPassword = password === undefined ? false : password.length >= numberSix;
+  const verifyEmail = (email) => {
     const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    const verifyEmail = emailRegex.test(email);
+    const verify = emailRegex.test(email);
 
-    if (verifyPassword && verifyEmail) {
-      setDisablebutton(false);
-    } else {
-      setDisablebutton(true);
-    }
-  }, [email, password]);
+    return verify;
+  };
+
+  const verifyFullName = (fullName) => {
+    const numberSix = 6;
+    const verify = fullName === undefined ? false : password.length >= numberSix;
+
+    return verify;
+  };
+
+  const contextValue = {
+    verifyEmail,
+    verifyPassword,
+    verifyFullName,
+  };
+
+  const contextValueMemo = useMemo(() => contextValue, []);
 
   return (
-    <ProfileContext.Provider value={ contextValue }>
+    <ProfileContext.Provider value={ contextValueMemo }>
       { children }
     </ProfileContext.Provider>
 

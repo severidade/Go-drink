@@ -1,15 +1,28 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileContext from '../context/ProfileContext/ProfileContext';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [disableButton, setDisablebutton] = useState(true);
+
   const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    disableButton,
+    verifyEmail,
+    verifyPassword,
   } = useContext(ProfileContext);
+
+  useEffect(() => {
+    const validEmail = verifyEmail(email);
+    const validPassword = verifyPassword(password);
+    if (validEmail && validPassword) {
+      setDisablebutton(false);
+    } else {
+      setDisablebutton(true);
+    }
+  }, [email, password]);
+
   const history = useHistory();
 
   function handleClick() {
