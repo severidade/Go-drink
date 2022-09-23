@@ -25,10 +25,14 @@ function Login() {
 
   const history = useHistory();
 
-  function handleClick() {
+  function handleClickLogin() {
     // const token = { email: email };
     // localStorage.setItem('token', 'biscoito');
     history.push('/customer/products');
+  }
+
+  function handleClickRegister() {
+    history.push('/register');
   }
 
   return (
@@ -73,7 +77,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ disableButton }
-          onClick={ () => handleClick() }
+          onClick={ () => handleClickLogin() }
           className="login_app_button"
         >
           Login
@@ -81,7 +85,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
-          onClick={ () => handleClick() }
+          onClick={ () => handleClickRegister() }
           className="login_app_button"
         >
           Ainda não tenho conta
