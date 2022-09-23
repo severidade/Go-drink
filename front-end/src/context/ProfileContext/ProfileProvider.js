@@ -19,8 +19,8 @@ function ProfileProvider({ children }) {
   };
 
   const verifyFullName = (fullName) => {
-    const numberSix = 6;
-    const verify = fullName === undefined ? false : password.length >= numberSix;
+    const numberSix = 12;
+    const verify = fullName === undefined ? false : fullName.length >= numberSix;
 
     return verify;
   };

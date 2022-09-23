@@ -1,14 +1,34 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from 'react';
 import userRequest from '../services/requests/userRequest';
+import ProfileContext from '../context/ProfileContext/ProfileContext';
 
 function Register() {
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [disableButton, setDisablebutton] = useState(true);
+
+  const {
+    verifyEmail,
+    verifyPassword,
+    verifyFullName,
+  } = useContext(ProfileContext);
+
+  useEffect(() => {
+    const validEmail = verifyEmail(email);
+    const validPassword = verifyPassword(password);
+    const validFullName = verifyFullName(fullName);
+    if (validEmail && validPassword && validFullName) {
+      setDisablebutton(false);
+    } else {
+      setDisablebutton(true);
+    }
+  }, [email, password, fullName]);
 
   const handleBTN = async (e) => {
     e.preventDefault();
-    const token = await userRequest.register(name, email, password);
+    const token = await userRequest.register(fullName, email, password);
     console.log(token);
   };
 
@@ -23,8 +43,9 @@ function Register() {
           <input
             id="common_register__input-name"
             data-testid="common_register__input-name"
-            value={ name }
-            onChange={ ({ target }) => { setName(target.value); } }
+            name="name"
+            value={ fullName }
+            onChange={ ({ target }) => { setFullName(target.value); } }
             required
           />
 
@@ -37,6 +58,8 @@ function Register() {
           <input
             id="common_register__input-email"
             data-testid="common_register__input-email"
+            type="email"
+            name="email"
             value={ email }
             onChange={ ({ target }) => { setEmail(target.value); } }
             required
@@ -51,6 +74,7 @@ function Register() {
           <input
             id="common_register__input-password"
             data-testid="common_register__input-password"
+            type="password"
             value={ password }
             onChange={ ({ target }) => { setPassword(target.value); } }
             required
@@ -62,6 +86,7 @@ function Register() {
           type="button"
           data-testid="common_register__button-register"
           onClick={ handleBTN }
+          disabled={ disableButton }
         >
           Cadastrar
 
