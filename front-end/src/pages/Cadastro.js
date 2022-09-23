@@ -8,7 +8,7 @@ function Cadastro() {
 
   const handleBTN = async (e) => {
     e.preventDefault();
-    const token = await userRequest.register(name, email, password)
+    const token = await userRequest.register(name, email, password);
     console.log(token);
   };
 
