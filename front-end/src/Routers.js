@@ -1,5 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
+import Components from './pages/Components';
 
 function Routers() {
   return (
@@ -9,6 +10,7 @@ function Routers() {
           <Redirect to="/login" />
         </Route>
         <Route path="/login" component={ Login } exact />
+        <Route path="/components" component={ Components } exact />
       </Switch>
     </div>
   );
