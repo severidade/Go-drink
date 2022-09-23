@@ -31,12 +31,12 @@ function Register() {
         </label>
 
         <label
-          htmlFor="common_login__input-email"
+          htmlFor="common_register__input-email"
         >
           Email
           <input
-            id="common_login__input-email"
-            data-testid="common_login__input-email"
+            id="common_register__input-email"
+            data-testid="common_register__input-email"
             value={ email }
             onChange={ ({ target }) => { setEmail(target.value); } }
             required
@@ -45,12 +45,12 @@ function Register() {
         </label>
 
         <label
-          htmlFor="common_login__input-password"
+          htmlFor="common_register__input-password"
         >
           Password
           <input
-            id="common_login__input-password"
-            data-testid="common_login__input-password"
+            id="common_register__input-password"
+            data-testid="common_register__input-password"
             value={ password }
             onChange={ ({ target }) => { setPassword(target.value); } }
             required
