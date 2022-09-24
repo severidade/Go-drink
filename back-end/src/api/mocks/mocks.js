@@ -1,19 +1,21 @@
 const Mocks = {
+  mockmail: 'adm@deliveryapp.com',
+
   userNoPassword: {
     id: 1,
-    email: 'adm@deliveryapp.com',
+    email: this.mockmail,
     name: 'Delivery App Admin',
     role: 'administrator',
   },
   
   validLogin: {
-    email: 'adm@deliveryapp.com',
+    email: this.mockmail,
     password: '--adm2@21!!--',
   },
 
   registerInfo: {
     password: 'nuncaAdivinharao',
-    email: 'adm@deliveryapp.com',
+    email: this.mockmail,
     name: 'Delivery App Admin',
     role: 'administrator',
   },

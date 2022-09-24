@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const md5 = require('md5');
-const { users } = require('../../database/models');
 const { Op } = require('sequelize');
+const { users } = require('../../database/models');
 
 const registerService = {
   validateBody: (data) => {
@@ -15,7 +15,6 @@ const registerService = {
       password: Joi.string().required().min(6).messages({
         'string.empty': 'Field password is required',
       }),
-      role: Joi.string().required(),
     });
 
     const { error, value } = schema.validate(data);
@@ -26,11 +25,11 @@ const registerService = {
     return value;
   },
 
-  create: async ({ name, email, password, role }) => {
+  create: async ({ name, email, password }) => {
     const userExists = await users.findOne({
         where: {
-          [Op.or]: [{ name }, { email }]
-        }
+          [Op.or]: [{ name }, { email }],
+        },
     });
 
     if (userExists) {
@@ -39,7 +38,7 @@ const registerService = {
       e.status = 400;
       throw e;
     }
-    return users.create({ name, email, password: md5(password), role });
+    return users.create({ name, email, password: md5(password), role: 'customer' });
   },
 };
 
