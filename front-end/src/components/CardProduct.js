@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 function CardProduct({ productName, price, url }) {
-  const [productQuantity, setproductQuantity] = useState(0);
-  const value = 1;
+  const [itemCount, setItemCount] = useState(0);
+  // const [productQuantity, setproductQuantity] = useState(0);
+  // const value = 1;
 
-  const handleClickAdd = () => setproductQuantity(productQuantity + value);
-  const handleClickRm = () => setproductQuantity(productQuantity - value);
+  // const handleClickAdd = () => setproductQuantity(productQuantity + value);
+  // const handleClickRm = () => setproductQuantity(productQuantity - value);
 
   return (
     <div className="container_product_main">
@@ -38,7 +39,9 @@ function CardProduct({ productName, price, url }) {
             type="button"
             className="rm_item"
             data-testid="customer_products__button-card-rm-item"
-            onClick={ handleClickRm }
+            onClick={ () => {
+              setItemCount(Math.max(itemCount - 1, 0));
+            } }
           >
             -
           </button>
@@ -47,14 +50,16 @@ function CardProduct({ productName, price, url }) {
             data-testid="customer_products__input-card-quantity"
           >
             <p>
-              { productQuantity }
+              { itemCount }
             </p>
           </div>
           <button
             type="button"
             className="add_item"
             data-testid="customer_products__button-card-add-item"
-            onClick={ handleClickAdd }
+            onClick={ () => {
+              setItemCount(itemCount + 1);
+            } }
           >
             +
           </button>
