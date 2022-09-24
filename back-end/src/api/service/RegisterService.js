@@ -35,7 +35,7 @@ const registerService = {
     if (userExists) {
       const e = new Error('Invalid Register');
       e.name = 'Validation Error';
-      e.status = 400;
+      e.status = 409;
       throw e;
     }
     return users.create({ name, email, password: md5(password), role: 'customer' });
