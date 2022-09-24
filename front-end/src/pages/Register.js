@@ -1,13 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import userRequest from '../services/requests/userRequest';
 import ProfileContext from '../context/ProfileContext/ProfileContext';
+import numbers from '../services/numbers/index';
 
 function Register() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disableButton, setDisablebutton] = useState(true);
+  const [invalidRegisterMessage, setInvalidRegisterMessage] = useState(undefined);
+
+  const history = useHistory();
 
   const {
     verifyEmail,
@@ -28,8 +33,14 @@ function Register() {
 
   const handleBTN = async (e) => {
     e.preventDefault();
-    const token = await userRequest.register(fullName, email, password);
-    console.log(token);
+    const response = await userRequest.register(fullName, email, password);
+
+    if (response.status !== numbers.twoHundredAndOne) {
+      setInvalidRegisterMessage(response.body.message);
+    } else {
+      localStorage.setItem('token', response.body.token);
+      history.push('/customer/products');
+    }
   };
 
   return (
@@ -91,7 +102,16 @@ function Register() {
           Cadastrar
 
         </button>
+
       </form>
+      { invalidRegisterMessage !== undefined
+      && (
+        <p
+          data-testid="common_register__element-invalid_register"
+        >
+          {invalidRegisterMessage}
+
+        </p>)}
     </div>
   );
 }
