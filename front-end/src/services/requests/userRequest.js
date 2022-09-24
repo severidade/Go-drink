@@ -10,10 +10,18 @@ export default {
 
     const init = {
       method: 'POST',
-      body: data,
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
 
-    const response = await fetch(endpoints.createUser, init);
+    const responseFetch = await fetch(endpoints.createUser, init);
+    const response = {
+      status: responseFetch.status,
+      body: await responseFetch.json(),
+    };
+    console.log(response);
     return response;
   },
   async login(email, password) {
@@ -36,7 +44,6 @@ export default {
       status: responseFetch.status,
       body: await responseFetch.json(),
     };
-    console.log(response);
     return response;
   },
 };
