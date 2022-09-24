@@ -7,10 +7,10 @@ const loginService = {
   validateBody: (data) => {
     const schema = Joi.object({
       email: Joi.string().email().required().messages({
-        'string.empty': 'Some required fields are missing',
+        'string.empty': 'Field email is required',
       }),
       password: Joi.string().required().min(6).messages({
-        'string.empty': 'Some required fields are missing',
+        'string.empty': 'Field password is required',
       }),
     });
 
