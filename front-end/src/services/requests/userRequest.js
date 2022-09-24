@@ -21,7 +21,6 @@ export default {
       status: responseFetch.status,
       body: await responseFetch.json(),
     };
-    console.log(response);
     return response;
   },
   async login(email, password) {

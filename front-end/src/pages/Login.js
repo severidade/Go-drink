@@ -38,7 +38,6 @@ function Login() {
       localStorage.setItem('token', response.body.token);
       history.push('/customer/products');
     }
-    console.log(invalidLogin);
   }
 
   function handleClickRegister() {
