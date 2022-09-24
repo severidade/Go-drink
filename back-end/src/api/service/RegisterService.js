@@ -2,6 +2,7 @@ const Joi = require('joi');
 const md5 = require('md5');
 const { Op } = require('sequelize');
 const { users } = require('../../database/models');
+const jwtService = require('./JwtService');
 
 const registerService = {
   validateBody: (data) => {
@@ -38,7 +39,13 @@ const registerService = {
       e.status = 409;
       throw e;
     }
-    return users.create({ name, email, password: md5(password), role: 'customer' });
+
+    const user = await users.create({ name, email, password: md5(password), role: 'customer' });
+    console.log(user);
+    delete user.dataValues.password;
+    console.log(user);
+
+    return jwtService.createToken(user);
   },
 };
 
