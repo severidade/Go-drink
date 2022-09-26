@@ -5,6 +5,7 @@ require('express-async-errors');
 const loginRouter = require('./router/LoginRouter');
 const registerRouter = require('./router/RegisterRouter');
 const errorFunc = require('./middlewares/errorMiddleware');
+const productsRouter = require('./router/ProductsRouter');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/products', productsRouter);
 
 app.use(errorFunc);
 
