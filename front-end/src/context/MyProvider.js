@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+import CartContext from './CartContext';
 import ProfileContext from './ProfileContext';
 
 function MyProvider({ children }) {
+  // Profile
   const verifyPassword = (password) => {
     const numberSix = 6;
     const verify = password === undefined ? false : password.length >= numberSix;
@@ -33,9 +35,60 @@ function MyProvider({ children }) {
 
   const contextValueMemo = useMemo(() => contextValue, []);
 
+  // Cart
+
+  const [cartList, setCartList] = useState([]);
+
+  function saveCarList(carList) {
+    setCartList(carList);
+    localStorage.setItem('carList', carList);
+  }
+
+  function addOneCartItem(item) {
+    // clona o carList
+    const list = JSON.parse(JSON.stringify(cartList));
+    const listItem = list.find((e) => e.id === item.id);
+
+    if (listItem) {
+      listItem.quantity += 1;
+      saveCarList(list);
+    } else {
+      item.quantity = 1;
+      saveCarList([...cartList, item]);
+    }
+  }
+
+  function removeItemToCart(item) {
+    saveCarList(cartList.filter((e) => e.id !== item.id));
+  }
+
+  function subtractOneCartItem(item) {
+    // clona o carList
+    const list = JSON.parse(JSON.stringify(cartList));
+    const listItem = list.find((e) => e.id === item.id);
+
+    listItem.quantity -= 1;
+    if (listItem.quantity === 0) {
+      removeItemToCart(listItem);
+    } else {
+      saveCarList(list);
+    }
+  }
+
+  const cartContextValue = {
+    addOneCartItem,
+    removeItemToCart,
+    subtractOneCartItem,
+    cartList,
+  };
+
+  const cartContextMemo = useMemo(() => cartContextValue, []);
+
   return (
     <ProfileContext.Provider value={ contextValueMemo }>
-      { children }
+      <CartContext.Provider value={ cartContextMemo }>
+        { children }
+      </CartContext.Provider>
     </ProfileContext.Provider>
 
   );
