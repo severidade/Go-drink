@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/products', productsRouter)
+app.use('/products', productsRouter);
 
 app.use(errorFunc);
 

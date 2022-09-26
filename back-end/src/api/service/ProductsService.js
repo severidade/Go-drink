@@ -1,13 +1,21 @@
 const Joi = require('joi');
 const { products } = require('../../database/models');
 
+const isUndefined = (data) => {
+  if (!data) {
+    const e = new Error('Produto não existe ou Id Invalido');
+    e.status = 404;
+    throw e;
+  }
+};
+
 const productsService = {
   updateBodyValidation: (data) => {
-    const schema =  Joi.object({
+    const schema = Joi.object({
       name: Joi.string(),
       price: Joi.number().positive(),
       urlImage: Joi.string(),
-    })
+    });
 
     const { error, value } = schema.validate(data);
     if (error) {
@@ -24,41 +32,29 @@ const productsService = {
   },
 
   findById: async (id) => {
-    const item = await products.findByPk(id)
+    const item = await products.findByPk(id);
 
-    if (!item) {
-      const e = new Error('Produto não existe ou Id Invalido')
-      e.status = 404
-      throw e
-    }
+    isUndefined(item);
 
-    return item
+    return item;
   },
 
   delete: async (id) => {
-    const item = await products.destroy({ where: { id }})
+    const item = await products.destroy({ where: { id } });
 
-    if (!item) {
-      const e = new Error('Produto não existe ou Id Invalido')
-      e.status = 404
-      throw e
-    }
+    isUndefined(item);
 
-    return item
+    return item;
   },
 
   update: async (id, data) => {
-    const item = await products.update(data, { where: { id }})
+    const item = await products.update(data, { where: { id } });
     console.log(item);
     
-    if (!item) {
-      const e = new Error('Produto não existe ou Id Invalido')
-      e.status = 404
-      throw e
-    }
+    isUndefined(item);
 
     return item;
-  }
-}
+  },
+};
 
-module.exports = productsService
+module.exports = productsService;

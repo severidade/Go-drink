@@ -1,51 +1,51 @@
-const jwtService = require("../service/JwtService")
-const productsService = require("../service/ProductsService")
+const jwtService = require('../service/JwtService');
+const productsService = require('../service/ProductsService');
 
 const productsController = {
   list: async (req, res) => {
-    const { authorization } = req.headers
+    const { authorization } = req.headers;
     
-    jwtService.verifyToken(authorization)
+    jwtService.verifyToken(authorization);
 
-    const items = await productsService.list()
+    const items = await productsService.list();
 
-    res.status(200).json(items)
+    res.status(200).json(items);
   },
 
   findById: async (req, res) => {
-    const { authorization } = req.headers
-    jwtService.verifyToken(authorization)
+    const { authorization } = req.headers;
+    jwtService.verifyToken(authorization);
 
-    const { id } =  req.params
+    const { id } = req.params;
 
-    const items = await productsService.findById(id)
+    const items = await productsService.findById(id);
 
-    res.status(200).json(items)
+    res.status(200).json(items);
   },
 
   delete: async (req, res) => {
-    const { authorization } = req.headers
-    jwtService.verifyToken(authorization)
+    const { authorization } = req.headers;
+    jwtService.verifyToken(authorization);
 
-    const { id } =  req.params
+    const { id } = req.params;
     
-    await productsService.delete(id)
+    await productsService.delete(id);
     
-    res.status(204).json({ message: 'produto removido'})
+    res.status(204).json({ message: 'produto removido' });
   },
 
   update: async (req, res) => {
-    const { authorization } = req.headers
-    jwtService.verifyToken(authorization)
+    const { authorization } = req.headers;
+    jwtService.verifyToken(authorization);
 
-    const { id } =  req.params
+    const { id } = req.params;
 
-    const items = productsService.updateBodyValidation(req.body)
+    const items = productsService.updateBodyValidation(req.body);
     
-    const updatedItem = productsService.update(id, items)
+    const updatedItem = productsService.update(id, items);
 
-    res.status(200).json(updatedItem)
-  }
-}
+    res.status(200).json(updatedItem);
+  },
+};
 
-module.exports = productsController
+module.exports = productsController;

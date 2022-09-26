@@ -1,10 +1,10 @@
-const { Router } = require("express");
-const productsController = require("../controller/ProductsController");
+const { Router } = require('express');
+const productsController = require('../controller/ProductsController');
 
 const productsRouter = Router();
 
 productsRouter.get('/:id', productsController.findById);
-productsRouter.delete('/:id', productsController.delete)
+productsRouter.delete('/:id', productsController.delete);
 productsRouter.put('/:id', productsController.update);
 productsRouter.get('/', productsController.list);
 
