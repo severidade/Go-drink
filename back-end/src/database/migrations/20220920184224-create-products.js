@@ -20,13 +20,13 @@ module.exports = {
         type: Sequelize.DECIMAL(4,2),
         allowNull: false
       },
-      url_image: {
+      urlImage: {
         type: Sequelize.STRING(200),
-        allowNull: false
+        allowNull: false,
       }
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable('products');
   }
 };

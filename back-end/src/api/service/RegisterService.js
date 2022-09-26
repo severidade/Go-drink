@@ -41,9 +41,7 @@ const registerService = {
     }
 
     const user = await users.create({ name, email, password: md5(password), role: 'customer' });
-    console.log(user);
     delete user.dataValues.password;
-    console.log(user);
 
     return jwtService.createToken(user);
   },

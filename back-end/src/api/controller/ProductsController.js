@@ -2,9 +2,19 @@ const jwtService = require('../service/JwtService');
 const productsService = require('../service/ProductsService');
 
 const productsController = {
+  create: async (req, res) => {
+    const { authorization } = req.headers;
+    jwtService.verifyToken(authorization);
+
+    const product = productsService.createBodyValidation(req.body);
+
+    const createdProduct = await productsService.create(product);
+
+    res.status(201).json(createdProduct);
+  },
+
   list: async (req, res) => {
     const { authorization } = req.headers;
-    
     jwtService.verifyToken(authorization);
 
     const items = await productsService.list();
