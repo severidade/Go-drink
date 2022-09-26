@@ -36,12 +36,11 @@ function MyProvider({ children }) {
   const contextValueMemo = useMemo(() => contextValue, []);
 
   // Cart
-
   const [cartList, setCartList] = useState([]);
 
-  function saveCarList(carList) {
-    setCartList(carList);
-    localStorage.setItem('carList', carList);
+  function saveCarList(products) {
+    setCartList(products);
+    localStorage.setItem('carList', JSON.stringify(products));
   }
 
   function addOneCartItem(item) {
@@ -54,7 +53,8 @@ function MyProvider({ children }) {
       saveCarList(list);
     } else {
       item.quantity = 1;
-      saveCarList([...cartList, item]);
+      list.push(item);
+      saveCarList(list);
     }
   }
 
@@ -80,9 +80,10 @@ function MyProvider({ children }) {
     removeItemToCart,
     subtractOneCartItem,
     cartList,
+    setCartList,
   };
 
-  const cartContextMemo = useMemo(() => cartContextValue, []);
+  const cartContextMemo = useMemo(() => cartContextValue, [cartList]);
 
   return (
     <ProfileContext.Provider value={ contextValueMemo }>
