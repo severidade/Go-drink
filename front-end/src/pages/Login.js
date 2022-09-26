@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import ProfileContext from '../context/ProfileContext/ProfileContext';
+import ProfileContext from '../context/ProfileContext';
 import userRequest from '../services/requests/userRequest';
 import numbers from '../services/numbers/index';
 

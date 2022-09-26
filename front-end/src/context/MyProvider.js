@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import ProfileContext from './ProfileContext';
 
-function ProfileProvider({ children }) {
+function MyProvider({ children }) {
   const verifyPassword = (password) => {
     const numberSix = 6;
     const verify = password === undefined ? false : password.length >= numberSix;
@@ -41,8 +41,8 @@ function ProfileProvider({ children }) {
   );
 }
 
-ProfileProvider.propTypes = {
+MyProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ProfileProvider;
+export default MyProvider;
