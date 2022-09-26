@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import './CardProduct.css';
 
 function CardProduct({ productName, price, url }) {
   const [itemCount, setItemCount] = useState(0);
@@ -9,15 +10,23 @@ function CardProduct({ productName, price, url }) {
   // const handleClickAdd = () => setproductQuantity(productQuantity + value);
   // const handleClickRm = () => setproductQuantity(productQuantity - value);
 
+  // // https://grrr.tech/posts/2022/why-use-refs-in-react/
+  // document.querySelectorAll('.price').forEach((el) => {
+  //   const [int, dec] = el.textContent.trim().split(',');
+  //   el.outerHTML = `${int}<strong>,${dec}</strong>`;
+  // });
+
   return (
     <div className="container_product_main">
       <div className="container_section_1">
         <p
-          className="price"
+          className="container_price"
           data-testid="customer_products__element-card-price"
         >
-          <strong>R$</strong>
-          { price }
+          <strong className="currency">R$</strong>
+          <span className="price">
+            { price }
+          </span>
         </p>
         <div className="container_image">
           <img
