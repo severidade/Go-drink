@@ -1,12 +1,12 @@
-require('dotenv/config');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
-const { JWT_SECRET } = process.env;
+const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' }).trim();
 
 const jwtService = {
-  createToken: (data) => jwt.sign({ data }, JWT_SECRET),
+  createToken: (data) => jwt.sign({ data }, secret),
 
-  verifyToken: (authorization) => jwt.verify(authorization, JWT_SECRET),
+  verifyToken: (authorization) => jwt.verify(authorization, secret),
 
   decodeTokenId: ({ authorization }) => (jwt.decode(authorization)).data.id,
 };

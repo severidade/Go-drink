@@ -3,8 +3,5 @@ const errorFunc = (err, _req, res, _next) => {
 
     res.status(500).json({ message: err.message });
   };
-module.exports = errorFunc;
 
-// const error = new Error('Login Errado')
-// error.status = 404
-// throw error
+module.exports = errorFunc;
