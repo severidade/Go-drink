@@ -6,6 +6,7 @@ const loginRouter = require('./router/LoginRouter');
 const registerRouter = require('./router/RegisterRouter');
 const errorFunc = require('./middlewares/errorMiddleware');
 const productsRouter = require('./router/ProductsRouter');
+const validateAuth = require('./middlewares/validateAuth');
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/products', productsRouter);
+app.use('/products', validateAuth, productsRouter);
 
 app.use(errorFunc);
 
