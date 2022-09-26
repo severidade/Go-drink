@@ -3,7 +3,7 @@ const { products } = require('../../database/models');
 
 const isUndefined = (data, msg) => {
   if (!data) {
-    const e = new Error(msg);
+    const e = new Error(msg || 'Produto não existe ou Id Invalido');
     e.status = 404;
     throw e;
   }
@@ -55,14 +55,14 @@ const productsService = {
 
   findById: async (id) => {
     const item = await products.findByPk(id);
-    isUndefined(item, 'Produto não existe ou Id Invalido');
+    isUndefined(item);
 
     return item;
   },
 
   delete: async (id) => {
     const item = await products.destroy({ where: { id } });
-    isUndefined(item, 'Produto não existe ou Id Invalido');
+    isUndefined(item);
 
     return item;
   },
@@ -70,7 +70,7 @@ const productsService = {
   update: async (id, data) => {
     const item = await products.update(data, { where: { id } });
     
-    isUndefined(item, 'Produto não existe ou Id Invalido');
+    isUndefined(item);
 
     return item;
   },

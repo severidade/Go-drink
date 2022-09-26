@@ -1,4 +1,4 @@
-const jwt = require('../../api/service/JwtService');
+const jwt = require('../service/JwtService');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
