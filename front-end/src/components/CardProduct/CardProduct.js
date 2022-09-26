@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import './CardProduct.css';
 
-function CardProduct({ productName, price, url }) {
+function CardProduct({ productName, price, url, id }) {
   const [itemCount, setItemCount] = useState(0);
   // const [productQuantity, setproductQuantity] = useState(0);
   // const value = 1;
@@ -83,6 +83,7 @@ CardProduct.propTypes = {
   productName: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default CardProduct;
