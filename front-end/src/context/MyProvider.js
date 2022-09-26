@@ -67,11 +67,13 @@ function MyProvider({ children }) {
     const list = JSON.parse(JSON.stringify(cartList));
     const listItem = list.find((e) => e.id === item.id);
 
-    listItem.quantity -= 1;
-    if (listItem.quantity === 0) {
-      removeItemToCart(listItem);
-    } else {
-      saveCarList(list);
+    if (listItem) {
+      if (listItem.quantity <= 0) {
+        removeItemToCart(listItem);
+      } else {
+        listItem.quantity -= 1;
+        saveCarList(list);
+      }
     }
   }
 
