@@ -7,6 +7,12 @@ const salesController = {
 
     res.status(201).json(saleCreated);
   },
+
+  list: async (_req, res) => {
+    const sales = await salesService.list();
+
+    res.status(200).json(sales);
+  },
 };
 
 module.exports = salesController;

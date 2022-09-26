@@ -4,15 +4,13 @@ const { sales } = require('../../database/models');
 const salesService = {
   validateBody: (data) => {
     const schema = Joi.object({
-      name: Joi.string().required().messages({
-        'string.empty': 'Field name is required',
-      }),
-      email: Joi.string().email().required().messages({
-        'string.empty': 'Field email is required',
-      }),
-      password: Joi.string().required().min(6).messages({
-        'string.empty': 'Field password is required',
-      }),
+      userId: Joi.number().required(),
+      sellerId: Joi.number().required(),
+      totalPrice: Joi.number().required(),
+      deliveryAddress: Joi.string().required(),
+      deliveryNumber: Joi.string().required(),
+      saleDate: Joi.date().required(),
+      status: Joi.string().required(),
     });
 
     const { error, value } = schema.validate(data);
@@ -23,21 +21,10 @@ const salesService = {
     return value;
   },
 
-  create: async ({ name, email, password }) => {
-    const userExists = await users.findOne({
-        where: {
-          [Op.or]: [{ name }, { email }],
-        },
-    });
+  create: async (data) => sales.create(data),
 
-    if (userExists) {
-      const e = new Error('Isales');
-      e.name = 'Validation Error';
-      e.status = 409;
-      throw e;
-    }
+  list: async () => sales.findAll({}),
 
-  },
 };
 
-module.exports = registerService;
+module.exports = salesService;

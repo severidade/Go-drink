@@ -1,7 +1,5 @@
 const { Router } = require('express');
 const productsController = require('../controller/ProductsController');
-// const validateAuth = require('../middlewares/validateAuth') ;
-
 const productsRouter = Router();
 
 productsRouter.get('/:id', productsController.findById);

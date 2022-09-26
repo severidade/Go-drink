@@ -7,6 +7,7 @@ const registerRouter = require('./router/RegisterRouter');
 const errorFunc = require('./middlewares/errorMiddleware');
 const productsRouter = require('./router/ProductsRouter');
 const validateAuth = require('./middlewares/validateAuth');
+const salesRouter = require('./router/SalesRouter');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', validateAuth, productsRouter);
+app.use('/customer/orders', validateAuth, salesRouter);
 
 app.use(errorFunc);
 

@@ -1,6 +1,7 @@
-const router = require('express').Router();
+const salesRouter = require('express').Router();
 const salesController = require('../controller/SalesController');
 
-router.post('/', salesController.create);
+salesRouter.post('/', salesController.create);
+salesRouter.get('/', salesController.list);
 
-module.exports = router;
+module.exports = salesRouter;
