@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar/NavBar';
-import CardProduct from '../components/CardProduct';
-import antartica from '../images/mockup/no_bg/antarctica_pilsen_300ml.png';
+import CardProduct from '../components/CardProduct/CardProduct';
+import antartica from '../images/mockup/antarctica_pilsen_300ml.jpg';
 
 function CostumerProducts() {
   return (
@@ -9,7 +9,11 @@ function CostumerProducts() {
       <NavBar user="Cicrano da silva" selected="products" />
       <h1>PRODUTOS PAGE</h1>
       <div className="container_products">
-        <CardProduct productName="Bolacha" price="100,00" url={ antartica } />
+        <CardProduct
+          productName="Antarctica Pilsen 300ml"
+          price="49,90"
+          url={ antartica }
+        />
         {/* <CardProduct productName="Bolacha" price="100,00" url={ antartica } />
         <CardProduct productName="Bolacha" price="100,00" url={ antartica } /> */}
       </div>
