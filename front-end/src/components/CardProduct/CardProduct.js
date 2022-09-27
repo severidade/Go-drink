@@ -29,7 +29,7 @@ function CardProduct({ productName, price, url, id }) {
       <div className="container_section_1">
         <p
           className="container_price"
-          data-testid="customer_products__element-card-price"
+          data-testid={ `customer_products__element-card-price-${id}` }
         >
           <strong className="currency">R$</strong>
           <span className="price">
@@ -40,14 +40,14 @@ function CardProduct({ productName, price, url, id }) {
           <img
             src={ url }
             alt={ productName }
-            data-testid="customer_products__img-card-bg-image"
+            data-testid={ `customer_products__img-card-bg-image-${id}` }
           />
         </div>
       </div>
       <div className="container_section_2">
         <p
           className="product_name"
-          data-testid="customer_products__element-card-title"
+          data-testid={ `customer_products__element-card-title-${id}` }
         >
           { productName }
         </p>
@@ -55,7 +55,7 @@ function CardProduct({ productName, price, url, id }) {
           <button
             type="button"
             className="rm_item"
-            data-testid="customer_products__button-card-rm-item"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
             onClick={ () => {
               setItemCount(Math.max(itemCount - 1, 0));
               subtractOneCartItem(product);
@@ -65,16 +65,18 @@ function CardProduct({ productName, price, url, id }) {
           </button>
           <div
             className="quantity"
-            data-testid="customer_products__input-card-quantity"
           >
-            <p>
-              { itemCount }
-            </p>
+            <input
+              type="number"
+              data-testid={ `customer_products__input-card-quantity-${id}` }
+              readOnly
+              value={ itemCount }
+            />
           </div>
           <button
             type="button"
             className="add_item"
-            data-testid="customer_products__button-card-add-item"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
             onClick={ () => {
               setItemCount(itemCount + 1);
               addOneCartItem(product);
