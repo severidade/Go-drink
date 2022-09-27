@@ -25,6 +25,7 @@ function CartButton() {
       data-testid="customer_products__button-cart"
       disabled={ (cartList.length < 1 || !cartList) }
     >
+      Ver carrinho R$
       <span
         data-testid="customer_products__checkout-bottom-value"
       >
