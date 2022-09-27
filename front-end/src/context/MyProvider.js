@@ -5,6 +5,7 @@ import CartContext from './CartContext';
 import ProfileContext from './ProfileContext';
 
 function MyProvider({ children }) {
+  const [userName, setUserName] = useState('');
   // Profile
   const verifyPassword = (password) => {
     const numberSix = 6;
@@ -27,13 +28,15 @@ function MyProvider({ children }) {
     return verify;
   };
 
-  const contextValue = {
+  const profileContextValue = {
     verifyEmail,
     verifyPassword,
     verifyFullName,
+    setUserName,
+    userName,
   };
 
-  const contextValueMemo = useMemo(() => contextValue, []);
+  const profileContextValueMemo = useMemo(() => profileContextValue, []);
 
   // Cart
   const [cartList, setCartList] = useState([]);
@@ -107,7 +110,7 @@ function MyProvider({ children }) {
   }, []);
 
   return (
-    <ProfileContext.Provider value={ contextValueMemo }>
+    <ProfileContext.Provider value={ profileContextValueMemo }>
       <CartContext.Provider value={ cartContextMemo }>
         { children }
       </CartContext.Provider>
