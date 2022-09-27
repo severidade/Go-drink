@@ -11,12 +11,19 @@ function CardProduct({ productName, price, url, id }) {
     addOneCartItem,
     subtractOneCartItem,
     getQtdFromCartList,
+    setCartItemQtd,
   } = useContext(CartContext);
 
   useEffect(() => {
     const qtd = getQtdFromCartList(id);
     setItemCount(qtd);
   }, []);
+
+  function handleInputChange({ target: { value } }) {
+    const qtd = Number(value);
+    setItemCount(qtd.toString());
+    setCartItemQtd(product, qtd);
+  }
 
   // // https://grrr.tech/posts/2022/why-use-refs-in-react/
   // document.querySelectorAll('.price').forEach((el) => {
@@ -72,7 +79,7 @@ function CardProduct({ productName, price, url, id }) {
             <input
               type="number"
               data-testid={ `customer_products__input-card-quantity-${id}` }
-              readOnly
+              onChange={ handleInputChange }
               value={ itemCount }
             />
           </div>

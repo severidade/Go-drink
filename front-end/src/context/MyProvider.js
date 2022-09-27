@@ -61,6 +61,20 @@ function MyProvider({ children }) {
     }
   }
 
+  function setCartItemQtd(item, qtd) {
+    const list = JSON.parse(JSON.stringify(cartList));
+    const listItem = list.find((e) => e.id === item.id);
+    if (listItem) {
+      listItem.quantity = Math.max(qtd, 0);
+      saveCarList(list);
+    } else {
+      console.log(item);
+      item.quantity = qtd;
+      list.push(item);
+      saveCarList(list);
+    }
+  }
+
   function removeItemToCart(item) {
     saveCarList(cartList.filter((e) => e.id !== item.id));
   }
@@ -100,6 +114,7 @@ function MyProvider({ children }) {
     cartList,
     setCartList,
     getQtdFromCartList,
+    setCartItemQtd,
   };
 
   const cartContextMemo = useMemo(() => cartContextValue, [cartList]);
