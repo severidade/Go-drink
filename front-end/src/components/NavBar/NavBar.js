@@ -35,7 +35,7 @@ function NavBar({ user, selected }) {
           type="button"
           className={ `products${selected === 'products' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-products"
-          onClick={ () => history.push('/custumer/products') }
+          onClick={ () => history.push('/customer/products') }
         >
           PRODUTOS
         </button>
@@ -43,7 +43,7 @@ function NavBar({ user, selected }) {
           type="button"
           className={ `orders${selected === 'orders' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/custumer/products/id') }
+          onClick={ () => history.push('/customer/products/id') }
         >
           MEUS PEDIDOS
         </button>
