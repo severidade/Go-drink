@@ -36,7 +36,7 @@ function MyProvider({ children }) {
     userName,
   };
 
-  const profileContextValueMemo = useMemo(() => profileContextValue, []);
+  const profileContextValueMemo = useMemo(() => profileContextValue, [userName]);
 
   // Cart
   const [cartList, setCartList] = useState([]);

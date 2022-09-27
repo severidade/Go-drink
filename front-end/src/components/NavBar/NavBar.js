@@ -1,25 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import ProfileContext from '../../context/ProfileContext';
 
 import './NavBar.css';
 
-function NavBar({ user, selected }) {
+function NavBar({ selected }) {
   const history = useHistory();
 
+  const { userName, setUserName } = useContext(ProfileContext);
+  useEffect(() => {
+    if (userName === '') {
+      const userData = JSON.parse(localStorage.getItem('user'));
+      setUserName(userData.name);
+    }
+  }, []);
   return (
     <div className="container_nav_main">
       <div className="container_section_user">
-        <button
-          type="button"
+        <p
           // className={ `${selected === 'costumer' ? 'selected' : ''} costumer` }
           className="costumer"
           data-testid="customer_products__element-navbar-user-full-name"
           // será esse botão leva pra ma rota de edição do usuário?
-          onClick={ () => history.push('/costumer') }
+          /*  onClick={ () => history.push('/costumer') } */
         >
-          { user }
-        </button>
+          { userName }
+        </p>
         <button
           type="button"
           // className={ `${selected === 'exit' ? 'selected' : ''} exit` }
@@ -53,7 +61,6 @@ function NavBar({ user, selected }) {
 }
 
 NavBar.propTypes = {
-  user: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
 };
 
