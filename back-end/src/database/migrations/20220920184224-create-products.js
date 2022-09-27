@@ -23,6 +23,7 @@ module.exports = {
       urlImage: {
         type: Sequelize.STRING(200),
         allowNull: false,
+        field: 'url_image'
       }
     });
   },
