@@ -32,8 +32,11 @@ function CardProduct({ productName, price, url, id }) {
           data-testid={ `customer_products__element-card-price-${id}` }
         >
           <strong className="currency">R$</strong>
-          <span className="price">
-            { price }
+          <span
+            className="price"
+            data-testid={ `customer_products__element-card-price-${id}` }
+          >
+            { price.replace('.', ',') }
           </span>
         </p>
         <div className="container_image">
