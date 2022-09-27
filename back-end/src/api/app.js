@@ -10,7 +10,6 @@ const salesRouter = require('./router/SalesRouter');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const validateAuth = require('./middlewares/validateAuth');
 
-
 const app = express();
 
 // Envia arquivos stálticos, como por exemplo imagens

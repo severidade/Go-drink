@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const productsController = require('../controller/ProductsController');
+
 const productsRouter = Router();
 
 productsRouter.get('/:id', productsController.findById);

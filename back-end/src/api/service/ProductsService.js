@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { products } = require('../../database/models');
-const  isUndefined = require('../utils/isUndefined');
+const isUndefined = require('../utils/isUndefined');
 
 const productsService = {
   updateBodyValidation: (data) => {

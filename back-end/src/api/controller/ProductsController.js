@@ -1,4 +1,3 @@
-const jwtService = require('../service/JwtService');
 const productsService = require('../service/ProductsService');
 
 const productsController = {
