@@ -1,0 +1,7 @@
+.container_CheckoutElement {
+  align-items: center;
+  background-color: rgb(163, 173, 22);
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}

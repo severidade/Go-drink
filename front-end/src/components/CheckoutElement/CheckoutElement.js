@@ -1,41 +1,37 @@
 import PropTypes from 'prop-types';
 // import React, { useState } from 'react';
 import React from 'react';
+// import './CheckoutElement.css';
+import styles from './CheckoutElement.module.css';
 
-// function CheckoutElement({
-//   productId,
-//   productName,
-//   productQunt,
-//   priceUnit,
-//   priceTotal
-// })
-function CheckoutElement({ productName, url }) {
+function CheckoutElement({
+  itemNumber, productName, productQunt, priceUnit, priceTotal, url }) {
   return (
-    <div className="container_CheckoutElement">
+    <div className={ styles.container_CheckoutElement }>
       <div
         data-testid="customer_checkout__element-order-table-item-number"
       >
-        1
+        { itemNumber }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-name"
       >
-        Cerveja Stella 250ml
+        { productName }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-quantity"
       >
-        productQunt
+        { productQunt }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-unit-price"
       >
-        priceUnit
+        { priceUnit }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-sub-total"
       >
-        priceSubTotal
+        { priceTotal }
       </div>
       <div className="container_image">
         <img
@@ -55,17 +51,12 @@ function CheckoutElement({ productName, url }) {
   );
 }
 
-// CardProduct.propTypes = {
-//   productId: PropTypes.string.isRequired,
-//   productName: PropTypes.string.isRequired,
-//   productQunt: PropTypes.number.isRequired,
-//   priceUnit: PropTypes.number.isRequired,
-//   priceTotal: PropTypes.number.isRequired,
-// };
-
 CheckoutElement.propTypes = {
+  itemNumber: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
-  // price: PropTypes.string.isRequired,
+  productQunt: PropTypes.number.isRequired,
+  priceUnit: PropTypes.number.isRequired,
+  priceTotal: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
 };
 
