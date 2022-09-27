@@ -19,7 +19,7 @@ function CartButton() {
   return (
     <button
       type="button"
-      onClick={ () => { history.push('Checkout'); } }
+      onClick={ () => { history.push('customer/checkout'); } }
       data-testid="customer_products__checkout-bottom-value"
     >
       {`Ver Carrinho R$${totalCartValue()}`}
