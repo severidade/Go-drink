@@ -1,11 +1,15 @@
 const Joi = require('joi');
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const { users } = require('../../database/models');
 const jwtService = require('./JwtService');
 
-const loginService = {
+const registerService = {
   validateBody: (data) => {
     const schema = Joi.object({
+      name: Joi.string().required().messages({
+        'string.empty': 'Field name is required',
+      }),
       email: Joi.string().email().required().messages({
         'string.empty': 'Field email is required',
       }),
@@ -22,21 +26,27 @@ const loginService = {
     return value;
   },
 
-  login: async ({ email, password }) => {
-    const user = await users.findOne({
-      where: { email, password: md5(password) },
-      attributes: { exclude: ['password'] },
+  create: async ({ name, email, password }) => {
+    const userExists = await users.findOne({
+        where: {
+          [Op.or]: [{ name }, { email }],
+        },
     });
 
-    if (!user) {
-      const e = new Error('Not found');
-      e.name = 'Not found';
-      e.status = 404;
+    if (userExists) {
+      const e = new Error('Invalid Register');
+      e.name = 'Validation Error';
+      e.status = 409;
       throw e;
     }
+
+    const user = await users.create({ name, email, password: md5(password), role: 'customer' });
+    console.log(user);
+    delete user.dataValues.password;
+    console.log(user);
 
     return jwtService.createToken(user);
   },
 };
 
-module.exports = loginService;
+module.exports = registerService;

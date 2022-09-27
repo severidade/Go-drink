@@ -2,6 +2,8 @@ import React from 'react';
 import CardProduct from '../components/CardProduct/CardProduct';
 // import CheckoutElement from '../components/CheckoutElement';
 import NavBar from '../components/NavBar/NavBar';
+import CartButton from '../components/CartButton/CartButton';
+import CheckoutElement from '../components/CheckoutElement/CheckoutElement';
 
 import antartica from '../images/mockup/no_bg/antarctica_pilsen_300ml.png';
 
@@ -16,6 +18,9 @@ function Components() {
         url={ antartica }
       />
       {/* <CheckoutElement productName="Bolacha" url={ antartica } /> */}
+      <CardProduct productName="Bolacha" price="100,00" url={ antartica } id="d" />
+      <CheckoutElement productName="Bolacha" url={ antartica } />
+      <CartButton />
     </>
   );
 }

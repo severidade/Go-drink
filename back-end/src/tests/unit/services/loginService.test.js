@@ -1,15 +1,17 @@
 const expect  = require('chai').expect;
 const sinon = require('sinon');
-const chai = require('chai');
+// const chai = require('chai');
 
 const LoginService = require('../../../api/service/LoginService');
+const JwtService = require('../../../api/service/JwtService');
 const { users } = require('../../../database/models');
-const jwtService = require('../../../api/service/JwtService');
-const Mocks = require('../../../api/mocks/loginMocks');
+const Mocks = require('../../../api/mocks/mocks');
 
 describe('Login Service', () => {
 	beforeEach(() => {
-		sinon.stub(users, "findOne").resolves(Mocks.userNoPassword);
+		sinon.stub(users, "findOne")
+		.onCall(0).resolves(Mocks.userNoPassword)
+		.onCall(1).resolves(undefined);
 	});
 
 
@@ -17,28 +19,17 @@ describe('Login Service', () => {
 		sinon.restore();
 	});
 
-	it('should successfully login', async () => {
+	it('Succeeds', async () => {
 		const result = await LoginService.login(Mocks.validLogin);
 		
-		expect(result).to.be.eq(jwtService.createToken(Mocks.userNoPassword));
+		expect(result).to.be.eq(JwtService.createToken(Mocks.userNoPassword));
+	});
+
+	it('Fails, user not found', async () => {
+		try {
+			await LoginService.login({});
+		} catch (error) {
+			expect(error).to.be.an.instanceOf(Error);
+		}
 	});
 });
-
-
-
-// const { exist } = require('joi');
-
-
-// describe('services/salesService', () => {
-//   beforeEach(sinon.restore);
-
-//   describe('list', () => {
-//     it('Deve disparar um erro caso salesModel.list dispare um erro', () => {
-//       sinon.stub(salesModel, 'list').rejects();
-//       return chai.expect(salesService.list()).to.eventually.be.rejected;
-//     });
-//     it('Deve retornar uma lista caso o db.execute retorne', () => {
-//       sinon.stub(salesModel, 'list').resolves([]);
-//       return chai.expect(salesService.list()).to.eventually.deep.equal([]);
-//     })
-//   });

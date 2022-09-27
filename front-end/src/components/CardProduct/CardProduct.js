@@ -1,15 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './CardProduct.css';
+import CartContext from '../../context/CartContext';
 
-function CardProduct({ productName, price, url }) {
+function CardProduct({ productName, price, url, id }) {
   const [itemCount, setItemCount] = useState(0);
-  // const [productQuantity, setproductQuantity] = useState(0);
-  // const value = 1;
+  const product = { productName, price, url, id };
+  const {
+    addOneCartItem,
+    subtractOneCartItem,
+    getQtdFromCartList,
+  } = useContext(CartContext);
 
-  // const handleClickAdd = () => setproductQuantity(productQuantity + value);
-  // const handleClickRm = () => setproductQuantity(productQuantity - value);
-
+  useEffect(() => {
+    const qtd = getQtdFromCartList(id);
+    setItemCount(qtd);
+  }, []);
+  
   // // https://grrr.tech/posts/2022/why-use-refs-in-react/
   // document.querySelectorAll('.price').forEach((el) => {
   //   const [int, dec] = el.textContent.trim().split(',');
@@ -50,6 +58,7 @@ function CardProduct({ productName, price, url }) {
             data-testid="customer_products__button-card-rm-item"
             onClick={ () => {
               setItemCount(Math.max(itemCount - 1, 0));
+              subtractOneCartItem(product);
             } }
           >
             -
@@ -68,6 +77,7 @@ function CardProduct({ productName, price, url }) {
             data-testid="customer_products__button-card-add-item"
             onClick={ () => {
               setItemCount(itemCount + 1);
+              addOneCartItem(product);
             } }
           >
             +
@@ -83,6 +93,7 @@ CardProduct.propTypes = {
   productName: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default CardProduct;
