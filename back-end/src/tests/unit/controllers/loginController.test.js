@@ -5,7 +5,7 @@ const loginService = require('../../../api/service/LoginService');
 const Mocks = require('../../mocks/mocks');
 const { users } = require('../../../database/models');
 
-describe('testar se o controller', () => {
+describe('Login Controller', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -37,8 +37,8 @@ describe('testar se o controller', () => {
       
       await loginController.login(req, res)
     } catch (error) {
-      console.log(error.status.to.be.equal(404));
-      expect(error.status().to.be.equal(404))
+      const em = error.message
+      expect(error.message).to.be.equal('Not found')
     }
   })
 })
