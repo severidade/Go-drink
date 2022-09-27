@@ -9,7 +9,7 @@ function Components() {
   return (
     <>
       {/* <CardProduct productName="Bolacha" price="100,00" url="https://severidade.github.io/img/avatar.png" /> */}
-      <NavBar user="test user" selected="products" />
+      <NavBar user="test user" selected="" />
       <CardProduct productName="Bolacha" price="100,00" url={ antartica } />
       {/* <CheckoutElement productName="Bolacha" url={ antartica } /> */}
     </>

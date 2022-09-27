@@ -2,15 +2,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import './NavBar.css';
+
 function NavBar({ user, selected }) {
   const history = useHistory();
 
   return (
     <div className="container_nav_main">
-      <div className="container_buttons_right">
+      <div className="container_section_user">
         <button
           type="button"
           // className={ `${selected === 'costumer' ? 'selected' : ''} costumer` }
+          className="costumer"
           data-testid="customer_products__element-navbar-user-full-name"
           // será esse botão leva pra ma rota de edição do usuário?
           onClick={ () => history.push('/costumer') }
@@ -20,16 +23,17 @@ function NavBar({ user, selected }) {
         <button
           type="button"
           // className={ `${selected === 'exit' ? 'selected' : ''} exit` }
+          className="exit"
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ () => history.push('/exit') }
         >
-          SAIR
+          Sair
         </button>
       </div>
-      <div className="container_buttons_left">
+      <nav className="container_buttons_menu">
         <button
           type="button"
-          className={ `products ${selected === 'products' ? 'selected' : ''}` }
+          className={ `products${selected === 'products' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-products"
           onClick={ () => history.push('/custumer/products') }
         >
@@ -37,13 +41,13 @@ function NavBar({ user, selected }) {
         </button>
         <button
           type="button"
-          className={ `${selected === 'orders' ? 'selected' : ''} orders` }
+          className={ `orders${selected === 'orders' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-orders"
           onClick={ () => history.push('/orders') }
         >
           MEUS PEDIDOS
         </button>
-      </div>
+      </nav>
     </div>
   );
 }

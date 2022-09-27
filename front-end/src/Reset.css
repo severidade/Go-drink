@@ -12,3 +12,7 @@ body {
   font-family: var(--body-font);
   font-size: 62.5%;
 }
+
+.button:focus, button:active {
+  outline: none;
+}

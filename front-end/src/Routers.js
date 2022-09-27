@@ -5,16 +5,14 @@ import CostumerProducts from './pages/CostumerProducts';
 
 function Routers() {
   return (
-    <div>
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login" component={ Login } exact />
-        <Route path="/components" component={ Components } exact />
-        <Route path="/custumer/products" component={ CostumerProducts } exact />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
+      <Route path="/login" component={ Login } exact />
+      <Route path="/components" component={ Components } exact />
+      <Route path="/custumer/products" component={ CostumerProducts } exact />
+    </Switch>
   );
 }
 

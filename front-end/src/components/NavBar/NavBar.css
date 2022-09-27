@@ -1,0 +1,49 @@
+/* .container_nav_main {
+  background: olive;
+} */
+
+.container_section_user {
+  align-items: flex-end;
+  background-color: gray;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.costumer, .exit {
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  cursor: pointer;
+  height: 30px;
+}
+
+.container_buttons_menu {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  min-height: 40px;
+  padding: 10px;
+}
+
+.container_buttons_menu > .orders, .container_buttons_menu > .products {
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  cursor: pointer;
+  height: 30px;
+}
+
+/* .container_buttons_menu > .products.selected {
+  background-color: tomato;
+} */
+
+.container_buttons_menu > .products.selected:after {
+  background-color: black;
+  content: '';
+  height: 5px;
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+}
