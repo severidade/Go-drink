@@ -12,7 +12,7 @@ function Routers() {
         </Route>
         <Route path="/login" component={ Login } exact />
         <Route path="/components" component={ Components } exact />
-        <Route path="/costumer/products" component={ CostumerProducts } exact />
+        <Route path="/custumer/products" component={ CostumerProducts } exact />
       </Switch>
     </div>
   );

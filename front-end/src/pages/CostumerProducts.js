@@ -7,8 +7,11 @@ function CostumerProducts() {
   return (
     <div className="container_page">
       <NavBar user="ariovaldo" selected="products" />
+      <h1>PRODUTOS PAGE</h1>
       <div className="container_products">
         <CardProduct productName="Bolacha" price="100,00" url={ antartica } />
+        {/* <CardProduct productName="Bolacha" price="100,00" url={ antartica } />
+        <CardProduct productName="Bolacha" price="100,00" url={ antartica } /> */}
       </div>
     </div>
   );
