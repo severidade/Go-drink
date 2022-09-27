@@ -83,8 +83,11 @@ function MyProvider({ children }) {
       return item ? item.quantity : 0;
     }
     const cart = JSON.parse(localStorage.getItem('cartList'));
-    const item = cart.find((e) => e.id === itemId);
-    return item ? item.quantity : 0;
+    if (cart) {
+      const item = cart.find((e) => e.id === itemId);
+      return item ? item.quantity : 0;
+    }
+    return 0;
   }
 
   const cartContextValue = {
