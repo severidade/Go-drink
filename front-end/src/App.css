@@ -60,3 +60,10 @@
   top: 0;
   width: 100vw;
 }
+
+
+.cart_button {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+}
