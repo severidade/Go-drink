@@ -1,8 +1,9 @@
+import tokenService from '../token/tokenService';
 import endpoints from './endpoints';
 
 export default {
   async getAll() {
-    const { token } = localStorage;
+    const token = tokenService.getToken();
 
     const init = {
       method: 'GET',
