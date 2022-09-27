@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import userRequest from '../services/requests/userRequest';
-import ProfileContext from '../context/ProfileContext/ProfileContext';
+import ProfileContext from '../context/ProfileContext';
 import numbers from '../services/numbers/index';
 
 function Register() {
