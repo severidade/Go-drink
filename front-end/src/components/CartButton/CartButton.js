@@ -17,18 +17,20 @@ function CartButton() {
   }
 
   return (
+
     <button
       type="button"
-      onClick={ () => { history.push('customer/checkout'); } }
-      data-testid="customer_products__checkout-bottom-value"
+      onClick={ () => { history.push('checkout'); } }
+      className="cart_button"
+      data-testid="customer_products__button-cart"
+      disabled={ (cartList.length < 1 || !cartList) }
     >
-      <span>Valor do carrinho R$</span>
-      <strong
+      <span
         data-testid="customer_products__checkout-bottom-value"
       >
         {totalCartValue().replace('.', ',')}
 
-      </strong>
+      </span>
 
     </button>
   );
