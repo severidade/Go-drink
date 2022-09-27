@@ -40,8 +40,10 @@ const registerService = {
       throw e;
     }
 
-    const user = await users.create({ name, email, password: md5(password), role: 'customer' });
-    delete user.dataValues.password;
+    const user = await users.create(
+      { name, email, password: md5(password), role: 'customer' },
+      { attributes: { excludes: ['password'] } },
+    );
 
     return jwtService.createToken(user);
   },
