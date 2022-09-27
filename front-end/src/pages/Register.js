@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import userRequest from '../services/requests/userRequest';
 import ProfileContext from '../context/ProfileContext';
 import numbers from '../services/numbers/index';
+import tokenService from '../services/token/tokenService';
 
 function Register() {
   const [fullName, setFullName] = useState('');
@@ -38,7 +39,7 @@ function Register() {
     if (response.status !== numbers.twoHundredAndOne) {
       setInvalidRegisterMessage(response.body.message);
     } else {
-      localStorage.setItem('token', response.body.token);
+      tokenService.saveLocalStorage(response.body.token);
       history.push('/customer/products');
     }
   };
