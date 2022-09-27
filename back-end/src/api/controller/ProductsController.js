@@ -28,8 +28,8 @@ const productsController = {
     const { id } = req.params;
     
     await productsService.delete(id);
-    
-    res.status(204).json({ message: 'produto removido' });
+
+    res.status(204);
   },
 
   update: async (req, res) => {
@@ -37,7 +37,7 @@ const productsController = {
 
     const items = productsService.updateBodyValidation(req.body);
     
-    const updatedItem = productsService.update(id, items);
+    const updatedItem = await productsService.update(id, items);
 
     res.status(200).json(updatedItem);
   },

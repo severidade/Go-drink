@@ -1,13 +1,6 @@
 const Joi = require('joi');
 const { products } = require('../../database/models');
-
-const isUndefined = (data, msg) => {
-  if (!data) {
-    const e = new Error(msg || 'Produto não existe ou Id Invalido');
-    e.status = 404;
-    throw e;
-  }
-};
+const  isUndefined = require('../utils/isUndefined');
 
 const productsService = {
   updateBodyValidation: (data) => {
@@ -42,6 +35,7 @@ const productsService = {
 
   create: async ({ name, price, urlImage }) => {
     const productExists = await products.findOne({ where: { name } });
+
     isUndefined(!productExists, 'Este produto já existe');
 
     return products.create({ name, price, urlImage });
@@ -55,6 +49,7 @@ const productsService = {
 
   findById: async (id) => {
     const item = await products.findByPk(id);
+
     isUndefined(item);
 
     return item;
@@ -62,6 +57,7 @@ const productsService = {
 
   delete: async (id) => {
     const item = await products.destroy({ where: { id } });
+
     isUndefined(item);
 
     return item;
@@ -72,7 +68,9 @@ const productsService = {
     
     isUndefined(item);
 
-    return item;
+    if (item[0] === 1) return products.findByPk(id);
+
+    return { message: 'Sem alterações' };
   },
 };
 
