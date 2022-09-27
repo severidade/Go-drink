@@ -38,7 +38,18 @@
   background-color: tomato;
 } */
 
+/* Elementos que ficam acima dos botões para indicar que o item de menu foi selecionado */
 .container_buttons_menu > .products.selected:after {
+  background-color: black;
+  content: '';
+  height: 5px;
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+}
+
+.container_buttons_menu > .orders.selected:after {
   background-color: black;
   content: '';
   height: 5px;

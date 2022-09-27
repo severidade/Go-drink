@@ -43,7 +43,7 @@ function NavBar({ user, selected }) {
           type="button"
           className={ `orders${selected === 'orders' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/orders') }
+          onClick={ () => history.push('/custumer/products/id') }
         >
           MEUS PEDIDOS
         </button>
