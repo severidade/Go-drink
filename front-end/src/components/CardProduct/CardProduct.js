@@ -17,7 +17,7 @@ function CardProduct({ productName, price, url, id }) {
     const qtd = getQtdFromCartList(id);
     setItemCount(qtd);
   }, []);
-
+  
   // // https://grrr.tech/posts/2022/why-use-refs-in-react/
   // document.querySelectorAll('.price').forEach((el) => {
   //   const [int, dec] = el.textContent.trim().split(',');
