@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileContext from '../../context/ProfileContext';
+import tokenService from '../../services/token/tokenService';
 
 import './NavBar.css';
 
@@ -33,7 +34,10 @@ function NavBar({ selected }) {
           // className={ `${selected === 'exit' ? 'selected' : ''} exit` }
           className="exit"
           data-testid="customer_products__element-navbar-link-logout"
-          onClick={ () => history.push('/exit') }
+          onClick={ () => {
+            history.push('/login');
+            tokenService.clearLocalStorage();
+          } }
         >
           Sair
         </button>
