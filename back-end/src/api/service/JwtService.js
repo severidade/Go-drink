@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' }).trim();
+const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
 
 const jwtService = {
   createToken: (data) => jwt.sign({ data }, secret),
