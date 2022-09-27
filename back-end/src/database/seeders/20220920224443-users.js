@@ -34,6 +34,3 @@ module.exports = {
     await queryInterface.bulkDelete('users', null, {});
   }
 };
-
-//   (2, 'Fulana Pereira', 'fulana@deliveryapp.com', '3c28d2b0881bf46457a853e0b07531c6', 'seller'), -- senha: md5('fulana@123')
-//   (3, 'Cliente Zé Birita', 'zebirita@email.com', '1c37466c159755ce1fa181bd247cb925', 'customer'); -- 

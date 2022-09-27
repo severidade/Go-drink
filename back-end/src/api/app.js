@@ -3,9 +3,11 @@ const cors = require('cors');
 require('express-async-errors');
 
 const loginRouter = require('./router/LoginRouter');
-const registerRouter = require('./router/RegisterRouter');
-const errorFunc = require('./middlewares/errorMiddleware');
 const productsRouter = require('./router/ProductsRouter');
+const registerRouter = require('./router/RegisterRouter');
+const salesRouter = require('./router/SalesRouter');
+
+const errorMiddleware = require('./middlewares/errorMiddleware');
 const validateAuth = require('./middlewares/validateAuth');
 
 const app = express();
@@ -18,11 +20,13 @@ app.use(express.static('public'));
 
 app.use(express.json());
 app.use(cors());
+
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', validateAuth, productsRouter);
+app.use('/customer/orders', validateAuth, salesRouter);
 
-app.use(errorFunc);
+app.use(errorMiddleware);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

@@ -1,11 +1,7 @@
-const jwtService = require('../service/JwtService');
 const productsService = require('../service/ProductsService');
 
 const productsController = {
   create: async (req, res) => {
-    const { authorization } = req.headers;
-    jwtService.verifyToken(authorization);
-
     const product = productsService.createBodyValidation(req.body);
 
     const createdProduct = await productsService.create(product);
@@ -14,18 +10,12 @@ const productsController = {
   },
 
   list: async (req, res) => {
-    const { authorization } = req.headers;
-    jwtService.verifyToken(authorization);
-
     const items = await productsService.list();
 
     res.status(200).json(items);
   },
 
   findById: async (req, res) => {
-    const { authorization } = req.headers;
-    jwtService.verifyToken(authorization);
-
     const { id } = req.params;
 
     const items = await productsService.findById(id);
@@ -34,25 +24,19 @@ const productsController = {
   },
 
   delete: async (req, res) => {
-    const { authorization } = req.headers;
-    jwtService.verifyToken(authorization);
-
     const { id } = req.params;
     
     await productsService.delete(id);
-    
-    res.status(204).json({ message: 'produto removido' });
+
+    res.status(204);
   },
 
   update: async (req, res) => {
-    const { authorization } = req.headers;
-    jwtService.verifyToken(authorization);
-
     const { id } = req.params;
 
     const items = productsService.updateBodyValidation(req.body);
     
-    const updatedItem = productsService.update(id, items);
+    const updatedItem = await productsService.update(id, items);
 
     res.status(200).json(updatedItem);
   },
