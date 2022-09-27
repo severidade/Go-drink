@@ -2,7 +2,8 @@ import jwtDecode from 'jwt-decode';
 
 export default {
   getToken() {
-    const { token } = localStorage;
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    console.log(token);
     return token;
   },
 
