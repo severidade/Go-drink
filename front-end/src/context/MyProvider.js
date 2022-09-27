@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CartContext from './CartContext';
 import ProfileContext from './ProfileContext';
 
@@ -40,7 +40,7 @@ function MyProvider({ children }) {
 
   function saveCarList(products) {
     setCartList(products);
-    localStorage.setItem('carList', JSON.stringify(products));
+    localStorage.setItem('cartList', JSON.stringify(products));
   }
 
   function addOneCartItem(item) {
@@ -77,15 +77,31 @@ function MyProvider({ children }) {
     }
   }
 
+  function getQtdFromCartList(itemId) {
+    if (cartList.length > 0) {
+      const item = cartList.find((e) => e.id === itemId);
+      return item ? item.quantity : 0;
+    }
+    const cart = JSON.parse(localStorage.getItem('cartList'));
+    const item = cart.find((e) => e.id === itemId);
+    return item ? item.quantity : 0;
+  }
+
   const cartContextValue = {
     addOneCartItem,
     removeItemToCart,
     subtractOneCartItem,
     cartList,
     setCartList,
+    getQtdFromCartList,
   };
 
   const cartContextMemo = useMemo(() => cartContextValue, [cartList]);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cartList'));
+    if (cart) setCartList(cart);
+  }, []);
 
   return (
     <ProfileContext.Provider value={ contextValueMemo }>
