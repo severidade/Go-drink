@@ -3,7 +3,7 @@ const Mocks = {
 
   userNoPassword: {
     id: 1,
-    email: this.mockMail,
+    email: 'teste@teste.com',
     name: 'Delivery App Admin',
     role: 'administrator',
   },
@@ -17,8 +17,24 @@ const Mocks = {
     password: 'nuncaAdivinharao',
     email: this.mockMail,
     name: 'Delivery App Admin',
-    role: 'administrator',
   },
+
+  dbProduct: {
+    "id": 2,
+    "name": "Heineken 600ml",
+    "price": "7.50",
+    "urlImage": "http://localhost:3001/images/heineken_600ml.jpg"
+  },
+
+  createProductBody: {
+    "name": "Heineken 600ml",
+    "price": "7.50",
+    "urlImage": "http://localhost:3001/images/heineken_600ml.jpg"
+  },
+  invalidLogin: {
+    "email": 'slhgidgs@gmail.com',
+    "password": 'soghsçoighapoi'
+  }
 };
 
 module.exports = Mocks;

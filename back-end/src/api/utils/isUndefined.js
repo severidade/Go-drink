@@ -1,6 +1,6 @@
-const isUndefined = (data, msg) => {
+const isUndefined = (data) => {
   if (!data) {
-    const e = new Error(msg || 'Item não encontrado');
+    const e = new Error('Item não encontrado');
     e.status = 404;
     throw e;
   }

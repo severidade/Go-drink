@@ -36,7 +36,11 @@ const productsService = {
   create: async ({ name, price, urlImage }) => {
     const productExists = await products.findOne({ where: { name } });
 
-    isUndefined(!productExists, 'Este produto já existe');
+    if (productExists) {
+      const e = new Error('Produto já existente');
+      e.status = 409;
+      throw e;
+  }
 
     return products.create({ name, price, urlImage });
   },
