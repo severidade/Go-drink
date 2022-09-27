@@ -22,7 +22,14 @@ function CartButton() {
       onClick={ () => { history.push('customer/checkout'); } }
       data-testid="customer_products__checkout-bottom-value"
     >
-      {`Ver Carrinho R$${totalCartValue()}`}
+      <span>Valor do carrinho R$</span>
+      <strong
+        data-testid="customer_products__checkout-bottom-value"
+      >
+        {totalCartValue().replace('.', ',')}
+
+      </strong>
+
     </button>
   );
 }
