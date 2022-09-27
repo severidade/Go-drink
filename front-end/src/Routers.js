@@ -1,8 +1,8 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import Components from './pages/Components';
-import CostumerProducts from './pages/CostomerProducts';
-import CostumerProductsId from './pages/CostomerProductsId';
+import CustomerProducts from './pages/CustomerProducts';
+import CustomerProductsId from './pages/CustomerProductsId';
 import Register from './pages/Register';
 
 function Routers() {
@@ -14,8 +14,8 @@ function Routers() {
       <Route path="/login" component={ Login } exact />
       <Route path="/register" component={ Register } exact />
       <Route path="/components" component={ Components } exact />
-      <Route path="/customer/products" component={ CostumerProducts } exact />
-      <Route path="/customer/products/id" component={ CostumerProductsId } exact />
+      <Route path="/customer/products" component={ CustomerProducts } exact />
+      <Route path="/customer/products/id" component={ CustomerProductsId } exact />
     </Switch>
   );
 }
