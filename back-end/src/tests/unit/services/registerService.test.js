@@ -28,7 +28,7 @@ describe('Login Service', () => {
 
   it('fails, invalid registration', async () => {
     try {
-		  await RegisterService.create({});
+			await RegisterService.create({});
 		} catch (error) {
       expect(error).to.be.an.instanceof(Error);
 		}	
