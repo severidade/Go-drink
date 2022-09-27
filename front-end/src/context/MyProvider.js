@@ -85,7 +85,7 @@ function MyProvider({ children }) {
     const listItem = list.find((e) => e.id === item.id);
 
     if (listItem) {
-      if (listItem.quantity <= 0) {
+      if (listItem.quantity <= 1) {
         removeItemToCart(listItem);
       } else {
         listItem.quantity -= 1;
