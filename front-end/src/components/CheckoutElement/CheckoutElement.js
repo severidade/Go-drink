@@ -58,10 +58,10 @@ function CheckoutElement({
 }
 
 CheckoutElement.propTypes = {
-  itemNumber: PropTypes.string.isRequired,
+  itemNumber: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([
     PropTypes.string,
