@@ -10,6 +10,16 @@ function CustomerCheckout() {
     cartList,
     cartTotalPrice,
   } = useContext(CartContext);
+
+  function handleClick() {
+    //   const checkoutObject = {
+    //     endereco: address,
+    //     numero: addressNumber,
+    //     responsavel: seller,
+    //   };
+    // history.push('/customer/orders/{id})
+  }
+
   return (
     <div>
       <NavBar selected="products" />
@@ -45,7 +55,7 @@ function CustomerCheckout() {
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
-        onClick={ () => {} }
+        onClick={ handleClick }
       >
         Finalizar Pedido
 
