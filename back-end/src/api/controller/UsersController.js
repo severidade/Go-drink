@@ -17,10 +17,12 @@ const usersController = {
     res.status(201).json({ token });
   },
 
-  list: async (req, res) => {
-    const items = await usersService.list();
+  list: async (_req, res) => {
+    const users = await usersService.list();
 
-    res.status(200).json(items);
+    console.log('list users controller');
+
+    res.status(200).json(users);
   },
 
   findById: async (req, res) => {
@@ -36,13 +38,13 @@ const usersController = {
     
     await usersService.delete(id);
 
-    res.status(204);
+    res.status(204).send();
   },
 
   update: async (req, res) => {
     const { id } = req.params;
 
-    const items = usersService.updateBodyValidation(req.body);
+    const items = usersService.validateBody(req.body);
     
     const updatedItem = await usersService.update(id, items);
 

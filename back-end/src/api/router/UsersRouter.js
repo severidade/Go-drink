@@ -2,11 +2,12 @@ const usersRouter = require('express').Router();
 const usersController = require('../controller/UsersController');
 const validateAuth = require('../middlewares/validateAuth');
 
-usersRouter.get('/:id', usersController.findById);
-usersRouter.put('/:id', usersController.update);
-usersRouter.delete('/:id', usersController.delete);
-usersRouter.post('/admin', usersController.createAdm);
+usersRouter.get('/:id', validateAuth, usersController.findById);
+usersRouter.put('/:id', validateAuth, usersController.update);
+usersRouter.delete('/:id', validateAuth, usersController.delete);
+usersRouter.post('/admin', validateAuth, usersController.createAdm);
 usersRouter.post('/', usersController.create);
-usersRouter.get('/', usersController.list);
+usersRouter.get('/', validateAuth, usersController.list);
+
 
 module.exports = usersRouter;

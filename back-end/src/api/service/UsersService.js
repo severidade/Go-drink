@@ -76,9 +76,9 @@ const usersService = {
   },
 
   list: async () => {
-    const users = await users.findAll({});
+    const usersList = await users.findAll({});
 
-    return users;
+    return usersList;
   },
 
   findById: async (id) => {
@@ -90,6 +90,7 @@ const usersService = {
   },
 
   delete: async (id) => {
+    console.log('oi to no service');
     const user = await users.destroy({ where: { id } });
 
     isUndefined(user);

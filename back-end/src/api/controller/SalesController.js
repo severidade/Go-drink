@@ -10,7 +10,9 @@ const salesController = {
   },
 
   list: async (_req, res) => {
+    console.log('a');
     const sales = await salesService.list();
+    console.log('b');
 
     res.status(200).json(sales);
   },
@@ -28,7 +30,7 @@ const salesController = {
     
     await salesService.delete(id);
     
-    res.status(204);
+    res.status(204).send();
   },
 
   update: async (req, res) => {

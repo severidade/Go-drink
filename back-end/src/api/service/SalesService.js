@@ -1,6 +1,21 @@
 const Joi = require('joi');
-const { sales } = require('../../database/models');
+const { sales, users, products, salesProducts } = require('../../database/models');
 const isUndefined = require('../utils/isUndefined');
+
+const modelsToInclude = [
+  {
+    model: users,
+    as: 'User',
+    attributes: { exclude: ['password'] },
+  },
+  {
+    model: products,
+    as: 'Products',
+    through: { 
+      attributes: [],
+    },
+  },
+];
 
 const salesService = {
   bodyValidation: (data) => {
@@ -12,6 +27,7 @@ const salesService = {
       deliveryNumber: Joi.string().required(),
       saleDate: Joi.date().required(),
       status: Joi.string().required(),
+      products: Joi.array().required(),
     });
 
     const { error, value } = schema.validate(data);
@@ -35,12 +51,27 @@ const salesService = {
     return value;
   },
 
-  create: async (data) => sales.create(data),
+  create: async (data) => {
+    await Promise.all(data.products.map(async (p) => {
+      const product = await products.findByPk(p.id);
+      isUndefined(product);
+    }));
 
-  list: async () => sales.findAll({}),
+    const { id: saleId } = await sales.create(data);
+
+    await Promise.all(data.products.map(async ({ id, quantity }) => {
+      await salesProducts.create({ id, saleId, quantity });
+    }));
+
+    return sales.findByPk(saleId, { include: modelsToInclude });
+  },
+
+  list: async () => {
+    return sales.findAll({ include: modelsToInclude });
+  },
 
   findById: async (id) => {
-    const item = await sales.findByPk(id);
+    const item = await sales.findByPk(id, { include: modelsToInclude });
 
     isUndefined(item);
 
@@ -70,21 +101,9 @@ const salesService = {
 
     if (result[0] === 1) return sales.findByPk(id);
 
-    return sale;
+    return result;
   },
 
 };
 
 module.exports = salesService;
-
-// onst modelsToInclude = [
-//   {
-//     model: User,
-//     as: 'user',
-//     attributes: { exclude: ['password'] },
-//   },
-//   {
-//     model: Category,
-//     as: 'categories',
-//   },
-// ];

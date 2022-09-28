@@ -2,7 +2,7 @@ const expect  = require('chai').expect;
 const sinon = require('sinon');
 // const chai = require('chai');
 
-const RegisterService = require('../../../api/service/RegisterService');
+const RegisterService = require('../../../api/service/UsersService');
 const { users } = require('../../../database/models');
 const JwtService = require('../../../api/service/JwtService');
 const Mocks = require('../../mocks/mocks');

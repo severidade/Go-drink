@@ -28,7 +28,7 @@ const productsController = {
     
     await productsService.delete(id);
 
-    res.status(204);
+    res.status(204).send();
   },
 
   update: async (req, res) => {

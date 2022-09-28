@@ -8,21 +8,33 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      salesProducts.belongsTo(models.products, {
-        foreignKey: "product_id",
-        as: "products",
+      models.sales.belongsToMany(models.products, {
+        as: 'Products',
+        through: salesProducts,
+        foreignKey: 'sale_id',
+        other_key: "product_id",
       });
 
-      salesProducts.belongsTo(models.sales, {
-        foreignKey: "sale_id",
-        as: "sales",
+      models.products.belongsToMany(models.sales, {
+        as: 'Sales',
+        through: salesProducts,
+        foreignKey: 'product_id',
+        other_key: 'sale_id',
       });
     }
   }
   salesProducts.init(
     {
-      sale_id: DataTypes.INTEGER,
-      product_id: DataTypes.INTEGER,
+      sale_id: {
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+      },
+      product_id: {
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+      },
       quantity: DataTypes.INTEGER,
     },
     {
