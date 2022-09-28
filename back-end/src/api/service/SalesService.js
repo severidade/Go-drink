@@ -1,9 +1,24 @@
 const Joi = require('joi');
-const { sales } = require('../../database/models');
+const { sales, users, products, salesProducts } = require('../../database/models');
 const isUndefined = require('../utils/isUndefined');
 
+const modelsToInclude = [
+  {
+    model: users,
+    as: 'User',
+    attributes: { exclude: ['password'] },
+  },
+  {
+    model: products,
+    as: 'Products',
+    through: { 
+      attributes: [],
+    },
+  },
+];
+
 const salesService = {
-  createBodyValidation: (data) => {
+  bodyValidation: (data) => {
     const schema = Joi.object({
       userId: Joi.number().required(),
       sellerId: Joi.number().required(),
@@ -11,6 +26,20 @@ const salesService = {
       deliveryAddress: Joi.string().required(),
       deliveryNumber: Joi.string().required(),
       saleDate: Joi.date().required(),
+      status: Joi.string().required(),
+      products: Joi.array().required(),
+    });
+
+    const { error, value } = schema.validate(data);
+    if (error) {
+      error.status = 400;
+      throw error;
+    }
+    return value;
+  },
+
+  patchValidation: (data) => {
+    const schema = Joi.object({
       status: Joi.string().required(),
     });
 
@@ -22,31 +51,25 @@ const salesService = {
     return value;
   },
 
-  updateBodyValidation: (data) => {
-    const schema = Joi.object({
-      userId: Joi.number(),
-      sellerId: Joi.number(),
-      totalPrice: Joi.number(),
-      deliveryAddress: Joi.string(),
-      deliveryNumber: Joi.string(),
-      saleDate: Joi.date(),
-      status: Joi.string(),
-    });
+  create: async (data) => {
+    await Promise.all(data.products.map(async (p) => {
+      const product = await products.findByPk(p.id);
+      isUndefined(product);
+    }));
 
-    const { error, value } = schema.validate(data);
-    if (error) {
-      error.status = 400;
-      throw error;
-    }
-    return value;
+    const { id: saleId } = await sales.create(data);
+
+    await Promise.all(data.products.map(async ({ id, quantity }) => {
+      await salesProducts.create({ id, saleId, quantity });
+    }));
+
+    return sales.findByPk(saleId, { include: modelsToInclude });
   },
 
-  create: async (data) => sales.create(data),
-
-  list: async () => sales.findAll({}),
+  list: async () => sales.findAll({ include: modelsToInclude }),
 
   findById: async (id) => {
-    const item = await sales.findByPk(id);
+    const item = await sales.findByPk(id, { include: modelsToInclude });
 
     isUndefined(item);
 
@@ -62,13 +85,21 @@ const salesService = {
   },
 
   update: async (id, data) => {
-    const item = await sales.update(data, { where: { id } });
+    const result = await sales.update(data, { where: { id } });
     
-    isUndefined(item);
+    isUndefined(result);
 
-    if (item[0] === 1) return sales.findByPk(id);
+    if (result[0] === 1) return sales.findByPk(id);
 
     return { message: 'Sem alterações' };
+  },
+
+  patch: async (id, status) => {
+    const result = await sales.update(status, { where: { id } });
+
+    if (result[0] === 1) return sales.findByPk(id);
+
+    return result;
   },
 
 };

@@ -6,5 +6,6 @@ salesRouter.put('/:id', salesController.update);
 salesRouter.delete('/:id', salesController.delete);
 salesRouter.post('/', salesController.create);
 salesRouter.get('/', salesController.list);
+salesRouter.patch('/', salesRouter.patch);
 
 module.exports = salesRouter;

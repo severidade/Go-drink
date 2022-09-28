@@ -5,7 +5,7 @@ const sinon = require('sinon');
 const LoginService = require('../../../api/service/LoginService');
 const JwtService = require('../../../api/service/JwtService');
 const { users } = require('../../../database/models');
-const Mocks = require('../../../api/mocks/mocks');
+const Mocks = require('../../mocks/mocks');
 
 describe('Login Service', () => {
 	beforeEach(() => {

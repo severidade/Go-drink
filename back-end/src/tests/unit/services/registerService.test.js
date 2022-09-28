@@ -2,35 +2,34 @@ const expect  = require('chai').expect;
 const sinon = require('sinon');
 // const chai = require('chai');
 
-const RegisterService = require('../../../api/service/RegisterService');
+const RegisterService = require('../../../api/service/UsersService');
 const { users } = require('../../../database/models');
-const jwtService = require('../../../api/service/JwtService');
-const Mocks = require('../../../api/mocks/mocks');
+const JwtService = require('../../../api/service/JwtService');
+const Mocks = require('../../mocks/mocks');
 
-describe('Login Service', () => {
-	beforeEach(() => {
-    sinon.stub(users, 'findOne')
-    .onCall(0).resolves(undefined)
-    .onCall(1).resolves(Mocks.userNoPassword);
-		sinon.stub(users, "create").resolves(Mocks.userNoPassword);
+describe('Register Service', () => {
+	
+	describe('Create', () => {
+		afterEach(() => {
+			sinon.restore();
+		});
+
+		it('Succeeds', async () => {
+			sinon.stub(users, 'findOne').resolves(undefined);
+			sinon.stub(users, 'create').resolves(Mocks.userNoPassword);
+
+			const result = await RegisterService.create(Mocks.registerBody);
+					
+			expect(result).to.be.deep.eq(JwtService.createToken(Mocks.userNoPassword));
+		});
+
+		it('fails, invalid registration', async () => {
+			sinon.stub(users, 'findOne').resolves(Mocks.userNoPassword);
+			try {
+				await RegisterService.create(Mocks.dbUser);
+			} catch (error) {
+				expect(error.status).to.be.eq(409);
+			}	
+		});
 	});
-
-
-	afterEach(() => {
-		sinon.restore();
-	});
-
-	it('Suceeds', async () => {
-		const result = await RegisterService.create(Mocks.registerInfo);
-		
-		expect(result).to.be.deep.eq(Mocks.userNoPassword);
-	});
-
-  it('fails, invalid registration', async () => {
-    try {
-		  await RegisterService.create({});
-		} catch (error) {
-      expect(error).to.be.an.instanceof(Error);
-		}	
-	});
-});
+})
