@@ -2,7 +2,7 @@ const salesService = require('../service/SalesService');
 
 const salesController = {
   create: async (req, res) => {
-    salesService.createBodyValidation(req.body);
+    salesService.bodyValidation(req.body);
 
     const saleCreated = await salesService.create(req.body);
 
@@ -34,12 +34,22 @@ const salesController = {
   update: async (req, res) => {
     const { id } = req.params;
 
-    const items = salesService.updateBodyValidation(req.body);
+    const item = salesService.bodyValidation(req.body);
     
-    const updatedSale = await salesService.update(id, items);
+    const updatedSale = await salesService.update(id, item);
 
     res.status(200).json(updatedSale);
   },
+
+  patch: async (req, res) => {
+    const { id } = req.params;
+
+    const status = salesService.patchValidation(req.body);
+
+    const editedSale = await salesService.patch(id, status);
+
+    res.status(200).json(editedSale);
+  }
 };
 
 module.exports = salesController;

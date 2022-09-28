@@ -34,7 +34,8 @@ module.exports = {
         field: 'delivery_number'
       },
       status: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        defaultValue: 'Pendente'
       },
       createdAt: {
         allowNull: false,

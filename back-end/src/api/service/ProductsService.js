@@ -68,11 +68,11 @@ const productsService = {
   },
 
   update: async (id, data) => {
-    const item = await products.update(data, { where: { id } });
+    const result = await products.update(data, { where: { id } });
     
-    isUndefined(item);
+    isUndefined(result);
 
-    if (item[0] === 1) return products.findByPk(id);
+    if (result[0] === 1) return products.findByPk(id);
 
     return { message: 'Sem alterações' };
   },

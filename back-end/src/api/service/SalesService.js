@@ -3,7 +3,7 @@ const { sales } = require('../../database/models');
 const isUndefined = require('../utils/isUndefined');
 
 const salesService = {
-  createBodyValidation: (data) => {
+  bodyValidation: (data) => {
     const schema = Joi.object({
       userId: Joi.number().required(),
       sellerId: Joi.number().required(),
@@ -22,15 +22,9 @@ const salesService = {
     return value;
   },
 
-  updateBodyValidation: (data) => {
+  patchValidation: (data) => {
     const schema = Joi.object({
-      userId: Joi.number(),
-      sellerId: Joi.number(),
-      totalPrice: Joi.number(),
-      deliveryAddress: Joi.string(),
-      deliveryNumber: Joi.string(),
-      saleDate: Joi.date(),
-      status: Joi.string(),
+      status: Joi.string().required(),
     });
 
     const { error, value } = schema.validate(data);
@@ -62,15 +56,35 @@ const salesService = {
   },
 
   update: async (id, data) => {
-    const item = await sales.update(data, { where: { id } });
+    const result = await sales.update(data, { where: { id } });
     
     isUndefined(item);
 
-    if (item[0] === 1) return sales.findByPk(id);
+    if (result[0] === 1) return sales.findByPk(id);
 
     return { message: 'Sem alterações' };
+  },
+
+  patch: async (id, status) => {
+    const result = await sales.update(status, { where: { id } });
+
+    if (result[0] === 1) return sales.findByPk(id);
+
+    return sale;
   },
 
 };
 
 module.exports = salesService;
+
+// onst modelsToInclude = [
+//   {
+//     model: User,
+//     as: 'user',
+//     attributes: { exclude: ['password'] },
+//   },
+//   {
+//     model: Category,
+//     as: 'categories',
+//   },
+// ];
