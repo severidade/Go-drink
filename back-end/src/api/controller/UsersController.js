@@ -12,7 +12,7 @@ const usersController = {
 
   createAdm: async (req, res) => {
     console.log(jwtService.decodeTokenRole(req.headers));
-    if (jwtService.decodeTokenRole(req.headers) !== 'administrator'){
+    if (jwtService.decodeTokenRole(req.headers) !== 'administrator') {
       const e = new Error('Não autorizado');
       e.status = 401;
       throw e;

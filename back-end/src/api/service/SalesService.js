@@ -66,9 +66,7 @@ const salesService = {
     return sales.findByPk(saleId, { include: modelsToInclude });
   },
 
-  list: async () => {
-    return sales.findAll({ include: modelsToInclude });
-  },
+  list: async () => sales.findAll({ include: modelsToInclude }),
 
   findById: async (id) => {
     const item = await sales.findByPk(id, { include: modelsToInclude });
@@ -89,7 +87,7 @@ const salesService = {
   update: async (id, data) => {
     const result = await sales.update(data, { where: { id } });
     
-    isUndefined(item);
+    isUndefined(result);
 
     if (result[0] === 1) return sales.findByPk(id);
 

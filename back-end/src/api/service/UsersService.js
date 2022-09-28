@@ -34,15 +34,9 @@ const usersService = {
         'string.empty': 'Field name is required',
         'sting.length': 'Field name must be at least 12 characters long',
       }),
-      email: Joi.string().email().required().messages({
-        'string.empty': 'Field email is required',
-      }),
-      password: Joi.string().required().min(6).messages({
-        'string.empty': 'Field password is required',
-      }),
-      role: Joi.string().required().messages({
-        'string.empty': 'Field role is required',
-      }),
+      email: Joi.string().email().required(),
+      password: Joi.string().required().min(6),
+      role: Joi.string().required(),
     });
 
     const { error, value } = schema.validate(data);

@@ -51,7 +51,7 @@ const salesController = {
     const editedSale = await salesService.patch(id, status);
 
     res.status(200).json(editedSale);
-  }
+  },
 };
 
 module.exports = salesController;

@@ -9,5 +9,4 @@ usersRouter.post('/admin', validateAuth, usersController.createAdm);
 usersRouter.post('/', usersController.create);
 usersRouter.get('/', validateAuth, usersController.list);
 
-
 module.exports = usersRouter;
