@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import CartTotalPrice from '../components/CartTotalPrice/CartTotalPrice';
 import CheckoutElement from '../components/CheckoutElement/CheckoutElement';
 import CustomerCheckoutDetails
   from '../components/CustomerCheckoutDetails/CustomerCheckoutDetails';
@@ -8,7 +9,6 @@ import CartContext from '../context/CartContext';
 function CustomerCheckout() {
   const {
     cartList,
-    cartTotalPrice,
   } = useContext(CartContext);
 
   function handleClick() {
@@ -38,17 +38,7 @@ function CustomerCheckout() {
             />
           ))
         }
-
-        <p>
-          Total: R$
-          {' '}
-          <span
-            data-testid="customer_checkout__element-order-total-price"
-          >
-            {cartTotalPrice().replace('.', ',')}
-
-          </span>
-        </p>
+        <CartTotalPrice />
       </div>
       <h1>Detalhes e endereço para entrega</h1>
       <CustomerCheckoutDetails />
