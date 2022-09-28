@@ -28,6 +28,9 @@ const loginService = {
       attributes: { exclude: ['password'] },
     });
 
+
+    console.log(user);
+    
     if (!user) {
       const e = new Error('Not found');
       e.name = 'Not found';

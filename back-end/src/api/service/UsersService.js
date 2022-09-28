@@ -53,7 +53,9 @@ const usersService = {
     return value;
   },
 
-  create: async ({ name, email, password }) => {
+  create: async (data) => {
+    const { name, email, password } = data;
+
     const userExists = await users.findOne({
         where: {
           [Op.or]: [{ name }, { email }],
@@ -67,13 +69,37 @@ const usersService = {
       throw e;
     }
 
+    // const band-aid = data.role ? { name, email, password: md5(password), role: data.role } : { name, email, password: md5(password) }
+
     const user = await users.create(
-      { name, email, password: md5(password) },
+      { name, email, password: md5(password), role: data.role },
       { attributes: { excludes: ['password'] } },
     );
 
     return jwtService.createToken(user);
   },
+
+  // createAdm: async ({ name, email, password, role }) => {
+  //   const userExists = await users.findOne({
+  //       where: {
+  //         [Op.or]: [{ name }, { email }],
+  //       },
+  //   });
+
+  //   if (userExists) {
+  //     const e = new Error('Invalid Register');
+  //     e.name = 'Validation Error';
+  //     e.status = 409;
+  //     throw e;
+  //   }
+
+  //   const user = await users.create(
+  //     { name, email, password: md5(password) },
+  //     { attributes: { excludes: ['password'] } },
+  //   );
+
+  //   return jwtService.createToken(user);
+  // },
 
   list: async () => {
     const usersList = await users.findAll({});

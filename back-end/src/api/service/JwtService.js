@@ -6,9 +6,9 @@ const secret = fs.readFileSync('jwt.evaluation.key', { encoding: 'utf-8' }).trim
 const jwtService = {
   createToken: (data) => jwt.sign({ data }, secret),
 
-  verifyToken: (authorization) => jwt.verify(authorization, secret),
+  verifyToken: ({ authorization }) => jwt.verify(authorization, secret),
 
-  decodeTokenId: ({ authorization }) => (jwt.decode(authorization)).data.id,
+  decodeTokenRole: ({ authorization }) => (jwt.decode(authorization)).data.role,
 };
 
 module.exports = jwtService;

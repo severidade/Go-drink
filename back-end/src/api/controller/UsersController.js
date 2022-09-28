@@ -1,4 +1,5 @@
 const usersService = require('../service/UsersService');
+const jwtService = require('../service/JwtService');
 
 const usersController = {
   create: async (req, res) => {
@@ -10,7 +11,14 @@ const usersController = {
   },
 
   createAdm: async (req, res) => {
-    usersService.validateBody(req.body);
+    console.log(jwtService.decodeTokenRole(req.headers));
+    if (jwtService.decodeTokenRole(req.headers) !== 'administrator'){
+      const e = new Error('Não autorizado');
+      e.status = 401;
+      throw e;
+    }
+    
+    usersService.validateBodyAdm(req.body);
     
     const token = await usersService.create(req.body);
 
