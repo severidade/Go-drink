@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './CheckoutElement.module.css';
 
 function CheckoutElement({
-  itemNumber, productName, productQunt, priceUnit, priceTotal, url }) {
+  itemNumber, productName, quantity, price, url }) {
   return (
     <div className={ styles.container_CheckoutElement }>
       <div
@@ -21,17 +21,17 @@ function CheckoutElement({
       <div
         data-testid="customer_checkout__element-order-table-quantity"
       >
-        { productQunt }
+        { quantity }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-unit-price"
       >
-        { priceUnit }
+        { price }
       </div>
       <div
         data-testid="customer_checkout__element-order-table-sub-total"
       >
-        { priceTotal }
+        { price * quantity }
       </div>
       <div className="container_image">
         <img
@@ -54,9 +54,8 @@ function CheckoutElement({
 CheckoutElement.propTypes = {
   itemNumber: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
-  productQunt: PropTypes.number.isRequired,
-  priceUnit: PropTypes.number.isRequired,
-  priceTotal: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
 };
 
