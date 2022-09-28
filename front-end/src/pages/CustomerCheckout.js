@@ -22,7 +22,7 @@ function CustomerCheckout() {
 
   return (
     <div>
-      <NavBar selected="products" />
+      <NavBar selected="products" haveProducts orders="Meus Pedidos" />
       <h1>Finalizar Pedidos</h1>
       <div>
         {
