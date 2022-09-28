@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 // import React, { useState } from 'react';
-import React from 'react';
+import React, { useContext } from 'react';
 // import './CheckoutElement.css';
 import styles from './CheckoutElement.module.css';
+import CartContext from '../../context/CartContext';
 
 function CheckoutElement({
-  itemNumber, productName, quantity, price, url }) {
+  itemNumber, productName, quantity, price, url, id }) {
+  const {
+    removeItemToCart,
+  } = useContext(CartContext);
+
   return (
     <div className={ styles.container_CheckoutElement }>
       <div
@@ -31,7 +36,7 @@ function CheckoutElement({
       <div
         data-testid="customer_checkout__element-order-table-sub-total"
       >
-        { price * quantity }
+        { (price * quantity).toFixed(2) }
       </div>
       <div className="container_image">
         <img
@@ -44,6 +49,7 @@ function CheckoutElement({
         type="button"
         className="rm_item"
         data-testid="customer_checkout__element-order-table-remove"
+        onClick={ () => removeItemToCart({ productName, quantity, price, url, id }) }
       >
         Remover
       </button>
@@ -57,6 +63,10 @@ CheckoutElement.propTypes = {
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
 };
 
 export default CheckoutElement;
