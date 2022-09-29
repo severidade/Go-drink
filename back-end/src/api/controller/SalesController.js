@@ -10,9 +10,7 @@ const salesController = {
   },
 
   list: async (_req, res) => {
-    console.log('a');
     const sales = await salesService.list();
-    console.log('b');
 
     res.status(200).json(sales);
   },
@@ -36,7 +34,7 @@ const salesController = {
   update: async (req, res) => {
     const { id } = req.params;
 
-    const item = salesService.bodyValidation(req.body);
+    const item = salesService.updateBodyValidation(req.body);
     
     const updatedSale = await salesService.update(id, item);
 

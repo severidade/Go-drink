@@ -26,8 +26,29 @@ const salesService = {
       deliveryAddress: Joi.string().required(),
       deliveryNumber: Joi.string().required(),
       saleDate: Joi.date().required(),
-      status: Joi.string().required(),
+      status: Joi.string(),
       products: Joi.array().required(),
+    });
+
+    const { error, value } = schema.validate(data);
+    if (error) {
+      error.status = 400;
+      throw error;
+    }
+    return value;
+  },
+
+  updateBodyValidation: (data) => {
+    const schema = Joi.object({
+      userId: Joi.number(),
+      sellerId: Joi.number(),
+      totalPrice: Joi.number(),
+      deliveryAddress: Joi.string(),
+      deliveryNumber: Joi.string(),
+      saleDate: Joi.date(),
+      // Olhar Aqui Depois
+      status: Joi.string().required(),
+      products: Joi.array(),
     });
 
     const { error, value } = schema.validate(data);
@@ -59,8 +80,8 @@ const salesService = {
 
     const { id: saleId } = await sales.create(data);
 
-    await Promise.all(data.products.map(async ({ id, quantity }) => {
-      await salesProducts.create({ id, saleId, quantity });
+    await Promise.all(data.products.map(async ({ id: productId, quantity }) => {
+      await salesProducts.create({ productId, saleId, quantity });
     }));
 
     return sales.findByPk(saleId, { include: modelsToInclude });
