@@ -25,10 +25,14 @@ const usersController = {
     res.status(201).json({ token });
   },
 
+  listSellers: async (_req, res) => {
+    const users = await usersService.listSellers();
+
+    res.status(200).json(users);
+  },
+
   list: async (_req, res) => {
     const users = await usersService.list();
-
-    console.log('list users controller');
 
     res.status(200).json(users);
   },

@@ -67,36 +67,25 @@ const usersService = {
 
     const user = await users.create(
       { name, email, password: md5(password), role: data.role },
-      { attributes: { excludes: ['password'] } },
+      { attributes: { exclude: ['password'] } },
     );
 
     return jwtService.createToken(user);
   },
 
-  // createAdm: async ({ name, email, password, role }) => {
-  //   const userExists = await users.findOne({
-  //       where: {
-  //         [Op.or]: [{ name }, { email }],
-  //       },
-  //   });
-
-  //   if (userExists) {
-  //     const e = new Error('Invalid Register');
-  //     e.name = 'Validation Error';
-  //     e.status = 409;
-  //     throw e;
-  //   }
-
-  //   const user = await users.create(
-  //     { name, email, password: md5(password) },
-  //     { attributes: { excludes: ['password'] } },
-  //   );
-
-  //   return jwtService.createToken(user);
-  // },
-
   list: async () => {
-    const usersList = await users.findAll({});
+    const usersList = await users.findAll({
+      attributes: { exclude: ['password'] }
+    });
+
+    return usersList;
+  },
+
+  listSellers: async () => {
+    const usersList = await users.findAll({
+      attributes: { exclude: ['password'] },
+      where: { role: 'seller'}
+    });
 
     return usersList;
   },
