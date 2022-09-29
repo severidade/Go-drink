@@ -1,0 +1,134 @@
+.container_product_main {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 200px;
+}
+
+.stycontainer_section_1 {
+  align-items: center;
+  display: flex;
+  height: 124px;
+  justify-content: flex-start;
+  padding: 34px 76px 0 20px;
+  width: 100%;
+}
+
+.stycontainer_section_1:before {
+  background-color: #e3e3e3;
+  border-radius: 15px 15px 0 0;
+  bottom: 0;
+  content: '';
+  height: 90px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.container_price {
+
+  /* background-color: #ffc100; */
+  display: flex;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 800;
+  width: 100%;
+}
+
+.currency {
+  font-size: 14px;
+  padding-right: 5px;
+  transform: translateY(5px);
+}
+
+.container_image {
+  height: 116px;
+  position: absolute;
+  right: 15px;
+  top: 0;
+  width: 60px;
+}
+
+.image_product {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.container_section_2 {
+  align-items: center;
+  background-color: #e3e3e3;
+  border-radius: 0 0 15px 15px;
+  border-top: 2px dotted white;
+  display: flex;
+  height: 90px;
+  justify-content: center;
+  padding: 10px 10px 30px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.container_quantity {
+  background-color: black;
+  bottom: 0;
+  height: 40px;
+  left: 50%;
+  padding: 0 30px;
+  position: absolute;
+  transform: translate(-50%, 20px);
+  width: calc(100% - 80px);
+}
+
+.quantity {
+  background: none;
+  border: none;
+  color: white;
+  flex-grow: 1;
+  height: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.rm_item {
+  background-color: white;
+  background-image: url('./img/remove_icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  border: 4px solid black;
+  border-radius: 100%;
+  height: 40px;
+  left: -20px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: -1000%;
+  top: 0;
+  width: 40px;
+  z-index: 2;
+}
+
+.add_item {
+  background-color: white;
+  background-image: url('./img/add_icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  border: 4px solid black;
+  border-radius: 100%;
+  height: 40px;
+  overflow: hidden;
+  position: absolute;
+  right: -20px;
+  text-indent: -1000%;
+  top: 0;
+  width: 40px;
+}
+
+.rm_item:hover, .add_item:hover {
+  background-color: #ffc100;
+}

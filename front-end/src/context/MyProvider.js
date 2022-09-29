@@ -5,6 +5,7 @@ import CartContext from './CartContext';
 import ProfileContext from './ProfileContext';
 
 function MyProvider({ children }) {
+  const [userName, setUserName] = useState('');
   // Profile
   const verifyPassword = (password) => {
     const numberSix = 6;
@@ -27,13 +28,15 @@ function MyProvider({ children }) {
     return verify;
   };
 
-  const contextValue = {
+  const profileContextValue = {
     verifyEmail,
     verifyPassword,
     verifyFullName,
+    setUserName,
+    userName,
   };
 
-  const contextValueMemo = useMemo(() => contextValue, []);
+  const profileContextValueMemo = useMemo(() => profileContextValue, [userName]);
 
   // Cart
   const [cartList, setCartList] = useState([]);
@@ -58,6 +61,20 @@ function MyProvider({ children }) {
     }
   }
 
+  function setCartItemQtd(item, qtd) {
+    const list = JSON.parse(JSON.stringify(cartList));
+    const listItem = list.find((e) => e.id === item.id);
+    if (listItem) {
+      listItem.quantity = Math.max(qtd, 0);
+      saveCarList(list);
+    } else {
+      console.log(item);
+      item.quantity = qtd;
+      list.push(item);
+      saveCarList(list);
+    }
+  }
+
   function removeItemToCart(item) {
     saveCarList(cartList.filter((e) => e.id !== item.id));
   }
@@ -68,7 +85,7 @@ function MyProvider({ children }) {
     const listItem = list.find((e) => e.id === item.id);
 
     if (listItem) {
-      if (listItem.quantity <= 0) {
+      if (listItem.quantity <= 1) {
         removeItemToCart(listItem);
       } else {
         listItem.quantity -= 1;
@@ -83,8 +100,22 @@ function MyProvider({ children }) {
       return item ? item.quantity : 0;
     }
     const cart = JSON.parse(localStorage.getItem('cartList'));
-    const item = cart.find((e) => e.id === itemId);
-    return item ? item.quantity : 0;
+    if (cart) {
+      const item = cart.find((e) => e.id === itemId);
+      return item ? item.quantity : 0;
+    }
+    return 0;
+  }
+
+  function cartTotalPrice() {
+    const total = cartList.reduce((prev, curr) => {
+      const price = curr.price.toString().replace(',', '.');
+
+      const subTotal = Number(curr.quantity) * Number(price);
+
+      return prev + subTotal;
+    }, 0);
+    return total.toFixed(2);
   }
 
   const cartContextValue = {
@@ -94,6 +125,8 @@ function MyProvider({ children }) {
     cartList,
     setCartList,
     getQtdFromCartList,
+    setCartItemQtd,
+    cartTotalPrice,
   };
 
   const cartContextMemo = useMemo(() => cartContextValue, [cartList]);
@@ -104,7 +137,7 @@ function MyProvider({ children }) {
   }, []);
 
   return (
-    <ProfileContext.Provider value={ contextValueMemo }>
+    <ProfileContext.Provider value={ profileContextValueMemo }>
       <CartContext.Provider value={ cartContextMemo }>
         { children }
       </CartContext.Provider>

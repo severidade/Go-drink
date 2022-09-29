@@ -5,16 +5,18 @@
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  height: 100vh;
+  font-size: 16px;
   justify-content: center;
-  width: 100%;
+  line-height: 1.5;
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100vw;
 }
 
 .App > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
   font-family: Montserrat , sans-serif;
-  font-size: 3em;
   font-weight: 900;
 }
 
@@ -56,7 +58,21 @@
 .container_page {
   left: 0;
   max-width: 100%;
-  position: absolute;
   top: 0;
   width: 100vw;
+}
+
+.container_products {
+  background: tomato;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: auto;
+  width: calc(100vw - 20vw);
+}
+
+.cart_button {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
 }

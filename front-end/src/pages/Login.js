@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ProfileContext from '../context/ProfileContext';
 import userRequest from '../services/requests/userRequest';
 import numbers from '../services/numbers/index';
+import tokenService from '../services/token/tokenService';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -35,7 +36,7 @@ function Login() {
       setInvalidLogin(true);
       setInvalidLoginMessage(response.body.message);
     } else {
-      localStorage.setItem('token', response.body.token);
+      tokenService.saveLocalStorage(response.body.token);
       history.push('/customer/products');
     }
   }
