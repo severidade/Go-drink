@@ -1,15 +1,48 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
+import ordersRequest from '../../services/requests/ordersRequest';
 // import { useHistory } from 'react-router-dom';
+import userRequest from '../../services/requests/userRequest';
 
 function CustomerCheckoutDetails() {
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
-  const [seller, setSeller] = useState('');
+  const [sellers, setSellers] = useState([]);
+  const [seller, setSeller] = useState(undefined);
+
+  const { cartList, cartTotalPrice } = useContext(CartContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    async function getSeller() {
+      const response = await userRequest.getSeller();
+      console.log(response);
+      setSellers(response.body);
+      setSeller(response.body[0].id);
+    }
+    getSeller();
+  }, []);
+
+  async function handleClick() {
+    console.log({ sellers, seller });
+
+    const data = {
+      sellerId: seller,
+      address,
+      addressNumber,
+      cart: cartList,
+      totalPrice: cartTotalPrice() };
+
+    const response = await ordersRequest.finishOrder(data);
+    console.log({ response });
+    history.push(`orders/${response.body.id}`);
+  }
 
   return (
     <div className="container_checkout_details">
-      <h1>Detalhes e endereço para entrega</h1>
 
       <form className="form_details">
         <label
@@ -22,17 +55,16 @@ function CustomerCheckoutDetails() {
             value={ seller }
             onChange={ ({ target }) => setSeller(target.value) }
           >
-            <option
-              defaultChecked
-              hidden
-              disabled
-              value=""
-            >
-              escolha uma pessoa responsável
-            </option>
-            <option value="nome1">Nome 1</option>
-            <option value="nome2">Nome 2</option>
-            <option value="nome3">Nome 2</option>
+            {sellers.map((s) => (
+              <option
+                key={ s.id }
+                value={ s.id }
+              >
+                {s.name}
+
+              </option>
+
+            ))}
           </select>
         </label>
 
@@ -65,8 +97,16 @@ function CustomerCheckoutDetails() {
             // readOnly
           />
         </label>
-      </form>
 
+      </form>
+      <button
+        type="button"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ handleClick }
+      >
+        Finalizar Pedido
+
+      </button>
     </div>
   );
 }

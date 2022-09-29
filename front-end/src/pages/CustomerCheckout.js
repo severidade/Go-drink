@@ -11,15 +11,6 @@ function CustomerCheckout() {
     cartList,
   } = useContext(CartContext);
 
-  function handleClick() {
-    //   const checkoutObject = {
-    //     endereco: address,
-    //     numero: addressNumber,
-    //     responsavel: seller,
-    //   };
-    // history.push('/customer/orders/{id})
-  }
-
   return (
     <div>
       <NavBar selected="products" haveProducts orders="Meus Pedidos" />
@@ -42,14 +33,6 @@ function CustomerCheckout() {
       </div>
       <h1>Detalhes e endereço para entrega</h1>
       <CustomerCheckoutDetails />
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ handleClick }
-      >
-        Finalizar Pedido
-
-      </button>
     </div>
   );
 }
