@@ -3,18 +3,8 @@ import { useHistory } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
 
 function CartButton() {
-  const { cartList } = useContext(CartContext);
+  const { cartList, cartTotalPrice } = useContext(CartContext);
   const history = useHistory();
-  function totalCartValue() {
-    const total = cartList.reduce((prev, curr) => {
-      const price = curr.price.toString().replace(',', '.');
-
-      const subTotal = Number(curr.quantity) * Number(price);
-
-      return prev + subTotal;
-    }, 0);
-    return total.toFixed(2);
-  }
 
   return (
 
@@ -29,7 +19,7 @@ function CartButton() {
       <span
         data-testid="customer_products__checkout-bottom-value"
       >
-        {totalCartValue().replace('.', ',')}
+        {cartTotalPrice().replace('.', ',')}
 
       </span>
 

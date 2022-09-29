@@ -13,7 +13,7 @@ function CustomerProducts() {
 
   return (
     <div className="container_page">
-      <NavBar selected="products" />
+      <NavBar selected="products" haveProducts orders="Meus Pedidos" />
       <h1>PRODUTOS PAGE</h1>
       <div className="container_products">
         {products.map((product) => (

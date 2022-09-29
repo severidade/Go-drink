@@ -7,7 +7,7 @@ import tokenService from '../../services/token/tokenService';
 
 import './NavBar.css';
 
-function NavBar({ selected }) {
+function NavBar({ selected, orders, haveProducts }) {
   const history = useHistory();
 
   const { userName, setUserName } = useContext(ProfileContext);
@@ -43,21 +43,24 @@ function NavBar({ selected }) {
         </button>
       </div>
       <nav className="container_buttons_menu">
-        <button
-          type="button"
-          className={ `products${selected === 'products' ? ' selected' : ''}` }
-          data-testid="customer_products__element-navbar-link-products"
-          onClick={ () => history.push('/customer/products') }
-        >
-          PRODUTOS
-        </button>
+        {haveProducts
+        && (
+          <button
+            type="button"
+            className={ `products${selected === 'products' ? ' selected' : ''}` }
+            data-testid="customer_products__element-navbar-link-products"
+            onClick={ () => history.replace('/customer/products') }
+          >
+            PRODUTOS
+          </button>
+        )}
         <button
           type="button"
           className={ `orders${selected === 'orders' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.push('/customer/products/id') }
+          onClick={ () => history.replace('/customer/products/id') }
         >
-          MEUS PEDIDOS
+          {orders}
         </button>
       </nav>
     </div>
@@ -66,6 +69,8 @@ function NavBar({ selected }) {
 
 NavBar.propTypes = {
   selected: PropTypes.string.isRequired,
+  orders: PropTypes.string.isRequired,
+  haveProducts: PropTypes.bool.isRequired,
 };
 
 export default NavBar;

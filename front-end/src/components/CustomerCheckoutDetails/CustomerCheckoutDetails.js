@@ -7,21 +7,11 @@ function CustomerCheckoutDetails() {
   const [addressNumber, setAddressNumber] = useState('');
   const [seller, setSeller] = useState('');
 
-  function handleClick() {
-  //   const checkoutObject = {
-  //     endereco: address,
-  //     numero: addressNumber,
-  //     responsavel: seller,
-  //   };
-  // history.push('/customer/orders/{id})
-  }
-
-  console.log(seller, 'vendedor selecionado');
   return (
     <div className="container_checkout_details">
       <h1>Detalhes e endereço para entrega</h1>
 
-      <form className="form_datails">
+      <form className="form_details">
         <label
           htmlFor="seller"
         >
@@ -33,9 +23,8 @@ function CustomerCheckoutDetails() {
             onChange={ ({ target }) => setSeller(target.value) }
           >
             <option
-              // defaultChecked
+              defaultChecked
               hidden
-              selected
               disabled
               value=""
             >
@@ -76,12 +65,6 @@ function CustomerCheckoutDetails() {
             // readOnly
           />
         </label>
-        <input
-          type="submit"
-          value="Finalizar Pedido"
-          data-testid="customer_checkout__button-submit-order"
-          onClick={ handleClick }
-        />
       </form>
 
     </div>

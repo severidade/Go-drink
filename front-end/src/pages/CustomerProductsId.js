@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar/NavBar';
 function CustomerProductsId() {
   return (
     <div className="container_page">
-      <NavBar user="Cicrano da silva" selected="orders" />
+      <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
       <h1>PRODUTOS CHECKOUT</h1>
       <div className="container_products">
         <p>Aqui entra a lisa de produtos desta compra</p>

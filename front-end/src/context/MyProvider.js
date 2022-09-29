@@ -107,6 +107,17 @@ function MyProvider({ children }) {
     return 0;
   }
 
+  function cartTotalPrice() {
+    const total = cartList.reduce((prev, curr) => {
+      const price = curr.price.toString().replace(',', '.');
+
+      const subTotal = Number(curr.quantity) * Number(price);
+
+      return prev + subTotal;
+    }, 0);
+    return total.toFixed(2);
+  }
+
   const cartContextValue = {
     addOneCartItem,
     removeItemToCart,
@@ -115,6 +126,7 @@ function MyProvider({ children }) {
     setCartList,
     getQtdFromCartList,
     setCartItemQtd,
+    cartTotalPrice,
   };
 
   const cartContextMemo = useMemo(() => cartContextValue, [cartList]);
