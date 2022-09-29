@@ -30,8 +30,7 @@ export default {
       totalPrice,
       deliveryAddress: address,
       deliveryNumber: addressNumber,
-      products,
-      status: 'Pendente',
+      productsArray: products,
       saleDate: Date.now(),
     };
 
