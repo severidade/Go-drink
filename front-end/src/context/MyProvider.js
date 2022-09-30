@@ -127,6 +127,7 @@ function MyProvider({ children }) {
     getQtdFromCartList,
     setCartItemQtd,
     cartTotalPrice,
+    saveCarList,
   };
 
   const cartContextMemo = useMemo(() => cartContextValue, [cartList]);

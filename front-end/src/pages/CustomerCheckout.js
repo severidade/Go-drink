@@ -26,6 +26,8 @@ function CustomerCheckout() {
               price={ e.price }
               url={ e.url }
               id={ e.id }
+              testidPrefix="customer_checkout__"
+              removeItem
             />
           ))
         }
