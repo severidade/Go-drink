@@ -19,7 +19,6 @@ export default {
       }); */
 
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(cart);
     const products = cart.map((product) => ({
       id: product.id,
       quantity: product.quantity,
@@ -34,7 +33,6 @@ export default {
       saleDate: Date.now(),
     };
 
-    console.log('data', data);
     const token = tokenService.getToken();
     const init = {
       method: 'POST',
