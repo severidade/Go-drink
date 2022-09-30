@@ -58,11 +58,12 @@ export default {
         Authorization: tokenService.getToken(),
       },
     };
-    const responseFetch = await fetch(endpoints.users, init);
+    const responseFetch = await fetch(endpoints.sellers, init);
     const bodyFetch = await responseFetch.json();
+    console.log(bodyFetch);
     const response = {
       status: responseFetch.status,
-      body: bodyFetch.filter((e) => e.role === 'seller'),
+      body: bodyFetch,
     };
     return response;
   },
