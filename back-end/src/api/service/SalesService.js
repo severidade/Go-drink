@@ -107,7 +107,7 @@ const salesService = {
     return item;
   },
 
-  findSellerSales: async  (id) => {
+  findSellerSales: async (id) => {
     const item = await sales.findAll({ include: modelsToInclude, where: { sellerId: id } });
 
     isUndefined(item);
