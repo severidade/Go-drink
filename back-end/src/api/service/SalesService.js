@@ -112,7 +112,7 @@ const salesService = {
     
     isUndefined(result);
 
-    if (result[0] === 1) return sales.findByPk(id);
+    if (result[0] === 1) return sales.findByPk(id, { include: modelsToInclude });
 
     return { message: 'Sem alterações' };
   },
@@ -120,7 +120,7 @@ const salesService = {
   patch: async (id, status) => {
     const result = await sales.update(status, { where: { id } });
 
-    if (result[0] === 1) return sales.findByPk(id);
+    if (result[0] === 1) return sales.findByPk(id, { include: modelsToInclude });
 
     return result;
   },

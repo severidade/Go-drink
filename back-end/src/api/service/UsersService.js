@@ -97,7 +97,6 @@ const usersService = {
   },
 
   delete: async (id) => {
-    console.log('oi to no service');
     const user = await users.destroy({ where: { id } });
 
     isUndefined(user);

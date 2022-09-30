@@ -45,11 +45,7 @@ const productsService = {
     return products.create({ name, price, urlImage });
   },
 
-  list: async () => {
-    const items = await products.findAll({});
-
-    return items;
-  },
+  list: async () => products.findAll({}),
 
   findById: async (id) => {
     const item = await products.findByPk(id);

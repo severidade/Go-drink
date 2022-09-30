@@ -1,6 +1,5 @@
 const expect  = require('chai').expect;
 const sinon = require('sinon');
-// const chai = require('chai');
 
 const LoginService = require('../../../api/service/LoginService');
 const JwtService = require('../../../api/service/JwtService');
