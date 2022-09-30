@@ -68,7 +68,6 @@ function MyProvider({ children }) {
       listItem.quantity = Math.max(qtd, 0);
       saveCarList(list);
     } else {
-      console.log(item);
       item.quantity = qtd;
       list.push(item);
       saveCarList(list);
