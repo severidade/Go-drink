@@ -51,7 +51,7 @@ function NavBar({ selected, orders, haveProducts }) {
             data-testid="customer_products__element-navbar-link-products"
             onClick={ () => history.replace('/customer/products') }
           >
-            PRODUTOS
+            Produtos
           </button>
         )}
         <button

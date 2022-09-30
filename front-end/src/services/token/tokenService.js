@@ -2,8 +2,12 @@ import jwtDecode from 'jwt-decode';
 
 export default {
   getToken() {
-    const { token } = JSON.parse(localStorage.getItem('user'));
-    return token;
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const { token } = JSON.parse(userJson);
+      return token;
+    }
+    return undefined;
   },
 
   decodeToken(token) {

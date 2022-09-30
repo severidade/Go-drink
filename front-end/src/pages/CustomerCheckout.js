@@ -5,6 +5,7 @@ import CustomerCheckoutDetails
   from '../components/CustomerCheckoutDetails/CustomerCheckoutDetails';
 import NavBar from '../components/NavBar/NavBar';
 import CartContext from '../context/CartContext';
+import HederTabelSales from '../components/HederTabelSales/HederTabelSales';
 
 function CustomerCheckout() {
   const {
@@ -12,10 +13,11 @@ function CustomerCheckout() {
   } = useContext(CartContext);
 
   return (
-    <div>
+    <div className="container_page">
       <NavBar selected="products" haveProducts orders="Meus Pedidos" />
       <h1>Finalizar Pedidos</h1>
-      <div>
+      <div className="container_sales">
+        <HederTabelSales />
         {
           cartList.map((e, ind) => (
             <CheckoutElement
@@ -26,13 +28,17 @@ function CustomerCheckout() {
               price={ e.price }
               url={ e.url }
               id={ e.id }
+              testidPrefix="customer_checkout__"
+              removeItem
             />
           ))
         }
         <CartTotalPrice />
       </div>
-      <h1>Detalhes e endereço para entrega</h1>
-      <CustomerCheckoutDetails />
+      <div className="container_sales_details">
+        <h1>Detalhes e endereço para entrega</h1>
+        <CustomerCheckoutDetails />
+      </div>
     </div>
   );
 }

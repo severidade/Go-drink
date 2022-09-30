@@ -18,7 +18,13 @@ function Login() {
     verifyPassword,
   } = useContext(ProfileContext);
 
+  const history = useHistory();
+
   useEffect(() => {
+    const token = tokenService.getToken();
+    if (token) {
+      history.push('customer/products');
+    }
     const validEmail = verifyEmail(email);
     const validPassword = verifyPassword(password);
     if (validEmail && validPassword) {
@@ -27,8 +33,6 @@ function Login() {
       setDisablebutton(true);
     }
   }, [email, password]);
-
-  const history = useHistory();
 
   async function handleClickLogin() {
     const response = await userRequest.login(email, password);

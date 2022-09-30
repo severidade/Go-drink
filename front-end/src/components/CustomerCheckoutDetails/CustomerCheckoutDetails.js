@@ -13,13 +13,12 @@ function CustomerCheckoutDetails() {
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState(undefined);
 
-  const { cartList, cartTotalPrice } = useContext(CartContext);
+  const { cartList, cartTotalPrice, saveCarList } = useContext(CartContext);
   const history = useHistory();
 
   useEffect(() => {
     async function getSeller() {
       const response = await userRequest.getSeller();
-      console.log(response);
       setSellers(response.body);
       setSeller(response.body[0].id);
     }
@@ -27,8 +26,6 @@ function CustomerCheckoutDetails() {
   }, []);
 
   async function handleClick() {
-    console.log({ sellers, seller });
-
     const data = {
       sellerId: seller,
       address,
@@ -37,7 +34,7 @@ function CustomerCheckoutDetails() {
       totalPrice: cartTotalPrice() };
 
     const response = await ordersRequest.finishOrder(data);
-    console.log({ response });
+    saveCarList([]);
     history.push(`orders/${response.body.id}`);
   }
 
