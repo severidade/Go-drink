@@ -1,4 +1,5 @@
 import tokenService from '../token/tokenService';
+import userService from '../user/userService';
 import endpoints from './endpoints';
 
 const contentJson = 'application/json';
@@ -50,6 +51,24 @@ export default {
       body: await responseFetch.json(),
     };
 
+    return response;
+  },
+
+  async getAll() {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+    const userId = userService.getUserId();
+    const responseFetch = await fetch(`${endpoints.customerOrdersByUser}${userId}`, init);
+    const bodyFetch = await responseFetch.json();
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
     return response;
   },
 };
