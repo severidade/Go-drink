@@ -27,7 +27,7 @@ const salesService = {
       deliveryNumber: Joi.string().required(),
       saleDate: Joi.date().required(),
       status: Joi.string(),
-      products: Joi.array().required(),
+      productsArray: Joi.array().required(),
     });
 
     const { error, value } = schema.validate(data);
@@ -46,9 +46,8 @@ const salesService = {
       deliveryAddress: Joi.string(),
       deliveryNumber: Joi.string(),
       saleDate: Joi.date(),
-      // Olhar Aqui Depois
       status: Joi.string().required(),
-      products: Joi.array(),
+      productsArray: Joi.array(),
     });
 
     const { error, value } = schema.validate(data);
@@ -73,17 +72,20 @@ const salesService = {
   },
 
   create: async (data) => {
-    await Promise.all(data.products.map(async (p) => {
+    const { productsArray, ...saleData } = data;
+    
+    await Promise.all(productsArray.map(async (p) => {
       const product = await products.findByPk(p.id);
       isUndefined(product);
     }));
+    
+    const { id: saleId } = await sales.create(saleData);
 
-    const { id: saleId } = await sales.create(data);
+    const normalizedArray = productsArray.map(({ id, quantity }) =>
+    ({ productId: id, saleId, quantity }));
 
-    await Promise.all(data.products.map(async ({ id: productId, quantity }) => {
-      await salesProducts.create({ productId, saleId, quantity });
-    }));
-
+    await salesProducts.bulkCreate(normalizedArray);
+    
     return sales.findByPk(saleId, { include: modelsToInclude });
   },
 

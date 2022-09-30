@@ -63,8 +63,6 @@ const usersService = {
       throw e;
     }
 
-    // const band-aid = data.role ? { name, email, password: md5(password), role: data.role } : { name, email, password: md5(password) }
-
     const user = await users.create(
       { name, email, password: md5(password), role: data.role },
       { attributes: { exclude: ['password'] } },
@@ -75,7 +73,7 @@ const usersService = {
 
   list: async () => {
     const usersList = await users.findAll({
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
     });
 
     return usersList;
@@ -84,7 +82,7 @@ const usersService = {
   listSellers: async () => {
     const usersList = await users.findAll({
       attributes: { exclude: ['password'] },
-      where: { role: 'seller'}
+      where: { role: 'seller' },
     });
 
     return usersList;
