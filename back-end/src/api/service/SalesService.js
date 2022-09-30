@@ -81,13 +81,10 @@ const salesService = {
     
     const { id: saleId } = await sales.create(saleData);
 
-    const toCrateArray = productsArray.map(({ id, quantity }) => ({ productId: id, saleId, quantity }));
+    const normalizedArray = productsArray.map(({ id, quantity }) =>
+    ({ productId: id, saleId, quantity }));
 
-    await salesProducts.bulkCreate(toCrateArray)
-
-    // await Promise.all(await productsArray.map(async ({ id, quantity }) => {
-    //   await salesProducts.create({ productId: id, saleId, quantity });
-    // }));
+    await salesProducts.bulkCreate(normalizedArray);
     
     return sales.findByPk(saleId, { include: modelsToInclude });
   },
