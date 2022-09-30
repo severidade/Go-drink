@@ -99,6 +99,14 @@ const salesService = {
     return item;
   },
 
+  findUserSales: async (id) => {
+    const item = await sales.findAll({ include: modelsToInclude, where: { userId: id } });
+
+    isUndefined(item);
+
+    return item;
+  },
+
   delete: async (id) => {
     const item = await sales.destroy({ where: { id } });
 

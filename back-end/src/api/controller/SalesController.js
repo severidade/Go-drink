@@ -23,6 +23,14 @@ const salesController = {
     res.status(200).json(sale);
   },
 
+  findUserSales: async (req, res) => {
+    const { id } = req.params;
+
+    const sale = await salesService.findUserSales(id);
+
+    res.status(200).json(sale);
+  },
+
   delete: async (req, res) => {
     const { id } = req.params;
     
