@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
-import CartTotalPrice from '../components/CartTotalPrice/CartTotalPrice';
 import CheckoutElement from '../components/CheckoutElement/CheckoutElement';
 import CustomerCheckoutDetails
   from '../components/CustomerCheckoutDetails/CustomerCheckoutDetails';
 import NavBar from '../components/NavBar/NavBar';
 import CartContext from '../context/CartContext';
 import HederTabelSales from '../components/HederTabelSales/HederTabelSales';
+import TotalPrice from '../components/TotalPrice/TotalPrice';
 
 function CustomerCheckout() {
   const {
     cartList,
+    cartTotalPrice,
   } = useContext(CartContext);
 
   return (
@@ -33,7 +34,7 @@ function CustomerCheckout() {
             />
           ))
         }
-        <CartTotalPrice />
+        <TotalPrice total={ cartTotalPrice() } />
       </div>
       <div className="container_sales_details">
         <h1>Detalhes e endereço para entrega</h1>
