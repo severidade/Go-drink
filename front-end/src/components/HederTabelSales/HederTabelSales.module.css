@@ -1,0 +1,8 @@
+.header_tabel_sales {
+  display: grid;
+  font-weight: 900;
+  grid-template-columns: 50px 3fr 1fr repeat(2, 100px);
+  padding: 0 90px 0 20px;
+  position: relative;
+  width: 100%;
+}

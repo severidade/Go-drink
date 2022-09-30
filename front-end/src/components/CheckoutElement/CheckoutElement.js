@@ -14,32 +14,38 @@ function CheckoutElement({
   return (
     <div className={ styles.container_CheckoutElement }>
       <div
+        className={ styles.container_item_number }
         data-testid={ `${testidPrefix}element-order-table-item-number-${itemNumber}` }
       >
         { itemNumber + 1}
       </div>
       <div
+        className={ styles.container_name }
         data-testid={ `${testidPrefix}element-order-table-name-${itemNumber}` }
       >
         { productName }
       </div>
       <div
+        className={ styles.container_quantity }
         data-testid={ `${testidPrefix}element-order-table-quantity-${itemNumber}` }
       >
         { quantity }
       </div>
       <div
+        className={ styles.container_unit_price }
         data-testid={ `${testidPrefix}element-order-table-unit-price-${itemNumber}` }
       >
         { price.replace('.', ',') }
       </div>
       <div
+        className={ styles.container_sub_total }
         data-testid={ `${testidPrefix}element-order-table-sub-total-${itemNumber}` }
       >
         { (price * quantity).toFixed(2).replace('.', ',') }
       </div>
-      <div className="container_image">
+      <div className={ styles.container_image }>
         <img
+          className={ styles.image_product }
           src={ url }
           alt={ productName }
           data-testid={ `customer_products__img-card-bg-image${itemNumber}` }
@@ -49,7 +55,7 @@ function CheckoutElement({
         removeItem && (
           <button
             type="button"
-            className="rm_item"
+            className={ styles.rm_item }
             data-testid={ `${testidPrefix}element-order-table-remove-${itemNumber}` }
             onClick={ () => removeItemToCart({ productName, quantity, price, url, id }) }
           >

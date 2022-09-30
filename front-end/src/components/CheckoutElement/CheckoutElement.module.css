@@ -1,7 +1,81 @@
 .container_CheckoutElement {
+  display: grid;
+  grid-template-columns: 50px 3fr 1fr repeat(2, 100px);
+  height: 80px;
+  padding: 20px 90px 20px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.container_CheckoutElement:before {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  bottom: 0;
+  content: '';
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.container_item_number, .container_name, .container_quantity {
   align-items: center;
-  background-color: rgb(163, 173, 22);
+
+  /* background-color: blue; */
   display: flex;
-  justify-content: space-between;
-  width: 400px;
+  height: 100%;
+}
+
+.container_unit_price, .container_sub_total {
+  align-items: center;
+
+  /* background-color: blue; */
+  display: flex;
+  height: 100%;
+  padding-left: 24px;
+
+  /* justify-content: flex-end; */
+}
+
+.container_unit_price:before, .container_sub_total:before {
+  content: 'R$';
+  left: 0;
+  position: absolute;
+}
+
+.container_image {
+  bottom: 0;
+  height: 116px;
+  mix-blend-mode: multiply;
+  position: absolute;
+  right: 15px;
+  width: 60px;
+}
+
+.image_product {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.rm_item {
+  background-color: black;
+  background-image: url('./img/add_icon.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  border: 4px solid black;
+  border-radius: 100%;
+  cursor: pointer;
+  height: 40px;
+  overflow: hidden;
+  position: absolute;
+  right: -20px;
+  text-indent: -1000%;
+  top: -20px;
+  transform: rotate(45deg);
+  width: 40px;
+  z-index: 2;
 }
