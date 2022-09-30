@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     urlImage: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'products',
     timestamps: false,
     underscored: true
   });

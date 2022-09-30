@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       models.sales.belongsToMany(models.products, {
         as: 'Products',
         through: salesProducts,
-        foreignKey: 'sale_id',
-        other_key: "product_id",
+        foreignKey: 'saleId',
+        otherKey: "productId",
       });
 
       models.products.belongsToMany(models.sales, {
         as: 'Sales',
         through: salesProducts,
-        foreignKey: 'product_id',
-        other_key: 'sale_id',
+        foreignKey: 'productId',
+        otherKey: 'saleId',
       });
     }
   }
@@ -29,22 +29,19 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
         foreignKey: true,
-        field: 'sale_id',
       },
       productId: {
         primaryKey: true,
         type: DataTypes.INTEGER,
         foreignKey: true,
-        field: 'product_id',
       },
       quantity: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "salesProducts",
       tableName: 'sales_products',
+      underscored: true,
       timestamps: false,
-      productId: 'product_id',
     }
   );
   return salesProducts;
