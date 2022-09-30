@@ -12,7 +12,7 @@ function CustomerCheckout() {
     cartList,
     cartTotalPrice,
   } = useContext(CartContext);
-
+  const testidPrefix = 'customer_checkout__';
   return (
     <div className="container_page">
       <NavBar selected="products" haveProducts orders="Meus Pedidos" />
@@ -29,12 +29,15 @@ function CustomerCheckout() {
               price={ e.price }
               url={ e.url }
               id={ e.id }
-              testidPrefix="customer_checkout__"
+              testidPrefix={ testidPrefix }
               removeItem
             />
           ))
         }
-        <TotalPrice total={ cartTotalPrice() } />
+        <TotalPrice
+          total={ cartTotalPrice() }
+          testidPrefix={ testidPrefix }
+        />
       </div>
       <div className="container_sales_details">
         <h1>Detalhes e endereço para entrega</h1>
