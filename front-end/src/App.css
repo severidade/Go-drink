@@ -1,5 +1,4 @@
 .App {
-  align-items: center;
   background: #0fa36b;
   color: #464646;
 
@@ -7,7 +6,6 @@
   flex-direction: column; */
   font-family: sans-serif;
   font-size: 16px;
-  justify-content: center;
   line-height: 1.5;
   max-width: 100%;
   min-height: 100vh;
@@ -60,7 +58,6 @@
   background-color: tomato;
   left: 0;
   max-width: 100%;
-  padding-top: 140px;
   width: 100vw;
 }
 
@@ -97,4 +94,5 @@
   bottom: 10px;
   position: fixed;
   right: 10px;
+  z-index: 1000;
 }
