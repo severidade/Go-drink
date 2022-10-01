@@ -9,6 +9,7 @@ function OrderDetailsHeader({
   status,
   testidPrefix,
   isUser,
+  deliveryCheck,
 }) {
   function handleCLickDeliveryCheck() {
     ordersRequest(id, saleStatus.entregue);
@@ -55,6 +56,7 @@ function OrderDetailsHeader({
               data-testid={ `${testidPrefix}button-delivery-check` }
               type="button"
               onClick={ handleCLickDeliveryCheck }
+              disabled={ !deliveryCheck }
             >
               Marcar como entregue
             </button>
@@ -90,10 +92,12 @@ OrderDetailsHeader.propTypes = {
   status: PropTypes.string.isRequired,
   testidPrefix: PropTypes.string.isRequired,
   isUser: PropTypes.bool,
+  deliveryCheck: PropTypes.bool,
 };
 
 OrderDetailsHeader.defaultProps = {
   isUser: false,
+  deliveryCheck: false,
 
 };
 
