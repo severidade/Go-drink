@@ -60,11 +60,18 @@ export default {
     };
     const responseFetch = await fetch(endpoints.sellers, init);
     const bodyFetch = await responseFetch.json();
-    console.log(bodyFetch);
+
     const response = {
       status: responseFetch.status,
       body: bodyFetch,
     };
     return response;
+  },
+
+  async getSellerById(sellerId) {
+    const sellers = await this.getSellers();
+    const seller = sellers.body.find(({ id }) => id === sellerId);
+    if (seller) return seller;
+    return { name: 'teste' };
   },
 };
