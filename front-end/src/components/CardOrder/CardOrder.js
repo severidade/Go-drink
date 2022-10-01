@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import React from 'react';
 
 function CardOrder({ hasAddress, order, testidPrefix }) {
@@ -10,14 +11,20 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
     const date = rawDate.slice(0, dateLimit);
     const dateArr = date.split('-');
     const reverse = dateArr.reverse();
-    const formattedDate = reverse.join('-');
+    const formattedDate = reverse.join('/');
     return formattedDate;
   }; // talvez colocar essa função em outro arquivo dps
 
   const properDate = formatDate(saleDate);
 
+  const history = useHistory();
+
   return (
-    <div className="container_order_main">
+    <button
+      className="container_order_main"
+      type="button"
+      onClick={ () => history.push(`/customer/orders/${id}`) }
+    >
       <p
         className="order_id"
         data-testid={ `${testidPrefix}element-order-id-${id}` }
@@ -41,7 +48,7 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
           className="price"
           data-testid={ `${testidPrefix}element-card-price-${id}` }
         >
-          {totalPrice}
+          {totalPrice.replace('.', ',')}
         </p>
       </div>
       <div
@@ -56,7 +63,7 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
           </p>
         )}
       </div>
-    </div>
+    </button>
   );
 }
 
