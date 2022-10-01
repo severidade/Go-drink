@@ -18,7 +18,7 @@ function CustomerCheckoutDetails() {
 
   useEffect(() => {
     async function getSeller() {
-      const response = await userRequest.getSeller();
+      const response = await userRequest.getSellers();
       setSellers(response.body);
       setSeller(response.body[0].id);
     }

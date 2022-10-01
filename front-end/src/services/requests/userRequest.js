@@ -50,7 +50,7 @@ export default {
     return response;
   },
 
-  async getSeller() {
+  async getSellers() {
     const init = {
       method: 'GET',
       headers: {
@@ -58,12 +58,20 @@ export default {
         Authorization: tokenService.getToken(),
       },
     };
-    const responseFetch = await fetch(endpoints.users, init);
+    const responseFetch = await fetch(endpoints.sellers, init);
     const bodyFetch = await responseFetch.json();
+
     const response = {
       status: responseFetch.status,
-      body: bodyFetch.filter((e) => e.role === 'seller'),
+      body: bodyFetch,
     };
     return response;
+  },
+
+  async getSellerById(sellerId) {
+    const sellers = await this.getSellers();
+    const seller = sellers.body.find(({ id }) => id === sellerId);
+    if (seller) return seller;
+    return { name: 'teste' };
   },
 };

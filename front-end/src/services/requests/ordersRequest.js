@@ -54,6 +54,32 @@ export default {
     return response;
   },
 
+  async updateStatus(saleId, status) {
+    const data = JSON.stringify({
+      status,
+    });
+
+    const token = tokenService.getToken();
+    const init = {
+      method: 'put',
+      body: data,
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: token,
+      },
+    };
+
+    console.log(init);
+
+    const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
+
+    const response = {
+      status: responseFetch.status,
+      body: await responseFetch.json(),
+    };
+    return response;
+  },
+
   async getAll() {
     const init = {
       method: 'GET',
@@ -69,6 +95,26 @@ export default {
       status: responseFetch.status,
       body: bodyFetch,
     };
+    return response;
+  },
+
+  async getById(saleId) {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+
+    const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
+
+    const bodyFetch = await responseFetch.json();
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+
     return response;
   },
 };
