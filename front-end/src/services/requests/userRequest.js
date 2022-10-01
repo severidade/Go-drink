@@ -50,7 +50,7 @@ export default {
     return response;
   },
 
-  async getSeller() {
+  async getSellers() {
     const init = {
       method: 'GET',
       headers: {
