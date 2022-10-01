@@ -97,4 +97,24 @@ export default {
     };
     return response;
   },
+
+  async getById(saleId) {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+
+    const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
+
+    const bodyFetch = await responseFetch.json();
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+
+    return response;
+  },
 };
