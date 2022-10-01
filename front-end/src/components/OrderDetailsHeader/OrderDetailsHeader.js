@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ordersRequest from '../../services/requests/ordersRequest';
 import saleStatus from '../../services/status/saleStatus';
 
-function OrderDetails({
+function OrderDetailsHeader({
   id,
   seller,
   date,
@@ -83,7 +83,7 @@ function OrderDetails({
   );
 }
 
-OrderDetails.propTypes = {
+OrderDetailsHeader.propTypes = {
   id: PropTypes.number.isRequired,
   seller: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
@@ -92,9 +92,9 @@ OrderDetails.propTypes = {
   isUser: PropTypes.bool,
 };
 
-OrderDetails.defaultProps = {
+OrderDetailsHeader.defaultProps = {
   isUser: false,
 
 };
 
-export default OrderDetails;
+export default OrderDetailsHeader;
