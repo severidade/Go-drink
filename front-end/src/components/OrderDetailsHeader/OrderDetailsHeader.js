@@ -42,7 +42,10 @@ function OrderDetailsHeader({
       <p
         data-testid={ `${testidPrefix}element-order-details-label-order-date` }
       >
-        {date}
+        {new Date(date)
+          .toLocaleDateString('pt-BR', {
+            timeZone: 'UTC',
+          })}
       </p>
       {
         isUser ? (
