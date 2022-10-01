@@ -5,6 +5,7 @@ import CustomerProducts from './pages/CustomerProducts';
 import CustomerProductsId from './pages/CustomerProductsId';
 import Register from './pages/Register';
 import CustomerCheckout from './pages/CustomerCheckout';
+import CustomerOrdersDetail from './pages/CustomerOrdersDetail';
 
 function Routers() {
   return (
@@ -17,7 +18,8 @@ function Routers() {
       <Route path="/components" component={ Components } exact />
       <Route path="/customer/products" component={ CustomerProducts } exact />
       <Route path="/customer/products/id" component={ CustomerProductsId } exact />
-      <Route path="/customer/checkout" component={ CustomerCheckout } />
+      <Route path="/customer/checkout" component={ CustomerCheckout } exact />
+      <Route path="/customer/orders/:id" component={ CustomerOrdersDetail } exact />
     </Switch>
   );
 }
