@@ -1,12 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import React from 'react';
 
 function CardOrder({ hasAddress, order, testidPrefix }) {
-  const { status, price, date, id, address } = order;
+  const { id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status } = order;
+
+  const formatDate = (rawDate) => {
+    const dateLimit = 10;
+    const date = rawDate.slice(0, dateLimit);
+    const dateArr = date.split('-');
+    const reverse = dateArr.reverse();
+    const formattedDate = reverse.join('/');
+    return formattedDate;
+  }; // talvez colocar essa função em outro arquivo dps
+
+  const properDate = formatDate(saleDate);
+
+  const history = useHistory();
 
   return (
-    <div className="container_order_main">
+    <button
+      className="container_order_main"
+      type="button"
+      onClick={ () => history.push(`/customer/orders/${id}`) }
+    >
       <p
         className="order_id"
         data-testid={ `${testidPrefix}element-order-id-${id}` }
@@ -24,13 +42,13 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
           className="date"
           data-testid={ `${testidPrefix}element-order-date-${id}` }
         >
-          {date}
+          {properDate}
         </p>
         <p
           className="price"
           data-testid={ `${testidPrefix}element-card-price-${id}` }
         >
-          {price}
+          {totalPrice.replace('.', ',')}
         </p>
       </div>
       <div
@@ -38,27 +56,31 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
       >
         {hasAddress && (
           <p
-            className="price"
+            className="address"
             data-testid={ `${testidPrefix}element-card-address-${id}` }
           >
-            {address}
+            {`${deliveryAddress}, ${deliveryNumber}`}
           </p>
         )}
       </div>
-    </div>
+    </button>
   );
 }
 
 CardOrder.propTypes = {
   order: PropTypes.shape({
-    status: PropTypes.string,
-    price: PropTypes.string,
-    date: PropTypes.string,
     id: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
-    address: PropTypes.string,
+    totalPrice: PropTypes.string,
+    deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    saleDate: PropTypes.string,
+    status: PropTypes.string,
   }).isRequired,
   hasAddress: PropTypes.bool,
   testidPrefix: PropTypes.string.isRequired,
