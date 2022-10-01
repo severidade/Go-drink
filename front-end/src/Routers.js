@@ -5,11 +5,8 @@ import CustomerProducts from './pages/CustomerProducts';
 import CustomerProductsId from './pages/CustomerProductsId';
 import Register from './pages/Register';
 import CustomerCheckout from './pages/CustomerCheckout';
-<<<<<<< HEAD
 import CustomerOrdersDetail from './pages/CustomerOrdersDetail';
-=======
 import CustomerOrders from './pages/CustomerOrders';
->>>>>>> main-group-22-release
 
 function Routers() {
   return (
