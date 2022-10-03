@@ -36,7 +36,7 @@ function CustomerOrdersDetail() {
   const testidPrefix = 'customer_order_details__';
   return (
     <div>
-      <NavBar />
+      <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
       {
         order && (
           <>
