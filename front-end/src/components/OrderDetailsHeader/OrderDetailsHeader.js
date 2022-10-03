@@ -9,18 +9,17 @@ function OrderDetailsHeader({
   status,
   testidPrefix,
   isUser,
-  deliveryCheck,
 }) {
   function handleCLickDeliveryCheck() {
-    ordersRequest(id, saleStatus.entregue);
+    ordersRequest.updateStatus(id, saleStatus.entregue);
   }
 
   function handleCLickPreparingCheck() {
-    ordersRequest(id, saleStatus.preparando);
+    ordersRequest.updateStatus(id, saleStatus.preparando);
   }
 
   function handleCLickDispatchCheck() {
-    ordersRequest(id, saleStatus.emTransito);
+    ordersRequest.updateStatus(id, saleStatus.emTransito);
   }
   return (
     <div>
@@ -47,29 +46,28 @@ function OrderDetailsHeader({
             timeZone: 'UTC',
           })}
       </p>
+      <p
+        data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
+      >
+        {status}
+      </p>
       {
         isUser ? (
-          <>
-            <p
-              data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
-            >
-              {status}
-            </p>
-            <button
-              data-testid={ `${testidPrefix}button-delivery-check` }
-              type="button"
-              onClick={ handleCLickDeliveryCheck }
-              disabled={ !deliveryCheck }
-            >
-              Marcar como entregue
-            </button>
-          </>
+          <button
+            data-testid={ `${testidPrefix}button-delivery-check` }
+            type="button"
+            onClick={ handleCLickDeliveryCheck }
+            disabled={ status !== 'Em Trânsito' }
+          >
+            Marcar como entregue
+          </button>
         ) : (
           <>
             <button
               data-testid={ `${testidPrefix}button-preparing-check` }
               type="button"
               onClick={ handleCLickPreparingCheck }
+              disabled={ status !== 'Pendente' }
             >
               Preparar pedido
             </button>
@@ -77,6 +75,7 @@ function OrderDetailsHeader({
               type="button"
               data-testid={ `${testidPrefix}button-dispatch-check` }
               onClick={ handleCLickDispatchCheck }
+              disabled={ status !== 'Preparando' }
             >
               Saiu para entrega
             </button>
@@ -95,13 +94,10 @@ OrderDetailsHeader.propTypes = {
   status: PropTypes.string.isRequired,
   testidPrefix: PropTypes.string.isRequired,
   isUser: PropTypes.bool,
-  deliveryCheck: PropTypes.bool,
 };
 
 OrderDetailsHeader.defaultProps = {
   isUser: false,
-  deliveryCheck: false,
-
 };
 
 export default OrderDetailsHeader;

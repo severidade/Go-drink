@@ -7,4 +7,5 @@ export default {
   products: `${host}/products`,
   customerOrders: `${host}/customer/orders`,
   customerOrdersByUser: `${host}/customer/orders/user/`,
+  customerOrdersBySeller: `${host}/customer/orders/seller/`,
 };
