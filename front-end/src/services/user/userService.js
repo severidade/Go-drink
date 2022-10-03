@@ -15,4 +15,13 @@ export default {
     }
     return undefined;
   },
+
+  getUserName() {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const { name } = JSON.parse(userJson);
+      return name;
+    }
+    return '';
+  },
 };

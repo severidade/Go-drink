@@ -1,22 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ProfileContext from '../../context/ProfileContext';
 import tokenService from '../../services/token/tokenService';
+import userService from '../../services/user/userService';
 
 import './NavBar.css';
 
 function NavBar({ selected, orders, haveProducts }) {
   const history = useHistory();
 
-  const { userName, setUserName } = useContext(ProfileContext);
+  const [userName, setUserName] = useState('');
   useEffect(() => {
-    if (userName === '') {
-      const userData = JSON.parse(localStorage.getItem('user'));
-      setUserName(userData.name);
-    }
+    const userNameAux = userService.getUserName();
+    setUserName(userNameAux);
   }, []);
+
   return (
     <div className="container_nav_main">
       <div className="container_section_user">
