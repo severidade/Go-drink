@@ -90,11 +90,12 @@ export default {
         Authorization: tokenService.getToken(),
       },
     };
-    const magicNumber = 3;
 
-    const userId = userService.getUserId();
-    const responseFetch = await fetch(`${endpoints.customerOrdersByUser}${
-      userId === 2 ? magicNumber : userId}`, init); // Retirar condicional
+    const sellerId = userService.getUserId();
+    const responseFetch = await fetch(
+      `${endpoints.customerOrdersBySeller}${sellerId}`,
+      init,
+    );
 
     const bodyFetch = await responseFetch.json();
     const response = {
