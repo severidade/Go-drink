@@ -14,15 +14,16 @@ function CustomerOrdersDetail() {
 
   const history = useHistory();
 
-  useEffect(() => {
-    async function getOrder() {
-      const saleId = history.location.pathname
-        .split('/')
-        .slice(numbers.negativeOne);
+  async function getOrder() {
+    const saleId = history.location.pathname
+      .split('/')
+      .slice(numbers.negativeOne);
 
-      const responseOrder = await ordersRequest.getById(saleId);
-      setOrder(responseOrder.body);
-    }
+    const responseOrder = await ordersRequest.getById(saleId);
+    setOrder(responseOrder.body);
+  }
+
+  useEffect(() => {
     getOrder();
   }, []);
 
@@ -39,6 +40,7 @@ function CustomerOrdersDetail() {
               id={ order.id }
               seller={ order.Seller.name }
               status={ order.status }
+              updateStatus={ () => getOrder() }
               testidPrefix={ testidPrefix }
             />
             <div>

@@ -9,17 +9,21 @@ function OrderDetailsHeader({
   status,
   testidPrefix,
   isUser,
+  updateStatus,
 }) {
-  function handleCLickDeliveryCheck() {
-    ordersRequest.updateStatus(id, saleStatus.entregue);
+  async function handleCLickDeliveryCheck() {
+    await ordersRequest.updateStatus(id, saleStatus.entregue);
+    updateStatus();
   }
 
-  function handleCLickPreparingCheck() {
-    ordersRequest.updateStatus(id, saleStatus.preparando);
+  async function handleCLickPreparingCheck() {
+    await ordersRequest.updateStatus(id, saleStatus.preparando);
+    updateStatus();
   }
 
-  function handleCLickDispatchCheck() {
-    ordersRequest.updateStatus(id, saleStatus.emTransito);
+  async function handleCLickDispatchCheck() {
+    await ordersRequest.updateStatus(id, saleStatus.emTransito);
+    updateStatus();
   }
   return (
     <div>
@@ -94,6 +98,7 @@ OrderDetailsHeader.propTypes = {
   status: PropTypes.string.isRequired,
   testidPrefix: PropTypes.string.isRequired,
   isUser: PropTypes.bool,
+  updateStatus: PropTypes.func.isRequired,
 };
 
 OrderDetailsHeader.defaultProps = {

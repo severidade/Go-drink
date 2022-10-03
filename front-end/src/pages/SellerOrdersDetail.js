@@ -8,27 +8,23 @@ import OrderDetailsHeader from '../components/OrderDetailsHeader/OrderDetailsHea
 import TotalPrice from '../components/TotalPrice/TotalPrice';
 import numbers from '../services/numbers';
 import ordersRequest from '../services/requests/ordersRequest';
-import userRequest from '../services/requests/userRequest';
 
 function SellerOrdersDetail() {
   const [order, setOrder] = useState(undefined);
 
   const history = useHistory();
 
+  async function getOrder() {
+    const saleId = history.location.pathname
+      .split('/')
+      .slice(numbers.negativeOne);
+
+    const responseOrder = await ordersRequest.getById(saleId);
+
+    setOrder(responseOrder.body);
+  }
+
   useEffect(() => {
-    async function getOrder() {
-      const saleId = history.location.pathname
-        .split('/')
-        .slice(numbers.negativeOne);
-
-      const responseOrder = await ordersRequest.getById(saleId);
-
-      const { sellerId } = responseOrder.body;
-      const seller = await userRequest.getSellerById(sellerId);
-
-      responseOrder.body.seller = seller;
-      setOrder(responseOrder.body);
-    }
     getOrder();
   }, []);
 
@@ -42,8 +38,9 @@ function SellerOrdersDetail() {
             <OrderDetailsHeader
               date={ order.saleDate }
               id={ order.id }
-              seller={ order.seller.name }
+              seller={ order.Seller.name }
               status={ order.status }
+              updateStatus={ () => getOrder() }
               testidPrefix={ testidPrefix }
 
             />
