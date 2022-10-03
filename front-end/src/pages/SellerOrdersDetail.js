@@ -52,11 +52,11 @@ function SellerOrdersDetail() {
               {
                 order.Products.map((product, ind) => (
                   <CheckoutElement
-                    id={ product.id }
-                    key={ product.id }
+                    id={ product.salesProducts.productId }
+                    key={ product.salesProducts.productId }
                     itemNumber={ ind }
                     price={ product.price }
-                    quantity={ product.quantity }
+                    quantity={ product.salesProducts.quantity }
                     url={ product.urlImage }
                     productName={ product.name }
                     testidPrefix={ testidPrefix }
