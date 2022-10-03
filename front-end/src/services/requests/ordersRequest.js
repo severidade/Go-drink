@@ -55,7 +55,6 @@ export default {
         Authorization: token,
       },
     };
-
     const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
 
     const response = {
@@ -82,7 +81,7 @@ export default {
     };
     return response;
   },
-
+  
   async getAllBySellerId() {
     const init = {
       method: 'GET',

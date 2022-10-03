@@ -24,7 +24,6 @@ function Routers() {
       <Route path="/customer/orders" component={ CustomerOrders } exact />
       <Route path="/customer/orders/:id" component={ CustomerOrdersDetail } exact />
       <Route path="/seller/orders" component={ SellerOrders } exact />
-
     </Switch>
   );
 }
