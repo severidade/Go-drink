@@ -47,23 +47,21 @@ function OrderDetailsHeader({
             timeZone: 'UTC',
           })}
       </p>
+      <p
+        data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
+      >
+        {status}
+      </p>
       {
         isUser ? (
-          <>
-            <p
-              data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
-            >
-              {status}
-            </p>
-            <button
-              data-testid={ `${testidPrefix}button-delivery-check` }
-              type="button"
-              onClick={ handleCLickDeliveryCheck }
-              disabled={ !deliveryCheck }
-            >
-              Marcar como entregue
-            </button>
-          </>
+          <button
+            data-testid={ `${testidPrefix}button-delivery-check` }
+            type="button"
+            onClick={ handleCLickDeliveryCheck }
+            disabled={ !deliveryCheck }
+          >
+            Marcar como entregue
+          </button>
         ) : (
           <>
             <button
