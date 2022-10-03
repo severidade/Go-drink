@@ -16,6 +16,19 @@ function NavBar({ selected, orders, haveProducts }) {
     setUserName(userNameAux);
   }, []);
 
+  function orderPath() {
+    const role = userService.getUserRole();
+    switch (role) {
+    case 'customer':
+      return '/customer/orders';
+    case 'seller':
+      return '/seller/orders';
+
+    default:
+      break;
+    }
+  }
+
   return (
     <div className="container_nav_main">
       <div className="container_section_user">
@@ -62,7 +75,7 @@ function NavBar({ selected, orders, haveProducts }) {
           type="button"
           className={ `orders${selected === 'orders' ? ' selected' : ''}` }
           data-testid="customer_products__element-navbar-link-orders"
-          onClick={ () => history.replace('/customer/orders') }
+          onClick={ () => history.replace(orderPath()) }
         >
           {orders}
         </button>
