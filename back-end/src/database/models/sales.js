@@ -13,21 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       models.sales.belongsTo(models.users, {
         foreignKey: 'userId',
         as: 'User',
+      }),
+      models.sales.belongsTo(models.users, {
+        foreignKey: 'sellerId',
+        as: 'Seller',
       })
-      // Sale.hasMany(models.products,{
-      //   foreignKey: 'sale_id',
-      //   as: 'products'
-      // })
-
-      // Sale.belongsTo(models.users,{
-      //   foreignKey: 'userId',
-      //   as: 'users'
-      // }),
-
-      // Sale.belongsTo(models.users,{
-      //   foreignKey: 'sellerId',
-      //   as: 'sellers'
-      // })
     }
 
   }

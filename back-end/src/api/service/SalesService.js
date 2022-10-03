@@ -6,14 +6,17 @@ const modelsToInclude = [
   {
     model: users,
     as: 'User',
-    attributes: { exclude: ['password'] },
+    attributes: ['name', 'email'],
+  },
+  {
+    model: users,
+    as: 'Seller',
+    attributes: ['name', 'email'],
   },
   {
     model: products,
     as: 'Products',
-    through: { 
-      attributes: [],
-    },
+    attributes: { exclude: ['id'] },
   },
 ];
 
