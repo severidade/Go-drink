@@ -3,26 +3,25 @@ import NavBar from '../components/NavBar/NavBar';
 import ordersRequest from '../services/requests/ordersRequest';
 import CardOrder from '../components/CardOrder/CardOrder';
 
-function CustomerOrders() {
+function SellerOrder() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    ordersRequest.getAll()
+    ordersRequest.getAllBySellerId()
       .then(({ body }) => setOrders(body));
   }, []);
-
   return (
     <div className="container_page">
-      <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
+      <NavBar selected="orders" orders="Pedidos" />
       <h1>PEDIDOS PAGE</h1>
       <div className="container_orders">
         {orders.map((order) => (
           <CardOrder
             key={ order.id }
             order={ order }
-            hasAddress={ false }
-            testidPrefix="customer_orders__"
-            pushUrl="/customer/orders/"
+            hasAddress
+            testidPrefix="seller_orders__"
+            pushUrl="seller/orders/"
           />
         ))}
       </div>
@@ -30,4 +29,4 @@ function CustomerOrders() {
   );
 }
 
-export default CustomerOrders;
+export default SellerOrder;

@@ -6,19 +6,6 @@ const contentJson = 'application/json';
 
 export default {
   async finishOrder({ sellerId, address, addressNumber, cart, totalPrice }) {
-    // formato do body
-    /*
-      const schema = Joi.object({
-        userId: Joi.number().required(),
-        sellerId: Joi.number().required(),
-        totalPrice: Joi.number().required(),
-        deliveryAddress: Joi.string().required(),
-        deliveryNumber: Joi.string().required(),
-        saleDate: Joi.date().required(),
-        status: Joi.string().required(),
-        products: Joi.array().required(),
-      }); */
-
     const user = JSON.parse(localStorage.getItem('user'));
     const products = cart.map((product) => ({
       id: product.id,
@@ -68,9 +55,6 @@ export default {
         Authorization: token,
       },
     };
-
-    console.log(init);
-
     const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
 
     const response = {
@@ -90,6 +74,28 @@ export default {
     };
     const userId = userService.getUserId();
     const responseFetch = await fetch(`${endpoints.customerOrdersByUser}${userId}`, init);
+    const bodyFetch = await responseFetch.json();
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+    return response;
+  },
+  
+  async getAllBySellerId() {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+    const magicNumber = 3;
+
+    const userId = userService.getUserId();
+    const responseFetch = await fetch(`${endpoints.customerOrdersByUser}${
+      userId === 2 ? magicNumber : userId}`, init); // Retirar condicional
+
     const bodyFetch = await responseFetch.json();
     const response = {
       status: responseFetch.status,

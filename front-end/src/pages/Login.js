@@ -5,11 +5,12 @@ import ProfileContext from '../context/ProfileContext';
 import userRequest from '../services/requests/userRequest';
 import numbers from '../services/numbers/index';
 import tokenService from '../services/token/tokenService';
+import userService from '../services/user/userService';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [disableButton, setDisablebutton] = useState(true);
+  const [disableButton, setDisableButton] = useState(true);
   const [invalidLogin, setInvalidLogin] = useState(true);
   const [invalidLoginMessage, setInvalidLoginMessage] = useState(true);
 
@@ -20,17 +21,31 @@ function Login() {
 
   const history = useHistory();
 
-  useEffect(() => {
-    const token = tokenService.getToken();
-    if (token) {
+  function login(role) {
+    switch (role) {
+    case 'customer':
       history.push('customer/products');
+      break;
+    case 'seller':
+      history.push('seller/orders');
+      break;
+    default:
+      break;
     }
+  }
+
+  useEffect(() => {
+    const role = userService.getUserRole();
+    login(role);
+  }, []);
+
+  useEffect(() => {
     const validEmail = verifyEmail(email);
     const validPassword = verifyPassword(password);
     if (validEmail && validPassword) {
-      setDisablebutton(false);
+      setDisableButton(false);
     } else {
-      setDisablebutton(true);
+      setDisableButton(true);
     }
   }, [email, password]);
 
@@ -41,7 +56,8 @@ function Login() {
       setInvalidLoginMessage(response.body.message);
     } else {
       tokenService.saveLocalStorage(response.body.token);
-      history.push('/customer/products');
+      const role = userService.getUserRole();
+      login(role);
     }
   }
 
