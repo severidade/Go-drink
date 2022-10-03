@@ -81,7 +81,7 @@ export default {
     };
     return response;
   },
-  
+
   async getAllBySellerId() {
     const init = {
       method: 'GET',
