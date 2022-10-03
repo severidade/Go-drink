@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import CheckoutElement from '../components/CheckoutElement/CheckoutElement';
 import HederTabelSales from '../components/HederTabelSales/HederTabelSales';
+import NavBar from '../components/NavBar/NavBar';
 import OrderDetailsHeader from '../components/OrderDetailsHeader/OrderDetailsHeader';
 import TotalPrice from '../components/TotalPrice/TotalPrice';
 import numbers from '../services/numbers';
@@ -34,6 +36,7 @@ function CustomerOrdersDetail() {
   const testidPrefix = 'customer_order_details__';
   return (
     <div>
+      <NavBar />
       {
         order && (
           <>
