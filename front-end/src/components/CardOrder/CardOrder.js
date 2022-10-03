@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 
-function CardOrder({ hasAddress, order, testidPrefix }) {
+function CardOrder({ hasAddress, order, testidPrefix, pushUrl }) {
   const { id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status } = order;
 
   const formatDate = (rawDate) => {
@@ -23,7 +23,7 @@ function CardOrder({ hasAddress, order, testidPrefix }) {
     <button
       className="container_order_main"
       type="button"
-      onClick={ () => history.push(`/customer/orders/${id}`) }
+      onClick={ () => history.push(`${pushUrl}${id}`) }
     >
       <p
         className="order_id"
@@ -84,6 +84,7 @@ CardOrder.propTypes = {
   }).isRequired,
   hasAddress: PropTypes.bool,
   testidPrefix: PropTypes.string.isRequired,
+  pushUrl: PropTypes.string.isRequired,
 };
 
 CardOrder.defaultProps = {

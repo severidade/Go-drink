@@ -22,6 +22,7 @@ function CustomerOrders() {
             order={ order }
             hasAddress={ false }
             testidPrefix="customer_orders__"
+            pushUrl="/customer/orders/"
           />
         ))}
       </div>
