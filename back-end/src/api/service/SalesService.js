@@ -6,12 +6,12 @@ const modelsToInclude = [
   {
     model: users,
     as: 'User',
-    attributes: [ 'name', 'email' ],
+    attributes: ['name', 'email'],
   },
   {
     model: users,
     as: 'Seller',
-    attributes: [ 'name', 'email' ],
+    attributes: ['name', 'email'],
   },
   {
     model: products,
