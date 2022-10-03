@@ -21,7 +21,7 @@ function SellerOrder() {
             order={ order }
             hasAddress
             testidPrefix="seller_orders__"
-            pushUrl="seller/orders/"
+            pushUrl="/seller/orders/"
           />
         ))}
       </div>
