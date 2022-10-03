@@ -8,7 +8,6 @@ import tokenService from '../services/token/tokenService';
 import './LoginPage.css';
 import userService from '../services/user/userService';
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
