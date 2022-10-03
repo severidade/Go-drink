@@ -98,6 +98,28 @@ export default {
     return response;
   },
 
+  async getAllBySellerId() {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+    const magicNumber = 3;
+
+    const userId = userService.getUserId();
+    const responseFetch = await fetch(`${endpoints.customerOrdersByUser}${
+      userId === 2 ? magicNumber : userId}`, init); // Retirar condicional
+
+    const bodyFetch = await responseFetch.json();
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+    return response;
+  },
+
   async getById(saleId) {
     const init = {
       method: 'GET',
