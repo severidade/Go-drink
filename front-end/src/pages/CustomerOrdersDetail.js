@@ -8,7 +8,6 @@ import OrderDetailsHeader from '../components/OrderDetailsHeader/OrderDetailsHea
 import TotalPrice from '../components/TotalPrice/TotalPrice';
 import numbers from '../services/numbers';
 import ordersRequest from '../services/requests/ordersRequest';
-import userRequest from '../services/requests/userRequest';
 
 function CustomerOrdersDetail() {
   const [order, setOrder] = useState(undefined);
@@ -22,11 +21,6 @@ function CustomerOrdersDetail() {
         .slice(numbers.negativeOne);
 
       const responseOrder = await ordersRequest.getById(saleId);
-
-      const { sellerId } = responseOrder.body;
-      const seller = await userRequest.getSellerById(sellerId);
-
-      responseOrder.body.seller = seller;
       setOrder(responseOrder.body);
     }
     getOrder();
@@ -43,7 +37,7 @@ function CustomerOrdersDetail() {
               date={ order.saleDate }
               isUser
               id={ order.id }
-              seller={ order.seller.name }
+              seller={ order.Seller.name }
               status={ order.status }
               testidPrefix={ testidPrefix }
             />
@@ -52,11 +46,11 @@ function CustomerOrdersDetail() {
               {
                 order.Products.map((product, ind) => (
                   <CheckoutElement
-                    id={ product.id }
-                    key={ product.id }
+                    id={ product.salesProducts.productId }
+                    key={ product.salesProducts.productId }
                     itemNumber={ ind }
                     price={ product.price }
-                    quantity={ product.quantity }
+                    quantity={ product.salesProducts.quantity }
                     url={ product.urlImage }
                     productName={ product.name }
                     testidPrefix={ testidPrefix }
