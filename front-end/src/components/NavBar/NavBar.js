@@ -70,7 +70,11 @@ function NavBar({ selected, orders, haveProducts }) {
 NavBar.propTypes = {
   selected: PropTypes.string.isRequired,
   orders: PropTypes.string.isRequired,
-  haveProducts: PropTypes.bool.isRequired,
+  haveProducts: PropTypes.bool,
+};
+
+NavBar.defaultProps = {
+  haveProducts: false,
 };
 
 export default NavBar;
