@@ -29,6 +29,11 @@ function NavBar({ selected, orders, haveProducts }) {
         >
           { userName }
         </p>
+        <div
+          className="container_logo"
+        >
+          GoDrink
+        </div>
         <button
           type="button"
           // className={ `${selected === 'exit' ? 'selected' : ''} exit` }

@@ -1,0 +1,130 @@
+.section_01 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.section_01 > .logo {
+  background-image: url('../images/Logowithslogan.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  margin-bottom: 100px;
+  overflow: hidden;
+  text-indent: -1000px;
+  width: 100%;
+}
+
+.container_login > .section_02 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+  justify-content: center;
+  position: relative;
+}
+
+.bg_login_image {
+  background-image: url('../images/bg.gif');
+  background-repeat: repeat;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+.object-mask {
+  mask-image: url('../images/mask/animated_mask.svg');
+  mask-position: center 100px;
+  mask-repeat: no-repeat;
+  mask-size: 70%;
+}
+
+.object_mask_register {
+  mask-image: url('../images/mask/animated_mask.svg');
+  mask-position: center 100px;
+  mask-repeat: no-repeat;
+  mask-size: 70%;
+}
+
+.container_img_login {
+  background-image: url('../images/illustration/beer-celebration.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70%;
+  width: 70%;
+}
+
+.container_img_register {
+  background-image: url('../images/illustration/dating.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70%;
+  width: 70%;
+}
+
+.container_form {
+
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.container_name, .container_email, .container_password {
+  border: 0 none;
+  box-shadow: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+  outline: 0;
+  width: 320px;
+}
+
+.container_name > input, .container_email > input, .container_password > input {
+  border: 1px black solid;
+  border-radius: 5px;
+  height: 50px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.login_app_button:nth-of-type( 2 ) {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login_app_button:first-of-type {
+  background-color: black;
+  border: 2px black solid;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 50px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.login_app_button:first-of-type:disabled {
+
+  /* background: url('../images/noise.png');
+  background-color: oldlace; */
+  background-repeat: repeat;
+  border: 2px black solid;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.invalid {
+  color: rgb(255, 38, 0);
+}

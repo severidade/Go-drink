@@ -7,6 +7,8 @@ import ordersRequest from '../../services/requests/ordersRequest';
 // import { useHistory } from 'react-router-dom';
 import userRequest from '../../services/requests/userRequest';
 
+import styles from './CustomerCheckoutDetails.module.css';
+
 function CustomerCheckoutDetails() {
   const [address, setAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
@@ -39,9 +41,11 @@ function CustomerCheckoutDetails() {
   }
 
   return (
-    <div className="container_checkout_details">
+    <div className={ styles.container_checkout_details }>
 
-      <form className="form_details">
+      <form
+        className={ styles.form_details }
+      >
         <label
           htmlFor="seller"
         >
@@ -97,6 +101,7 @@ function CustomerCheckoutDetails() {
 
       </form>
       <button
+        className={ styles.button_submit_order }
         type="button"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleClick }

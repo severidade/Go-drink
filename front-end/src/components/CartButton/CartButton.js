@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
+import styles from './CartButton.module.css';
 
 function CartButton() {
   const { cartList, cartTotalPrice } = useContext(CartContext);
@@ -11,7 +12,7 @@ function CartButton() {
     <button
       type="button"
       onClick={ () => { history.push('checkout'); } }
-      className="cart_button"
+      className={ styles.cart_button }
       data-testid="customer_products__button-cart"
       disabled={ (cartList.length < 1 || !cartList) }
     >
