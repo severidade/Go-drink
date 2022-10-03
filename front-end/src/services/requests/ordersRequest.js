@@ -6,19 +6,6 @@ const contentJson = 'application/json';
 
 export default {
   async finishOrder({ sellerId, address, addressNumber, cart, totalPrice }) {
-    // formato do body
-    /*
-      const schema = Joi.object({
-        userId: Joi.number().required(),
-        sellerId: Joi.number().required(),
-        totalPrice: Joi.number().required(),
-        deliveryAddress: Joi.string().required(),
-        deliveryNumber: Joi.string().required(),
-        saleDate: Joi.date().required(),
-        status: Joi.string().required(),
-        products: Joi.array().required(),
-      }); */
-
     const user = JSON.parse(localStorage.getItem('user'));
     const products = cart.map((product) => ({
       id: product.id,
@@ -68,8 +55,6 @@ export default {
         Authorization: token,
       },
     };
-
-    console.log(init);
 
     const responseFetch = await fetch(`${endpoints.customerOrders}/${saleId}`, init);
 

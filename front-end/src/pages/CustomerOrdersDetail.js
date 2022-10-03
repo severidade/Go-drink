@@ -27,7 +27,6 @@ function CustomerOrdersDetail() {
       const seller = await userRequest.getSellerById(sellerId);
 
       responseOrder.body.seller = seller;
-      console.log({ responseOrder });
       setOrder(responseOrder.body);
     }
     getOrder();

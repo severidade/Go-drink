@@ -9,9 +9,7 @@ function SellerOrder() {
   useEffect(() => {
     ordersRequest.getAllBySellerId()
       .then(({ body }) => setOrders(body));
-    // Alterar a requisição
   }, []);
-  console.log({ orders });
   return (
     <div className="container_page">
       <NavBar selected="orders" orders="Pedidos" />
