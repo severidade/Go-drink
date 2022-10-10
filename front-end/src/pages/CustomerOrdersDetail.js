@@ -29,21 +29,23 @@ function CustomerOrdersDetail() {
 
   const testidPrefix = 'customer_order_details__';
   return (
-    <div>
+    <div className="container_page">
       <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
-      {
-        order && (
-          <>
-            <OrderDetailsHeader
-              date={ order.saleDate }
-              isUser
-              id={ order.id }
-              seller={ order.Seller.name }
-              status={ order.status }
-              updateStatus={ () => getOrder() }
-              testidPrefix={ testidPrefix }
-            />
-            <div>
+      <h1>Detalhe do Pedido</h1>
+      <div className="container_orders">
+        {
+          order && (
+            <>
+              <OrderDetailsHeader
+                date={ order.saleDate }
+                isUser
+                id={ order.id }
+                seller={ order.Seller.name }
+                status={ order.status }
+                updateStatus={ () => getOrder() }
+                testidPrefix={ testidPrefix }
+              />
+
               <HederTabelSales />
               {
                 order.Products.map((product, ind) => (
@@ -59,15 +61,15 @@ function CustomerOrdersDetail() {
                   />
                 ))
               }
-            </div>
-            <TotalPrice
-              total={ order.totalPrice }
-              testidPrefix={ testidPrefix }
-            />
-          </>
-        )
-      }
 
+              <TotalPrice
+                total={ order.totalPrice }
+                testidPrefix={ testidPrefix }
+              />
+            </>
+          )
+        }
+      </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* stylelint-disable font-family-name-quotes */
 .section_01 {
   align-items: center;
   display: flex;
@@ -101,6 +102,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-family: 'Titillium Web' , sans-serif;
+  font-size: 16px;
 }
 
 .login_app_button:first-of-type {
@@ -109,6 +112,8 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  font-family: 'Vollkorn' , serif;
+  font-size: 22px;
   height: 50px;
   margin: 20px 0;
   width: 100%;

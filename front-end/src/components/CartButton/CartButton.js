@@ -16,8 +16,15 @@ function CartButton() {
       data-testid="customer_products__button-cart"
       disabled={ (cartList.length < 1 || !cartList) }
     >
-      Ver carrinho R$
+      Ver carrinho
+      <br />
       <span
+        className={ styles.curency }
+      >
+        R$
+      </span>
+      <span
+        className={ styles.checkout_value }
         data-testid="customer_products__checkout-bottom-value"
       >
         {cartTotalPrice().replace('.', ',')}

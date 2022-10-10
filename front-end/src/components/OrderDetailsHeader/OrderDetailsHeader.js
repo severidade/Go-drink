@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import ordersRequest from '../../services/requests/ordersRequest';
 import saleStatus from '../../services/status/saleStatus';
 
+import styles from './OrderDetailsHeader.module.css';
+
 function OrderDetailsHeader({
   id,
   seller,
@@ -26,8 +28,9 @@ function OrderDetailsHeader({
     updateStatus();
   }
   return (
-    <div>
+    <div className={ styles.order_details }>
       <p
+        className={ styles.order_number }
         data-testid={ `${testidPrefix}element-order-details-label-order-id` }
       >
         {`Pedido ${id}`}
@@ -36,6 +39,7 @@ function OrderDetailsHeader({
       {
         isUser && (
           <p
+            className={ styles.seller_name }
             data-testid={ `${testidPrefix}element-order-details-label-seller-name` }
           >
             {seller}
@@ -51,6 +55,7 @@ function OrderDetailsHeader({
           })}
       </p>
       <p
+        className={ `${styles.status} ${styles[status]}` }
         data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
       >
         {status}
@@ -58,6 +63,7 @@ function OrderDetailsHeader({
       {
         isUser ? (
           <button
+            className={ styles.delivery_check }
             data-testid={ `${testidPrefix}button-delivery-check` }
             type="button"
             onClick={ handleCLickDeliveryCheck }

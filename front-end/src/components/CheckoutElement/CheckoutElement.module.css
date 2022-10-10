@@ -19,21 +19,21 @@
 
 .container_item_number, .container_name, .container_quantity {
   align-items: center;
-
-  /* background-color: blue; */
   display: flex;
   height: 100%;
 }
 
+.container_item_number {
+  font-family: Vollkorn , serif;
+  font-size: 29px;
+  font-weight: 800;
+}
+
 .container_unit_price, .container_sub_total {
   align-items: center;
-
-  /* background-color: blue; */
   display: flex;
   height: 100%;
   padding-left: 24px;
-
-  /* justify-content: flex-end; */
 }
 
 .container_unit_price:before, .container_sub_total:before {
@@ -42,10 +42,13 @@
   position: absolute;
 }
 
+.container_sub_total {
+  font-weight: 700;
+}
+
 .container_image {
   bottom: 0;
   height: 116px;
-  mix-blend-mode: multiply;
   position: absolute;
   right: 15px;
   width: 60px;

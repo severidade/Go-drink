@@ -1,3 +1,4 @@
+/* stylelint-disable font-family-name-quotes */
 .container_nav_main {
   left: 0;
   top: 0;
@@ -74,7 +75,11 @@
   background-color: rgba(0, 0, 0, 0);
   border-style: none;
   cursor: pointer;
+  font-family: 'Jost' , sans-serif;
+  font-size: 20px;
+  font-weight: 400;
   height: 30px;
+  text-transform: uppercase;
 }
 
 /* Elementos que ficam acima dos botões para indicar que o item de menu foi selecionado */

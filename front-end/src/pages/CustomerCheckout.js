@@ -14,9 +14,9 @@ function CustomerCheckout() {
   } = useContext(CartContext);
   const testidPrefix = 'customer_checkout__';
   return (
-    <div className="container_page">
+    <div className="container_page_checkout">
       <NavBar selected="products" haveProducts orders="Meus Pedidos" />
-      <h1>Finalizar Pedidos</h1>
+      {/* <h1>Finalizar Pedidos</h1> */}
       <div className="container_sales">
         <HederTabelSales />
         {
@@ -40,7 +40,7 @@ function CustomerCheckout() {
         />
       </div>
       <div className="container_sales_details">
-        <h1>Detalhes e endereço para entrega</h1>
+        <h2>Detalhes e endereço para entrega</h2>
         <CustomerCheckoutDetails />
       </div>
     </div>

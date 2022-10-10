@@ -14,7 +14,6 @@ function CustomerOrders() {
   return (
     <div className="container_page">
       <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
-      <h1>PEDIDOS PAGE</h1>
       <div className="container_orders">
         {orders.map((order) => (
           <CardOrder

@@ -1,0 +1,41 @@
+.order_details {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  width: 100%;
+}
+
+.seller_name:before {
+  content: 'Vendedor(a): ';
+  font-weight: 900;
+}
+
+.order_number {
+  font-weight: 900;
+}
+
+.status {
+  align-items: center;
+  background: #ffc700;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.delivery_check {
+  position: absolute;
+  right: 0;
+  top: -34px;
+}
+
+.Pendente {
+  background-color: #ffc700;
+}

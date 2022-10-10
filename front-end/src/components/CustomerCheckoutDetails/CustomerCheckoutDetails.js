@@ -48,8 +48,9 @@ function CustomerCheckoutDetails() {
       >
         <label
           htmlFor="seller"
+          className={ styles.seller }
         >
-          <samp>Responsável pela venda</samp>
+          <em>Responsável pela venda</em>
           <select
             id="seller"
             data-testid="customer_checkout__select-seller"
@@ -71,14 +72,16 @@ function CustomerCheckoutDetails() {
 
         <label
           htmlFor="adress"
+          className={ styles.adress }
         >
-          <samp>Endereço</samp>
+          <em>Endereço</em>
           <input
             id="adress"
             data-testid="customer_checkout__input-address"
             type="text"
             name="address"
             value={ address }
+            className={ styles.input_address }
             onChange={ ({ target }) => setAddress(target.value) }
             // readOnly
           />
@@ -86,14 +89,16 @@ function CustomerCheckoutDetails() {
 
         <label
           htmlFor="number"
+          className={ styles.number }
         >
-          <samp>Número</samp>
+          <em>Número</em>
           <input
             id="number"
             data-testid="customer_checkout__input-address-number"
             type="text"
             name="addressNumber"
             value={ addressNumber }
+            className={ styles.input_address_number }
             onChange={ ({ target }) => setAddressNumber(target.value) }
             // readOnly
           />
