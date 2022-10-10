@@ -1,11 +1,14 @@
+/* stylelint-disable max-line-length */
 .order_details {
   align-items: center;
   background-color: black;
   color: white;
-  display: flex;
-  height: 70px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 3fr 1fr 200px;
+  height: 80px;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 0 0 20px;
   position: relative;
   width: 100%;
 }
@@ -19,23 +22,127 @@
   font-weight: 900;
 }
 
+/* BOTÃO DE STATUS  */
 .status {
   align-items: center;
-  background: #ffc700;
-  border-radius: 5px;
   color: black;
   display: flex;
-  height: 50%;
+  font-weight: 900;
+  height: 80px;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 10px 0 90px;
+  position: relative;
 }
 
-.delivery_check {
+.status.Pendente, .status.Pendente:before {
+  background: tomato;
+}
+
+.status.Preparando, .status.EmTrânsito, .status.Preparando:before, .status.EmTrânsito:before {
+  background: #09ff00;
+}
+
+.status.Entregue, .status.Entregue:before {
+  background: #ffc700;
+}
+
+.status.Pendente:after, .status.Preparando:after, .status.EmTrânsito:after, .status.Entregue:after {
+  background-position: center;
+  background-repeat: no-repeat;
+  content: '';
+  height: 80px;
+  left: 0%;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+
+.status.Pendente:after {
+  background-image: url('./img/icone_pendente.svg');
+  background-size: 80%;
+}
+
+.status.Preparando:after {
+  background-image: url('./img/icone_preparando.svg');
+  background-size: 90%;
+}
+
+
+.status.EmTrânsito:after {
+  background-image: url('./img/icone_transito.svg');
+  background-size: 90%;
+}
+
+
+.status.Entregue:after {
+  background-image: url('./img/icone_entregue.svg');
+  background-size: 100%;
+}
+
+.status.Pendente:before, .status.Preparando:before, .status.EmTrânsito:before, .status.Entregue:before {
+  bottom: 0;
+  content: '';
+  height: 8px;
   position: absolute;
   right: 0;
-  top: -34px;
+  width: 800px;
 }
 
-.Pendente {
+/* BOTÃO MARCAR COMO ENTREGUE  */
+.slider_delivered_checkbox_container {
+  background: rgb(66, 66, 66);
+  border-radius: 50px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5) , 0 1px 0 rgba(255, 255, 255, 0.2);
+  height: 12px;
+  margin: 20px auto;
+  position: absolute;
+  right: 20px;
+  top: -50px;
+  width: 50px;
+}
+
+.slider_delivered_checkbox_container.Pendente, .slider_delivered_checkbox_container.Preparando {
+  opacity: 0.4;
+}
+
+.delivered_checkbox {
+  display: block;
+  height: 100%;
+  width: 50px;
+}
+
+.delivered_checkbox.Pendente, .delivered_checkbox.Preparando {
+  cursor: not-allowed;
+}
+
+.delivered_checkbox_text {
+  color: black;
+  font-weight: 900;
+  position: absolute;
+  text-align: right;
+  transform: translate(calc((100% + 10px) * -1), -7px);
+  width: 166px;
+}
+
+.delivered_slider_item {
   background-color: #ffc700;
+  border-radius: 50%;
+  height: 24px;
+  left: -6px;
+  position: absolute;
+  top: -6px;
+  transition: all 0.4s ease;
+  width: 24px;
+}
+
+.delivered_input ~ .delivered_slider_item {
+  left: 0;
+}
+
+.delivered_input:checked ~ .delivered_slider_item {
+  left: 40px;
+}
+
+.delivered_input {
+  visibility: hidden;
 }

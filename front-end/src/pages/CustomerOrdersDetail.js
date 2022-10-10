@@ -31,7 +31,6 @@ function CustomerOrdersDetail() {
   return (
     <div className="container_page">
       <NavBar selected="orders" haveProducts orders="Meus Pedidos" />
-      <h1>Detalhe do Pedido</h1>
       <div className="container_orders">
         {
           order && (

@@ -55,22 +55,51 @@ function OrderDetailsHeader({
           })}
       </p>
       <p
-        className={ `${styles.status} ${styles[status]}` }
+
+        className={ `${styles.status} ${styles[status.replace(' ', '')]}` }
         data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
       >
         {status}
       </p>
       {
         isUser ? (
-          <button
-            className={ styles.delivery_check }
-            data-testid={ `${testidPrefix}button-delivery-check` }
-            type="button"
-            onClick={ handleCLickDeliveryCheck }
-            disabled={ status !== 'Em Trânsito' }
+          <div
+            className={
+              `
+                  ${styles.slider_delivered_checkbox_container}
+                  ${styles[status.replace(' ', '')]}
+                `
+            }
           >
-            Marcar como entregue
-          </button>
+            <label
+              htmlFor="delivered"
+              className={
+                `
+                    ${styles.delivered_checkbox}
+                    ${styles[status.replace(' ', '')]}
+                  `
+              }
+            >
+              <span
+                className={ styles.delivered_checkbox_text }
+              >
+                Marcar como entregue
+              </span>
+              <input
+                className={ styles.delivered_input }
+                type="checkbox"
+                value="None"
+                checked={ status === 'Entregue' }
+                id="delivered"
+                name="check"
+                onClick={ handleCLickDeliveryCheck }
+                disabled={ status !== 'Em Trânsito' }
+              />
+              <span
+                className={ styles.delivered_slider_item }
+              />
+            </label>
+          </div>
         ) : (
           <>
             <button
