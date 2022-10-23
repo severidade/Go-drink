@@ -28,7 +28,7 @@ function CustomerCheckoutDetails() {
   }, []);
 
   function disableFinishButton() {
-    const result = adress && addressNumber;
+    const result = address && addressNumber;
     return !result;
   }
 
