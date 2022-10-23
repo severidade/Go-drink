@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import style from './UserDetails.module.css';
 
 function UserDetails({ userName, email, role, itemNumber, removeItem }) {
   return (
-    <div>
+    <div className={ style.container }>
       <p
         data-testid={ `admin_manage__element-user-table-item-number-${itemNumber}` }
       >
