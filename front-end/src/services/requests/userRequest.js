@@ -74,4 +74,23 @@ export default {
     if (seller) return seller;
     return { name: 'teste' };
   },
+
+  async getAllUsers() {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+
+    const responseFetch = await fetch(endpoints.users, init);
+    const bodyFetch = await responseFetch.json();
+
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+    return response;
+  },
 };
