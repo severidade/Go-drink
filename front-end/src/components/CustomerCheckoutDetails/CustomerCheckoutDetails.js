@@ -27,6 +27,11 @@ function CustomerCheckoutDetails() {
     getSeller();
   }, []);
 
+  function disableFinishButton() {
+    const result = adress && addressNumber;
+    return !result;
+  }
+
   async function handleClick() {
     const data = {
       sellerId: seller,
@@ -110,6 +115,7 @@ function CustomerCheckoutDetails() {
         type="button"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleClick }
+        disabled={ disableFinishButton() }
       >
         Finalizar Pedido
 
