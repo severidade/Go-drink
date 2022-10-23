@@ -93,4 +93,32 @@ export default {
     };
     return response;
   },
+
+  async registerByRole(name, email, password, role) {
+    const data = {
+      name,
+      email,
+      password,
+      role,
+    };
+
+    console.log({ data });
+    const token = tokenService.getToken();
+
+    const init = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: token,
+      },
+    };
+
+    const responseFetch = await fetch(endpoints.userAdmin, init);
+    const response = {
+      status: responseFetch.status,
+      body: await responseFetch.json(),
+    };
+    return response;
+  },
 };
