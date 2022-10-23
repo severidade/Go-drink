@@ -111,6 +111,7 @@ function AdminRegisterUser() {
             type="button"
             disabled={ disableRegisterButton() }
             onClick={ handleRegister }
+            data-testid="admin_manage__button-register"
           >
             Cadastrar
           </button>
