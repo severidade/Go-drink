@@ -121,4 +121,22 @@ export default {
     };
     return response;
   },
+
+  async deleteUser(id) {
+    const token = tokenService.getToken();
+
+    const init = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: token,
+      },
+    };
+
+    const responseFetch = await fetch(`${endpoints.users}/${id}`, init);
+    const response = {
+      status: responseFetch.status,
+    };
+    return response;
+  },
 };
