@@ -14,13 +14,11 @@ function ManageAdmin() {
   }, []);
 
   async function handleFilterUsers(userId) {
-    const response = await userRequest.deleteUser(userId);
-    console.log({ response });
+    await userRequest.deleteUser(userId);
     const filteredUsers = users.filter((user) => user.id !== userId);
     setUsers(filteredUsers);
   }
 
-  console.log(users);
   return (
     <div>
       <NavBar

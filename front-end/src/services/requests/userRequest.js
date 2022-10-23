@@ -102,7 +102,6 @@ export default {
       role,
     };
 
-    console.log({ data });
     const token = tokenService.getToken();
 
     const init = {

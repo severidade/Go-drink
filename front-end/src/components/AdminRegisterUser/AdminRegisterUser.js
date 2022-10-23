@@ -31,7 +31,6 @@ function AdminRegisterUser() {
     if (status === numbers.fourHundredAndNine) {
       setRequestBody('Cadastro invalido');
     } else {
-      console.log('aqui');
       history.go(0);
     }
   }
