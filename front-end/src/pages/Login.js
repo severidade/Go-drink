@@ -30,6 +30,9 @@ function Login() {
     case 'seller':
       history.push('seller/orders');
       break;
+    case 'administrator':
+      history.push('admin/manage');
+      break;
     default:
       break;
     }
