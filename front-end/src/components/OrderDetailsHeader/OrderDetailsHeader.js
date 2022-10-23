@@ -55,7 +55,6 @@ function OrderDetailsHeader({
           })}
       </p>
       <p
-
         className={ `${styles.status} ${styles[status.replace(' ', '')]}` }
         data-testid={ `${testidPrefix}element-order-details-label-delivery-status` }
       >
