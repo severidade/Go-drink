@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AdminRegisterUser from '../components/AdminRegisterUser/AdminRegisterUser';
 import NavBar from '../components/NavBar/NavBar';
 import UserDetails from '../components/UserDetails/UserDetails';
+import UserDetailsHeader from '../components/UserDetailsHeader/UserDetailsHeader';
 import userRequest from '../services/requests/userRequest';
 
 function ManageAdmin() {
@@ -28,17 +29,19 @@ function ManageAdmin() {
       />
 
       <AdminRegisterUser />
-
-      {users.map((user, index) => (
-        <UserDetails
-          key={ user.id }
-          email={ user.email }
-          itemNumber={ index + 1 }
-          role={ user.role }
-          userName={ user.name }
-          removeItem={ () => handleFilterUsers(user.id) }
-        />
-      ))}
+      <div>
+        <UserDetailsHeader />
+        {users.map((user, index) => (
+          <UserDetails
+            key={ user.id }
+            email={ user.email }
+            itemNumber={ index + 1 }
+            role={ user.role }
+            userName={ user.name }
+            removeItem={ () => handleFilterUsers(user.id) }
+          />
+        ))}
+      </div>
     </div>
   );
 }
