@@ -74,4 +74,68 @@ export default {
     if (seller) return seller;
     return { name: 'teste' };
   },
+
+  async getAllUsers() {
+    const init = {
+      method: 'GET',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: tokenService.getToken(),
+      },
+    };
+
+    const responseFetch = await fetch(endpoints.users, init);
+    const bodyFetch = await responseFetch.json();
+
+    const response = {
+      status: responseFetch.status,
+      body: bodyFetch,
+    };
+    return response;
+  },
+
+  async registerByRole(name, email, password, role) {
+    const data = {
+      name,
+      email,
+      password,
+      role,
+    };
+
+    const token = tokenService.getToken();
+
+    const init = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: token,
+      },
+    };
+
+    const responseFetch = await fetch(endpoints.userAdmin, init);
+    const response = {
+      status: responseFetch.status,
+      body: await responseFetch.json(),
+    };
+    return response;
+  },
+
+  async deleteUser(id) {
+    const token = tokenService.getToken();
+
+    const init = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': contentJson,
+        Authorization: token,
+      },
+    };
+
+    const responseFetch = await fetch(`${endpoints.users}/${id}`, init);
+    const response = {
+      status: responseFetch.status,
+    };
+    return response;
+  },
 };
