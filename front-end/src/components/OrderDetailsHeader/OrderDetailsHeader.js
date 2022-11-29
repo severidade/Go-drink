@@ -12,6 +12,7 @@ function OrderDetailsHeader({
   testidPrefix,
   isUser,
   updateStatus,
+  page,
 }) {
   async function handleCLickDeliveryCheck() {
     await ordersRequest.updateStatus(id, saleStatus.entregue);
@@ -28,7 +29,7 @@ function OrderDetailsHeader({
     updateStatus();
   }
   return (
-    <div className={ styles.order_details }>
+    <div className={ `${styles.order_details} ${styles[page]}` }>
       <p
         className={ styles.order_number }
         data-testid={ `${testidPrefix}element-order-details-label-order-id` }
@@ -102,6 +103,7 @@ function OrderDetailsHeader({
         ) : (
           <>
             <button
+              className={ styles.button_preparing_check }
               data-testid={ `${testidPrefix}button-preparing-check` }
               type="button"
               onClick={ handleCLickPreparingCheck }
@@ -110,6 +112,7 @@ function OrderDetailsHeader({
               Preparar pedido
             </button>
             <button
+              className={ styles.button_dispatch_check }
               type="button"
               data-testid={ `${testidPrefix}button-dispatch-check` }
               onClick={ handleCLickDispatchCheck }
@@ -133,10 +136,12 @@ OrderDetailsHeader.propTypes = {
   testidPrefix: PropTypes.string.isRequired,
   isUser: PropTypes.bool,
   updateStatus: PropTypes.func.isRequired,
+  page: PropTypes.string,
 };
 
 OrderDetailsHeader.defaultProps = {
   isUser: false,
+  page: '',
 };
 
 export default OrderDetailsHeader;

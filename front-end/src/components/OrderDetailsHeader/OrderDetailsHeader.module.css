@@ -13,6 +13,11 @@
   width: 100%;
 }
 
+/* tela seller apresenta mais botoes */
+.order_details.seller {
+  grid-template-columns: 1fr 1fr 2fr 2fr 200px;
+}
+
 .seller_name:before {
   content: 'Vendedor(a): ';
   font-weight: 900;
@@ -34,16 +39,34 @@
   position: relative;
 }
 
-.status.Pendente, .status.Pendente:before {
-  background: tomato;
+/* BOTÃO DE STATUS  na tela seller */
+.order_details.seller > .status {
+  grid-column: 5 / 6;
+  grid-row: 1 / 2;
 }
 
-.status.Preparando, .status.EmTrânsito, .status.Preparando:before, .status.EmTrânsito:before {
-  background: #09ff00;
+.status.Pendente, .status.Pendente:before {
+  background: url('./img/textura.png');
+  background-color: #bbb;
+  background-repeat: repeat;
+}
+
+.status.Preparando, .status.Preparando:before {
+  background: url('./img/textura.png');
+  background-color: #f37f2d;
+  background-repeat: repeat;
+}
+
+.status.EmTrânsito, .status.EmTrânsito:before {
+  background: url('./img/textura.png');
+  background-color: #fdd932;
+  background-repeat: repeat;
 }
 
 .status.Entregue, .status.Entregue:before {
-  background: #ffc700;
+  background: url('./img/textura.png');
+  background-color: #d6ff06;
+  background-repeat: repeat;
 }
 
 .status.Pendente:after, .status.Preparando:after, .status.EmTrânsito:after, .status.Entregue:after {
@@ -58,7 +81,10 @@
 }
 
 .status.Pendente:after {
-  background-image: url('./img/icone_pendente.svg');
+
+  /* background-image: url('./img/icone_pendente.svg'); */
+  background: url('./img/icone_pendente.svg');
+  background-repeat: no-repeat;
   background-size: 80%;
 }
 
@@ -87,6 +113,7 @@
   right: 0;
   width: 800px;
 }
+
 
 /* BOTÃO MARCAR COMO ENTREGUE  */
 .slider_delivered_checkbox_container {
@@ -145,4 +172,20 @@
 
 .delivered_input {
   visibility: hidden;
+}
+
+/* Botões "preparar pedido" e "saiu para entrega" em tela de vendedor */
+.button_preparing_check, .button_dispatch_check {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Titillium Web , sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  height: 45%;
+}
+
+.button_preparing_check:disabled, .button_dispatch_check:disabled {
+  color: #a7a0a0;
+  cursor: not-allowed;
 }

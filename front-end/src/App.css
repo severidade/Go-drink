@@ -42,7 +42,7 @@ input {
 
 .container_page_checkout {
   display: grid;
-  grid-template-rows: repeat(2, auto) 1fr auto;
+  grid-template-rows: repeat(2, auto) 1fr;
   left: 0;
   max-width: 100%;
   min-height: 100vh;
@@ -77,23 +77,24 @@ input {
   width: 100%;
 }
 
-.container_sales, .container_sales_details, .container_orders {
+.container_sales, .container_sales_details, .container_orders, .container_orders_all {
   margin: auto;
   max-width: 800px;
   width: 60vw;
 }
 
-.container_sales, .container_orders {
+.container_sales, .container_orders, .container_orders_all {
 
   /* background-color: tomato; */
   display: flex;
   flex-direction: column;
   gap: 40px;
-  height: 100%;
+  min-height: 25vh;
   width: 100%;
 }
 
-.container_sales_details, .container_orders {
+.container_sales_details, .container_orders, .container_orders_all {
+  height: 100%;
   padding: 40px 0;
   position: relative;
 }
@@ -118,4 +119,9 @@ input {
   position: absolute;
   width: 100%;
   z-index: 2;
+}
+
+.container_orders_all {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

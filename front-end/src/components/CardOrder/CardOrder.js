@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 
+import styles from './CardOrder.module.css';
+
 function CardOrder({ hasAddress, order, testidPrefix, pushUrl }) {
   const { id, totalPrice, deliveryAddress, deliveryNumber, saleDate, status } = order;
 
@@ -20,37 +22,49 @@ function CardOrder({ hasAddress, order, testidPrefix, pushUrl }) {
   const history = useHistory();
 
   return (
-    <button
-      className="container_order_main"
-      type="button"
-      onClick={ () => history.push(`${pushUrl}${id}`) }
+    <div
+      className={ styles.container_order_main }
     >
-      <p
-        className="order_id"
-        data-testid={ `${testidPrefix}element-order-id-${id}` }
+      <button
+        // className={ `${styles.status} ${styles[status.replace(' ', '')]}` }
+        className={ styles.status }
+        type="button"
+        onClick={ () => history.push(`${pushUrl}${id}`) }
       >
-        {`Pedido ${id} `}
-      </p>
-      <div className="container_status">
-        <p
-          className="status"
+        <span
+          className={ styles.order_id }
+        >
+          Pedido &#8470;
+          <em
+            data-testid={ `${testidPrefix}element-order-id-${id}` }
+          >
+            {` ${id} `}
+          </em>
+        </span>
+
+        <span
+          className={ `${styles[status.replace(' ', '')]}` }
           data-testid={ `${testidPrefix}element-delivery-status-${id}` }
         >
           {status}
-        </p>
-        <p
-          className="date"
+        </span>
+        <span
+          className={ styles.date }
           data-testid={ `${testidPrefix}element-order-date-${id}` }
         >
           {properDate}
-        </p>
-        <p
-          className="price"
+        </span>
+        <span
+          className={ styles.price }
           data-testid={ `${testidPrefix}element-card-price-${id}` }
         >
-          {totalPrice.replace('.', ',')}
-        </p>
-      </div>
+          <em className={ styles.label_price }>Valor</em>
+          {' '}
+          <em className={ styles.currency }>
+            {totalPrice.replace('.', ',')}
+          </em>
+        </span>
+      </button>
       <div
         className="address_container"
       >
@@ -63,7 +77,7 @@ function CardOrder({ hasAddress, order, testidPrefix, pushUrl }) {
           </p>
         )}
       </div>
-    </button>
+    </div>
   );
 }
 
