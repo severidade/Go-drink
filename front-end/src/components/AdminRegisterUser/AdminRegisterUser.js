@@ -5,6 +5,8 @@ import numbers from '../../services/numbers';
 import userRequest from '../../services/requests/userRequest';
 import roleList from '../../services/roles';
 
+import styles from './AdminRegisterUser.module.css';
+
 function AdminRegisterUser() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -44,9 +46,9 @@ function AdminRegisterUser() {
   }
 
   return (
-    <div>
+    <div className={ styles.container_cadastro }>
       <div>
-        <p>Cadastrar novo usuário</p>
+        <h1>Cadastrar novo usuário</h1>
         {requestBody && (
           <p
             data-testid="admin_manage__element-invalid-register"
@@ -56,9 +58,9 @@ function AdminRegisterUser() {
           </p>
         )}
       </div>
-      <form>
-        <label htmlFor="input-name">
-          <p>Nome Completo</p>
+      <form className={ styles.add_user_form }>
+        <label className={ styles.form_name } htmlFor="input-name">
+          <p>Nome</p>
           <input
             id="input-name"
             type="name"
@@ -69,7 +71,7 @@ function AdminRegisterUser() {
           />
         </label>
 
-        <label htmlFor="input-email">
+        <label className={ styles.form_email } htmlFor="input-email">
           <p>Email</p>
           <input
             id="input-email"
@@ -81,7 +83,7 @@ function AdminRegisterUser() {
           />
         </label>
 
-        <label htmlFor="input-password">
+        <label className={ styles.form_password } htmlFor="input-password">
           <p>Password</p>
           <input
             id="input-password"
@@ -92,7 +94,7 @@ function AdminRegisterUser() {
           />
         </label>
 
-        <label htmlFor="input-role">
+        <label className={ styles.form_role } htmlFor="input-role">
           <p>tipo</p>
           <select
             id="role"
@@ -106,6 +108,8 @@ function AdminRegisterUser() {
               </option>
             ))}
           </select>
+        </label>
+        <div className={ styles.form_send }>
           <button
             type="button"
             disabled={ disableRegisterButton() }
@@ -114,7 +118,7 @@ function AdminRegisterUser() {
           >
             Cadastrar
           </button>
-        </label>
+        </div>
       </form>
     </div>
   );

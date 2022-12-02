@@ -28,6 +28,7 @@ function Routers() {
       <Route path="/seller/orders" component={ SellerOrders } exact />
       <Route path="/seller/orders/:id" component={ SellerOrdersDetail } exact />
       <Route path="/admin/manage" component={ ManageAdmin } />
+      <Route path="*" component={ Login } />
     </Switch>
   );
 }

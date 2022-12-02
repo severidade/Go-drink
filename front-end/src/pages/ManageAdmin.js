@@ -25,20 +25,21 @@ function ManageAdmin() {
         orders="gerenciar usuários"
         selected="orders"
       />
-
-      <AdminRegisterUser />
-      <div>
-        <UserDetailsHeader />
-        {users.map((user, index) => (
-          <UserDetails
-            key={ user.id }
-            email={ user.email }
-            itemNumber={ index + 1 }
-            role={ user.role }
-            userName={ user.name }
-            removeItem={ () => handleFilterUsers(user.id) }
-          />
-        ))}
+      <div className="container_manage_admin">
+        <AdminRegisterUser />
+        <div>
+          <UserDetailsHeader />
+          {users.map((user, index) => (
+            <UserDetails
+              key={ user.id }
+              email={ user.email }
+              itemNumber={ index + 1 }
+              role={ user.role }
+              userName={ user.name }
+              removeItem={ () => handleFilterUsers(user.id) }
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

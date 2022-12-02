@@ -1,0 +1,57 @@
+.container_cadastro {
+  background-color: tomato;
+}
+
+.add_user_form {
+  background-color: palegoldenrod;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 200px;
+  grid-template-rows: 60px 60px 60px;
+}
+
+.form_name {
+  background-color: blue;
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+.form_name > input {
+  height: 40px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.form_email {
+  background-color: blue;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.form_role {
+  background-color: blue;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+
+}
+
+.form_password {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.form_send {
+  align-items: center;
+  display: flex;
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+  justify-content: center;
+}
+
+.form_send > button {
+  font-family: Vollkorn , serif;
+  font-size: 22px;
+  height: 50px;
+  margin: 20px 0;
+  width: 300px;
+}

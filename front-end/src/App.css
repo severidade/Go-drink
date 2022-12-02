@@ -77,13 +77,13 @@ input {
   width: 100%;
 }
 
-.container_sales, .container_sales_details, .container_orders, .container_orders_all {
+.container_sales, .container_sales_details, .container_orders, .container_orders_all, .container_manage_admin {
   margin: auto;
   max-width: 800px;
   width: 60vw;
 }
 
-.container_sales, .container_orders, .container_orders_all {
+.container_sales, .container_orders, .container_orders_all, .container_manage_admin {
 
   /* background-color: tomato; */
   display: flex;
@@ -93,7 +93,7 @@ input {
   width: 100%;
 }
 
-.container_sales_details, .container_orders, .container_orders_all {
+.container_sales_details, .container_orders, .container_orders_all, .container_manage_admin {
   height: 100%;
   padding: 40px 0;
   position: relative;
