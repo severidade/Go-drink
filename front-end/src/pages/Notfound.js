@@ -15,7 +15,7 @@ function Notfound() {
           tokenService.clearLocalStorage();
         } }
       >
-        Voltar
+        Home
       </button>
     </div>
   );
