@@ -133,3 +133,48 @@
 .invalid {
   color: rgb(255, 38, 0);
 }
+
+
+@media only screen and ( max-width : 400px ) {
+
+  .container_login > .section_02 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    justify-content: center;
+    position: relative;
+  }
+
+  .section_01 > .logo {
+    background-image: url('../images/Logowithslogan.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-indent: -1000px;
+    width: 70%;
+  }
+
+  .object-mask {
+    mask-image: url('../images/mask/animated_mask.svg');
+    mask-position: center 10px;
+    mask-repeat: no-repeat;
+    mask-size: 80%;
+  }
+
+  .container_img_login {
+    background-image: url('../images/illustration/beer-celebration.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 90%;
+    top: 20px;
+    width: 100%;
+  }
+}

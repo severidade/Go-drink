@@ -125,3 +125,11 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+@media only screen and ( max-width : 400px ) {
+
+  .container_login {
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px calc(100vh - 250px);
+  }
+}
