@@ -18,18 +18,21 @@
     "test": "jest -i --forceExit --verbose --config=./jest.config.js",
     "test:dev": "NODE_ENV=development npm run jest -i --forceExit --config=./jest.config.js",
     "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
-    "test:dev:report": "./__tests__/reports/generate.sh"
+    "test:dev:report": "./__tests__/reports/generate.sh",
+    
+    "install:front": "cd front-end && npm install", 
+    "build:front": "cd front-end && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/betrybe/sd-0x-project-delivery-app.git"
+    "url": "git+https://github.com/Leandroswq/delivery-app.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/betrybe/sd-0x-project-delivery-app/issues"
+    "url": "https://github.com/Leandroswq/delivery-app/issues"
   },
-  "homepage": "https://github.com/betrybe/sd-0x-project-delivery-app#readme",
+  "homepage": "https://github.com/Leandroswq/delivery-app",
   "devDependencies": {
     "@faker-js/faker": "6.0.0",
     "axios": "0.26.1",
