@@ -10,7 +10,7 @@ import CustomerOrders from './pages/CustomerOrders';
 import SellerOrders from './pages/SellerOrders';
 import SellerOrdersDetail from './pages/SellerOrdersDetail';
 import ManageAdmin from './pages/ManageAdmin';
-import Notfound from './pages/Notfound';
+import Notfound from './pages/NotFound/Notfound';
 
 function Routers() {
   return (
