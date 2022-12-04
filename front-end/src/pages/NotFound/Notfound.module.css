@@ -1,0 +1,66 @@
+.container_not_found {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.logo {
+  background-image: url('../../images/Logowithslogan.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  text-indent: -1000px;
+  width: 100%;
+}
+
+.section_01 {
+  height: 420px;
+  position: relative;
+}
+
+.container_img_not_found {
+  background-image: url('../../images/illustration/not_found.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 300px;
+  width: 300px;
+}
+
+.codigo {
+  color: #ffc700;
+  font-family: Vollkorn , serif;
+  font-size: 112px;
+  position: absolute;
+  text-align: center;
+  top: 236px;
+  width: 100%;
+}
+
+.frase {
+  bottom: 0;
+  font-size: 20px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.go_back_home {
+  background-color: black;
+  border: 2px black solid;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: Vollkorn , serif;
+  font-size: 22px;
+  height: 50px;
+  margin: 20px 0;
+  width: 300px;
+}
