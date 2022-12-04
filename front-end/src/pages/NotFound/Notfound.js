@@ -18,20 +18,17 @@ function Notfound() {
         <h2 className={ styles.codigo }>404</h2>
         <p className={ styles.frase }>Opps! Página não encontrada</p>
       </div>
-      <div>
-        <button
-          type="button"
-          className={ styles.go_back_home }
-          // className={ `${selected === 'exit' ? 'selected' : ''} exit` }
-          onClick={ () => {
-            history.push('/login');
-            tokenService.clearLocalStorage();
-          } }
-        >
-          Home
-        </button>
-
-      </div>
+      <button
+        type="button"
+        className={ styles.go_back_home }
+        // className={ `${selected === 'exit' ? 'selected' : ''} exit` }
+        onClick={ () => {
+          history.push('/login');
+          tokenService.clearLocalStorage();
+        } }
+      >
+        Home
+      </button>
     </div>
   );
 }
