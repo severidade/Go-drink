@@ -1,13 +1,24 @@
 name: CI -> Deploy to My website
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
-  build:
+  deploy-front:
     runs-on: ubuntu-latest
+    environment:
+      name: deploy_front
     steps:
       - uses: actions/checkout@v2
-      # Here is the deployment action
+      # Criação do build
+      - name: Setup node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.18.1
+      - run: npm run install:front 
+      - run: npm run build:front
+      - run: cp ./front-end/.htaccess ./front-end/build
+
+      # Deploy do front
       - name: Upload from public_html via FTP
         uses: airvzxf/ftp-deployment-action@latest
         with:
