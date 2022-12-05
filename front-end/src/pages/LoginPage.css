@@ -135,7 +135,7 @@
 }
 
 
-@media only screen and ( max-width : 500px ) {
+@media only screen and ( max-width : 920px ) {
 
   .container_login > .section_02 {
     align-items: center;
