@@ -21,7 +21,17 @@ module.exports = {
       {
         sale_id: 2,
         product_id: 4,
-        quantity: 555,
+        quantity: 35,
+      },
+      {
+        sale_id: 3,
+        product_id: 5,
+        quantity: 23,
+      },
+      {
+        sale_id: 4,
+        product_id: 3,
+        quantity: 2,
       },
     ])
   },
