@@ -1,4 +1,4 @@
-const host = 'http://localhost:3001';
+const host = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 export default {
   users: `${host}/users`,

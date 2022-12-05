@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: 16.18.1
       - run: npm run install:front 
+      - run: echo "REACT_APP_API_URL=${{secrets.API_URL}}" >> ./front-end/.env
       - run: npm run build:front
       - run: cp ./front-end/.htaccess ./front-end/build
 
