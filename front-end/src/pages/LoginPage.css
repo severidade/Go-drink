@@ -135,7 +135,7 @@
 }
 
 
-@media only screen and ( max-width : 400px ) {
+@media only screen and ( max-width : 500px ) {
 
   .container_login > .section_02 {
     align-items: center;
@@ -162,10 +162,11 @@
   }
 
   .object-mask {
+    background-color: tomato;
     mask-image: url('../images/mask/animated_mask.svg');
     mask-position: center 10px;
     mask-repeat: no-repeat;
-    mask-size: 80%;
+    mask-size: contain;
   }
 
   .container_img_login {
