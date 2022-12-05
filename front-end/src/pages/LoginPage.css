@@ -98,7 +98,7 @@
   width: 100%;
 }
 
-.login_app_button:nth-of-type( 2 ) {
+.new_account_button {
   background: none;
   border: none;
   cursor: pointer;
@@ -106,7 +106,13 @@
   font-size: 16px;
 }
 
-.login_app_button:first-of-type {
+.section_login {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.login_app_button {
   background-color: black;
   border: 2px black solid;
   border-radius: 5px;
@@ -119,7 +125,7 @@
   width: 100%;
 }
 
-.login_app_button:first-of-type:disabled {
+.login_app_button:disabled {
 
   /* background: url('../images/noise.png');
   background-color: oldlace; */
@@ -132,6 +138,8 @@
 
 .invalid {
   color: rgb(255, 38, 0);
+  position: absolute;
+  top: -10px;
 }
 
 

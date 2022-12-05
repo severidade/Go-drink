@@ -110,35 +110,36 @@ function Login() {
               // importante colocar o campo com required para a animação do span funcionar
             />
           </label>
-          <button
-            type="button"
-            data-testid="common_login__button-login"
-            disabled={ disableButton }
-            onClick={ () => handleClickLogin() }
-            className="login_app_button"
-          >
-            Login
-          </button>
+          <div className="section_login">
+            {
+              invalidLogin
+            && (
+              <p
+                className="invalid"
+                data-testid="common_login__element-invalid-email"
+              >
+                {invalidLoginMessage}
+              </p>)
+            }
+            <button
+              type="button"
+              data-testid="common_login__button-login"
+              disabled={ disableButton }
+              onClick={ () => handleClickLogin() }
+              className="login_app_button"
+            >
+              Login
+            </button>
+          </div>
           <button
             type="button"
             data-testid="common_login__button-register"
             onClick={ () => handleClickRegister() }
-            className="login_app_button"
+            className="new_account_button"
           >
             Ainda não tenho conta
           </button>
         </form>
-        {
-          invalidLogin
-          && (
-            <p
-              className="invalid"
-              data-testid="common_login__element-invalid-email"
-            >
-              {invalidLoginMessage}
-
-            </p>)
-        }
       </div>
       <div className="section_02">
         <div className="bg_login_image object-mask" />
