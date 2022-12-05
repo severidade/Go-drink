@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 // import './CheckoutElement.css';
 import styles from './CheckoutElement.module.css';
 import CartContext from '../../context/CartContext';
+import { host } from '../../services/requests/endpoints';
 
 function CheckoutElement({
   itemNumber, productName, quantity, price, url, id, testidPrefix, removeItem }) {
@@ -46,7 +47,7 @@ function CheckoutElement({
       <div className={ styles.container_image }>
         <img
           className={ styles.image_product }
-          src={ url }
+          src={ `${host}${url}` }
           alt={ productName }
           data-testid={ `customer_products__img-card-bg-image${itemNumber}` }
         />
