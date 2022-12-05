@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect } from 'react';
 // import './CardProduct.css';
-
+import { host } from '../../services/requests/endpoints';
 import styles from './CardProduct.module.css';
 
 import CartContext from '../../context/CartContext';
@@ -52,7 +52,7 @@ function CardProduct({ productName, price, url, id }) {
         <div className={ styles.container_image }>
           <img
             className={ styles.image_product }
-            src={ url }
+            src={ `${host}${url}` }
             alt={ productName }
             data-testid={ `customer_products__img-card-bg-image-${id}` }
           />
