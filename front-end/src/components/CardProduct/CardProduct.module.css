@@ -140,3 +140,26 @@
 .rm_item:hover, .add_item:hover {
   background-color: #ffc100;
 }
+
+@media only screen and ( max-width : 425px ) {
+
+  .container_product_main {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .container_price {
+
+    /* background-color: #ffc100; */
+    display: flex;
+    font-family: 'Vollkorn' , serif;
+    font-size: 29px;
+    font-weight: 800;
+    justify-content: center;
+    width: 100%;
+  }
+}
