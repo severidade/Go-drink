@@ -1,4 +1,7 @@
 .container_order_main {
+  margin: auto;
+  max-width: 500px;
+  min-width: 352px;
   width: 100%;
 }
 
@@ -129,4 +132,38 @@
   left: 0;
   position: absolute;
   transform: translate(calc((100% + 4px) * -1), -8px);
+}
+
+@media only screen and ( max-width : 426px ) {
+
+  .status {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container_order_main {
+    margin: auto;
+    max-width: 500px;
+    min-width: 268px;
+    width: 100%;
+  }
+
+  .label_price {
+    display: none;
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+    font-size: 23px;
+  }
+
+  .currency:before {
+    bottom: 0;
+    content: 'R$';
+    font-size: 16px;
+    left: 0;
+    position: absolute;
+    transform: translate(calc((100% + 4px) * -1), -4px);
+  }
 }

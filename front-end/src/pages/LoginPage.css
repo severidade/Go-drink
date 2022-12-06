@@ -22,6 +22,7 @@
   width: 100%;
 }
 
+
 .container_login > .section_02 {
   align-items: center;
   display: flex;
@@ -41,19 +42,19 @@
   width: 100%;
 }
 
-.object-mask {
+.object-mask, .object_mask_register {
   mask-image: url('../images/mask/animated_mask.svg');
   mask-position: center 100px;
   mask-repeat: no-repeat;
   mask-size: 70%;
 }
 
-.object_mask_register {
+/* .object_mask_register {
   mask-image: url('../images/mask/animated_mask.svg');
   mask-position: center 100px;
   mask-repeat: no-repeat;
   mask-size: 70%;
-}
+} */
 
 .container_img_login {
   background-image: url('../images/illustration/beer-celebration.svg');
@@ -169,8 +170,7 @@
     width: 70%;
   }
 
-  .object-mask {
-    background-color: tomato;
+  .object-mask, .object_mask_register {
     mask-image: url('../images/mask/animated_mask.svg');
     mask-position: center 10px;
     mask-repeat: no-repeat;
@@ -184,6 +184,15 @@
     background-size: contain;
     height: 90%;
     top: 20px;
+    width: 100%;
+  }
+
+  .container_img_register {
+    background-image: url('../images/illustration/dating.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
     width: 100%;
   }
 }
