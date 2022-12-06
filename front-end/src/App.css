@@ -34,6 +34,7 @@ input {
 }
 
 .container_page {
+  background-color: tomato;
   left: 0;
   max-width: 100%;
   overflow: hidden;
