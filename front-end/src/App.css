@@ -150,8 +150,8 @@ input {
     grid-template-columns: 1fr;
   }
 
-  .container_sales {
-    padding: 60px 40px 0 20px;
+  .container_sales, .container_orders {
+    padding: 60px 10px 0;
   }
 }
 
