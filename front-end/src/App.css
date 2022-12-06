@@ -63,7 +63,8 @@ input {
 
 
 .container_products {
-  background-color: blue;
+
+  /* background-color: blue; */
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 40px 2px;
@@ -123,7 +124,8 @@ input {
 }
 
 .container_orders_all {
-  background-color: blue;
+
+  /* background-color: blue; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 65px;
@@ -132,14 +134,16 @@ input {
 @media only screen and ( max-width : 700px ) {
 
   .container_products {
-    background-color: rgb(199, 235, 19);
+
+    /* background-color: rgb(199, 235, 19); */
     grid-template-columns: repeat(2, 1fr);
     max-width: 402px;
     padding-bottom: 250px;
   }
 
   .container_orders_all {
-    background-color: rgb(0, 255, 8);
+
+    /* background-color: rgb(0, 255, 8); */
     display: grid;
     grid-template-columns: 1fr;
     padding: 0 20px;
@@ -149,14 +153,16 @@ input {
 @media only screen and ( min-width : 701px ) and ( max-width : 919px ) {
 
   .container_products {
-    background-color: violet;
+
+    /* background-color: violet; */
     grid-template-columns: repeat(3, 1fr);
     max-width: 604px;
     padding-bottom: 250px;
   }
 
   .container_orders_all {
-    background-color: rgb(0, 255, 179);
+
+    /* background-color: rgb(0, 255, 179); */
     display: grid;
     grid-template-columns: 1fr;
     padding: 0 20px;
