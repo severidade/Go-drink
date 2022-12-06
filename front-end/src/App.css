@@ -133,6 +133,7 @@ input {
     background-color: rgb(199, 235, 19);
     grid-template-columns: repeat(2, 1fr);
     max-width: 402px;
+    padding-bottom: 250px;
   }
 }
 
@@ -142,9 +143,16 @@ input {
     background-color: violet;
     grid-template-columns: repeat(3, 1fr);
     max-width: 604px;
+    padding-bottom: 250px;
   }
 }
 
+@media only screen and ( min-width : 701px ) and ( max-width : 1300px ) {
+
+  .container_products {
+    padding-bottom: 250px;
+  }
+}
 
 @media only screen and ( max-width : 920px ) {
 
