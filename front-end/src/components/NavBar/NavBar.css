@@ -36,10 +36,14 @@
 
 .costumer {
   align-items: center;
-  background: black;
+  align-self: flex-start;
+
+  /* background: black; */
   border-radius: 20px;
-  color: white;
+  color: black;
   display: flex;
+  font-size: 20px;
+  font-weight: 900;
   height: 40px;
   justify-content: center;
   padding: 15px;
@@ -67,6 +71,7 @@
   display: flex;
   gap: 40px;
   justify-content: flex-start;
+  left: 19px;
   min-height: 40px;
   padding: 10px 10px 0;
 }
